@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel index.html",
-    "build": "NODE_ENV=production parcel build index.html --public-url ./dist/"
+    "build": "NODE_ENV=production parcel build index.html --public-url ./"
   },
   "keywords": [
     "Vanilla",
