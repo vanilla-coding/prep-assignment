@@ -1,0 +1,20 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "description": "Let's make a todo list with a calendar",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "keywords": [
+    "Vanilla",
+    "Coding",
+    "Prep",
+    "JavaScript"
+  ],
+  "author": "Ken Huh <ken@vanillacoding.co>",
+  "license": "ISC",
+  "dependencies": {
+    "parcel": "^1.12.4"
+  }
+}

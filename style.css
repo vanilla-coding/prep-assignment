@@ -1,0 +1,164 @@
+body {
+  background-color: lightblue;
+  background-image: url("./images/bg.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "Varela Round", sans-serif;
+  padding: 0 0 5rem 0;
+}
+
+h1 {
+  font-family: "Pacifico", cursive;
+  text-align: center;
+  font-size: 72px;
+}
+
+h2 {
+  text-align: center;
+}
+
+.image-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.image-box img {
+  width: 150px;
+}
+
+.current-day {
+  font-weight: bold;
+  text-align: center;
+  font-size: 48px;
+}
+
+.current-day p {
+  margin: 20px 0;
+}
+
+.current-month {
+  text-align: center;
+  margin: 50px auto -20px;
+  font-size: 24px;
+}
+
+.calendar {
+  position: relative;
+  width: 270px;
+  margin: 0 auto;
+}
+
+table {
+  margin: 50px auto 0;
+  text-align: center;
+}
+
+.button {
+  position: absolute;
+  top: 50%;
+  margin-top: -20px;
+  width: 100px;
+  height: 40px;
+  font-size: 20px;
+  line-height: 40px;
+  background: none;
+  border: none;
+}
+
+.button.prev {
+  left: -100px;
+}
+
+.button.next {
+  right: -100px;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  border: 1px solid black;
+  width: 480px;
+  margin: 0 2rem;
+  padding: 3rem 0;
+}
+
+.todo-list {
+  position: relative;
+}
+
+.todo-input {
+  margin: 0 2rem;
+}
+
+.todo-input input {
+  width: calc(100% - 20px);
+  border: none;
+  padding: 10px;
+  height: 30px;
+  font-size: 16px;
+  line-height: 30px;
+  background-color: transparent;
+  border-bottom: 1px solid black;
+}
+
+.todo-list > ul {
+  width: 100%;
+  padding: 0;
+  list-style: none;
+}
+
+.todo-list li {
+  margin-bottom: 15px;
+}
+
+.todo-list li div {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2rem;
+}
+
+.todo-list li p {
+  display: inline-block;
+  width: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+
+.todo-list li.done p {
+  text-decoration: line-through;
+}
+
+.todo-list li span {
+  display: inline-block;
+  padding: 0 0 0 10px;
+  cursor: pointer;
+}
+
+.todo-footer {
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  bottom: 0;
+}
+
+.todo-footer p,
+.todo-footer ul {
+  display: inline-block;
+  margin: 0 0 10px;
+}
+
+.todo-footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+.todo-footer li {
+  margin: 0 5px;
+  display: inline-block;
+}
