@@ -11,20 +11,19 @@
       href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="icon" href="/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Calendar Project</title>
   </head>
 
   <body>
-    <div class="image-box">
-      <img src="images/vanilla_coding_logo.png" />
-    </div>
-
-    <h1>Calendar</h1>
-
     <section>
-      <div class="container">
+      <div class="image-box">
+        <img src="images/vanilla_coding_logo.png" />
+      </div>
+      <h1>Calendar</h1>
+
+      <div class="calendar-container">
         <div class="current-day">
           <p></p>
           <p></p>
@@ -102,28 +101,6 @@
           </table>
           <button class="button prev"><<</button>
           <button class="button next">>></button>
-        </div>
-      </div>
-
-      <div class="container todo-list">
-        <h2>Todo List</h2>
-
-        <div class="todo-input">
-          <input type="text" placeholder="Enter a todo item" />
-        </div>
-
-        <ul></ul>
-
-        <div class="todo-footer">
-          <p>No items left</p>
-
-          <ul>
-            <li>All</li>
-            <li>Active</li>
-            <li>Completed</li>
-          </ul>
-
-          <p>Clear</p>
         </div>
       </div>
     </section>
