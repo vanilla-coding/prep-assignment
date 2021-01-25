@@ -2,27 +2,23 @@
 
 ### 1. Fork 하기
 
-<img width="1552" alt="스크린샷 2021-01-25 오후 03 00 09" src="https://user-images.githubusercontent.com/69792673/105688513-08c98380-5f3d-11eb-9524-6e27e7e4dc72.png">
+<img width="1552" alt="스크린샷 2021-01-25 오후 06 43 25" src="https://user-images.githubusercontent.com/69792673/105688706-4201f380-5f3d-11eb-91d8-7d07eb24ece9.png">
 
-페이지 우측 상단에 Fork 버튼을 눌러주세요.
+페이지 우측 상단에 Fork 버튼을 눌러주세요. (로그인 창이 뜨면 로그인해 주세요.
 
-![스크린샷 2021-01-25 오후 04.34.14](/Users/leo_k/Desktop/스크린샷 2021-01-25 오후 04.34.14.png)
+<img width="1552" alt="스크린샷 2021-01-25 오후 06 46 36" src="https://user-images.githubusercontent.com/69792673/105689142-bc327800-5f3d-11eb-8058-1f0d74490f8b.png">
 
-로그인을 해주세요.
+로그인 하신 후 다시 Fork 버튼을 누르시면 이런 화면이 뜰텐데요. 해당 계정으로 저장소를 복사해간다고 생각하시면 됩니다. 자신의 계정을 꾹 눌러주세요.
 
-![스크린샷 2021-01-25 오후 04.36.51](/Users/leo_k/Desktop/스크린샷 2021-01-25 오후 04.36.51.png)
-
-Fork 버튼을 누르시면 이런 화면이 뜰텐데요. 해당 계정으로 저장소를 복사해간다고 생각하시면 됩니다.
-
-
+<img width="1552" alt="스크린샷 2021-01-25 오후 06 49 02" src="https://user-images.githubusercontent.com/69792673/105689395-0ca9d580-5f3e-11eb-94a9-adf0597f3e32.png">
 
 ### 2. Fork 한 저장소를 로컬에 클론하기
 
-![스크린샷 2021-01-25 오후 04.37.45](/Users/leo_k/Desktop/스크린샷 2021-01-25 오후 04.37.45.png)
+<img width="1552" alt="스크린샷 2021-01-25 오후 06 50 07" src="https://user-images.githubusercontent.com/69792673/105689508-2fd48500-5f3e-11eb-9aff-5cd84cba6a41.png">
 
 아까 보던 화면과 똑같아보이지만, 왼쪽 상단에 보시면 저장소의 이름이 vanilla-coding 에서 leo-vanilla 로 변경된 것을 확인하실 수 있죠? 이제 나의 로컬(컴퓨터)로 클론을 해볼거예요.
 
-![스크린샷 2021-01-25 오후 04.38.03](/Users/leo_k/Desktop/스크린샷 2021-01-25 오후 04.38.03.png)
+<img width="1552" alt="스크린샷 2021-01-25 오후 06 50 52" src="https://user-images.githubusercontent.com/69792673/105689598-4ed31700-5f3e-11eb-9ced-ebc835bc3000.png">
 
 위 그림처럼 초록색 Code 버튼을 누르시고, HTTPS가 맞는지 확인하신 뒤에 복사해주세요.
 
