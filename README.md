@@ -1,6 +1,6 @@
 # 프렙 사전과제 제출방법
 
-### 1. Fork 하기
+## 1. Fork 하기
 
 페이지 우측 상단에 Fork 버튼을 눌러주세요. (로그인 창이 뜨면 로그인해 주세요.
 
@@ -10,7 +10,7 @@
 
 <img width="1552" alt="스크린샷 2021-01-25 오후 06 49 02" src="https://user-images.githubusercontent.com/69792673/105689395-0ca9d580-5f3e-11eb-94a9-adf0597f3e32.png">
 
-### 2. Fork 한 저장소를 로컬에 클론하기
+## 2. Fork 한 저장소를 로컬에 클론하기
 
 <img width="1552" alt="스크린샷 2021-01-25 오후 06 50 07" src="https://user-images.githubusercontent.com/69792673/105689508-2fd48500-5f3e-11eb-9aff-5cd84cba6a41.png">
 
@@ -30,13 +30,13 @@
 
 자 이제 바탕화면에 `prep-assignment` 라는 폴더가 생성되었어요. 이제 과제를 시작하시고, 마무리한 과제의 파일들을 이 폴더에 넣어주세요.
 
-### 3. 과제 하기
+## 3. 과제 하기
 
 사전학습가이드에서 다운받은 파일들을 이용해서 과제를 해결해주세요. 모두 해결하고 난 뒤에 작성한 파일들을 바탕화면에 `prep-assignment` 폴더에 넣어주세요! (README.md 는 삭제하셔도 괜찮습니다.)
 
 <img width="1032" alt="스크린샷 2021-01-26 오전 10 46 43" src="https://user-images.githubusercontent.com/69792673/105788401-cc8d3600-5fc3-11eb-9c49-e1e9a55f4383.png">
 
-### 4. 과제 저장소에 업로드(푸시)하기
+## 4. 과제 저장소에 업로드(푸시)하기
 
 이제 과제를 제출해보겠습니다. 다시 Terminal이나 CMD를 켜주시고, `prep-assignment` 폴더로 이동해 주세요. (터미널에서 과제 폴더로 이동하는 법은 위에서 했던 대로 `cd Desktop`, `cd prep-assignment` 를 이용해주세요)
 
@@ -52,7 +52,7 @@
 
 <img width="1244" alt="스크린샷 2021-01-26 오전 10 53 20" src="https://user-images.githubusercontent.com/69792673/105788936-c8ade380-5fc4-11eb-9d6d-852403b37f1a.png">
 
-### 5. 과제 제출하기
+## 5. 과제 제출하기
 
 이제 다 왔어요. Github에 있는 자신의 저장소/prep-assignment 를 찾아서 들어가주세요. 
 
@@ -74,12 +74,12 @@
 
 ![](https://media2.giphy.com/media/eKfovWZOlOpbTDEX9F/giphy.gif)
 
-### 제출이 완료되었습니다!
+## 제출이 완료되었습니다!
 
 수고하셨습니다. <br/>
 이제 프렙이 시작되기 전까지 사전학습가이드의 마지막 부분을 참고하여 [사전학습가이드 완료 후](https://book.vanillacoding.co/starter-kit/summary/summary) 부족한 부분을 좀 더 학습하는 시간을 가져보세요! :) 
 
-### 사전과제 제출 관련 이슈 발생 시
+## 사전과제 제출 관련 이슈 발생 시
 사전과제 제출 중 문제가 있다면 prep@vanillacoding.co 혹은 [바닐라코딩 채널톡](vanillacoding.channel.io) 를 이용해주세요!
 
 항상 건강 잘 챙기시고, 곧 뵙겠습니다! :)
