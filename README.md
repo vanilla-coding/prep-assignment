@@ -77,7 +77,7 @@
 ## 제출이 완료되었습니다!
 
 수고하셨습니다. <br/>
-이제 프렙이 시작되기 전까지 사전학습가이드의 [[사전학습가이드 완료 후](https://book.vanillacoding.co/starter-kit/summary/summary)] 파트를 참고하여 부족한 부분을 좀 더 학습하는 시간을 가져보세요! :) 
+이제 프렙 코스가 시작되기 전까지 사전학습가이드의 [[사전학습가이드 완료 후](https://book.vanillacoding.co/starter-kit/summary/summary)] 파트를 참고하여 부족한 부분을 좀 더 학습하는 시간을 가져보세요! :) 
 
 ## 사전과제 제출 관련 이슈 발생 시
 사전과제 제출 중 문제가 있다면 prep@vanillacoding.co 혹은 [바닐라코딩 채널톡](vanillacoding.channel.io) 을 이용해주세요!
