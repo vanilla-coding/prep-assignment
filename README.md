@@ -1,3 +1,8 @@
+![font_logo_black](https://user-images.githubusercontent.com/69792673/105793627-cf405900-5fcc-11eb-9180-e43db8cb114e.png)
+<br/>
+<br/>
+<br/>
+
 # 프렙 사전과제 제출방법
 
 ## 1. Fork 하기
@@ -85,20 +90,6 @@
 사전과제 제출 중 문제가 있다면 prep@vanillacoding.co 혹은 [바닐라코딩 채널톡](vanillacoding.channel.io) 을 이용해주세요!
 
 항상 건강 잘 챙기시고, 곧 뵙겠습니다! :)
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-![font_logo_black](https://user-images.githubusercontent.com/69792673/105793627-cf405900-5fcc-11eb-9180-e43db8cb114e.png)
-
-
-
-
-
 
 
 
