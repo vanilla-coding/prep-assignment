@@ -2,8 +2,6 @@
 
 ### 1. Fork 하기
 
-<img width="1552" alt="스크린샷 2021-01-25 오후 06 43 25" src="https://user-images.githubusercontent.com/69792673/105688706-4201f380-5f3d-11eb-91d8-7d07eb24ece9.png">
-
 페이지 우측 상단에 Fork 버튼을 눌러주세요. (로그인 창이 뜨면 로그인해 주세요.
 
 <img width="1552" alt="스크린샷 2021-01-25 오후 06 46 36" src="https://user-images.githubusercontent.com/69792673/105689142-bc327800-5f3d-11eb-8058-1f0d74490f8b.png">
