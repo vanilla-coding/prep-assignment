@@ -80,7 +80,7 @@
 이제 프렙이 시작되기 전까지 사전학습가이드의 마지막 부분을 참고하여 [사전학습가이드 완료 후](https://book.vanillacoding.co/starter-kit/summary/summary) 부족한 부분을 좀 더 학습하는 시간을 가져보세요! :) 
 
 ## 사전과제 제출 관련 이슈 발생 시
-사전과제 제출 중 문제가 있다면 prep@vanillacoding.co 혹은 [바닐라코딩 채널톡](vanillacoding.channel.io) 를 이용해주세요!
+사전과제 제출 중 문제가 있다면 prep@vanillacoding.co 혹은 [바닐라코딩 채널톡](vanillacoding.channel.io) 을 이용해주세요!
 
 항상 건강 잘 챙기시고, 곧 뵙겠습니다! :)
 <br/>
