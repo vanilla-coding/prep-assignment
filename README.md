@@ -72,17 +72,17 @@
 <img width="1552" alt="스크린샷 2021-01-26 오전 11 26 46" src="https://user-images.githubusercontent.com/69792673/105791442-7622f600-5fc9-11eb-874a-eab8f69a7801.png">
 <img width="1552" alt="스크린샷 2021-01-26 오전 11 32 03" src="https://user-images.githubusercontent.com/69792673/105791956-285abd80-5fca-11eb-8747-0080e0734a52.png">
 
-##### 제출이 완료되었습니다!
+### 제출이 완료되었습니다!
 
-수고하셨습니다. 이제 프렙이 시작되기 전까지 사전학습가이드의 마지막 부분을 참고하여 (사전학습가이드 완료 후)[https://book.vanillacoding.co/starter-kit/summary/summary] 부족한 부분을 좀 더 학습하는 시간을 가져보세요! :) 
+![](https://media2.giphy.com/media/eKfovWZOlOpbTDEX9F/giphy.gif)
 
-##### 사전과제 제출 관련 이슈 발생 시
-사전과제 제출 중 문제가 있다면 prep@vanillacoding.co 혹은 (바닐라코딩 채널톡)[vanillacoding.channel.io] 를 이용해주세요!
+수고하셨습니다. 이제 프렙이 시작되기 전까지 사전학습가이드의 마지막 부분을 참고하여 [사전학습가이드 완료 후](https://book.vanillacoding.co/starter-kit/summary/summary) 부족한 부분을 좀 더 학습하는 시간을 가져보세요! :) 
+
+### 사전과제 제출 관련 이슈 발생 시
+사전과제 제출 중 문제가 있다면 prep@vanillacoding.co 혹은 [바닐라코딩 채널톡](vanillacoding.channel.io) 를 이용해주세요!
 
 
 
-
-![font cover narrow logo](https://user-images.githubusercontent.com/69792673/105792921-8f2ca680-5fcb-11eb-9819-6b37ca03e185.png)
 
 
 
