@@ -1,0 +1,90 @@
+body {
+  background-image: url("./images/bg.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "Varela Round", sans-serif;
+}
+
+div {
+  text-align: center;
+}
+
+h1 {
+  font-family: "Pacifico", cursive;
+  text-align: center;
+  font-size: 72px;
+}
+
+h2 {
+  text-align: center;
+  font-size: 48px;
+  margin: 20px;
+}
+
+h3 {
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  text-align: center;
+  font-size: 28px;
+  margin-top: 35px;
+}
+
+h4 {
+  text-align: center;
+}
+
+button {
+  border: none;
+  background: transparent;
+  width: 42px;
+  font-size: 20px;
+  padding-top: 5px;
+  color: inherit;
+}
+
+.image-box {
+  margin: 50px;
+  text-align: center;
+}
+
+.image {
+  width:150px; 
+}
+
+.days {
+  width: 42px;
+  text-align: center;
+  display: inline-table;
+  padding: 5px;
+}
+
+.tri {
+  display: inline-table;
+  margin: 20px;
+  vertical-align: -30px;
+  width: 0;
+  height: 0;
+  padding: 0;
+  border-style: solid;
+  border-width: 20px;
+}
+
+.inline {
+  display: inline-block;
+  text-align: center;
+}
+
+#calendar {
+  text-align: center;
+}
+
+#calendar2 {
+  text-align: center;
+}
+
+#before {
+  border-color: transparent black transparent transparent;
+}
+
+#after {
+  border-color: transparent transparent transparent black;
+}
