@@ -9,6 +9,7 @@ Interactive Calendar built with html, css and javascript
 - make it interactive
     - [ ]  if '<<', '>>' button clicked, it changes calendar without refreshing page.
     - [x]  if page refreshed, it shows today's calendar. And today's date font colored red.
+    - [ ]  if page refreshed, Big DAY and DATE(today) which placed at center of the page will be displayed.
     - [ ]  if specific date on the calendar clicked, Big DAY and DATE which placed at center of the page will be changed into the difference between today and this specific date.
 
 ### Commit Message Rule
