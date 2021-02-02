@@ -1,0 +1,93 @@
+@import "reset.css";
+
+body {
+  position: fixed;
+  background-image: url("https://images.unsplash.com/photo-1602977430379-7265065d9538?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=784&q=80");
+  background-repeat: repeat;
+  background-size: cover;
+  font-family: "Varela Round", sans-serif;
+  width: 100%;
+  height: 100%;
+}
+
+section {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+section > * {
+  margin-bottom: 2vh;
+}
+
+.image-box {
+  position: absolute;
+  margin: 2vh 2vh 1vh 2vh;
+  min-width: 200px;
+  min-height: 50px;
+  align-self: flex-end;
+}
+
+.image-box > img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+h1 {
+  margin-top: 50px;
+  font-family: "Pacifico", cursive;
+  text-align: center;
+  font-size: 72px;
+}
+
+.today {
+  margin-top: 50px;
+  font-size: 50px;
+  text-align: center;
+  font-weight: 800;
+}
+
+.today > p:nth-child(1) {
+  font-size: 30px;
+}
+
+.today > p:nth-child(3) {
+  font-size: 25px;
+}
+
+.delimeter {
+  width: 30%;
+  border: 1px solid black;
+}
+
+.calendar--title {
+  font-size: 5vh;
+  font-weight: 800;
+}
+
+.calendar {
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+
+.calendar button {
+  border-radius: 30px;
+  background-color: transparent;
+  border: 1px solid black;
+}
+
+.calendar__table {
+  flex: 5;
+  width: 350px;
+  text-align: center;
+}
+
+table th {
+  font-weight: bold;
+}

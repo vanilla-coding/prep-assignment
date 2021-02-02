@@ -38,7 +38,7 @@ function handleDateClick(event) {
   if (dateDifferenceFromNow) {
     displayCalendar(currentDateObject);
     differenceWithClickedDate.textContent =
-      dateDifferenceFromNow + " day difference";
+      dateDifferenceFromNow + " day difference from Today";
     currentClickedDate.style.color = "blue";
     currentClickedDate.style.fontWeight = 1000;
   }
@@ -58,8 +58,12 @@ function handleMoveMonthButton(event) {
 function displayCalendarToday() {
   const bigDay = document.getElementById("jsBigDay");
   const bigDate = document.getElementById("jsBigDate");
+  const bigMonth = document.getElementById("jsBigMonth");
+  const bigYear = document.getElementById("jsBigYear");
   bigDay.textContent = DAYS[now.getDay()];
   bigDate.textContent = now.getDate();
+  bigMonth.textContent = MONTHS[now.getMonth()];
+  bigYear.textContent = now.getFullYear();
 }
 
 function isDateToday(date) {
@@ -114,13 +118,11 @@ function getFirstDayOfMonth(year, month) {
 function displayCalendar(newDateObject) {
   const year = newDateObject.getFullYear();
   const month = newDateObject.getMonth();
-  const date = newDateObject.getDate();
-  const day = newDateObject.getDay();
   const firstDay = getFirstDayOfMonth(year, month);
   const lastDate = getLastDate(year, month);
   displayCalendarTitle(year, month);
   displayCalendarDates(firstDay, lastDate);
-  displayCalendarToday(day, date);
+  displayCalendarToday();
 }
 
 function initialize() {
