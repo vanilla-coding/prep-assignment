@@ -18,8 +18,14 @@ const previousMonthButton = document.getElementById("jsPreviousMonthButton");
 const nextMonthButton = document.getElementById("jsNextMonthButton");
 
 const now = new Date();
+let refreshed = true;
 
-function colorDates() {}
+function displayCalendarToday(day, date) {
+  const bigDay = document.getElementById("jsBigDay");
+  const bigDate = document.getElementById("jsBigDate");
+  bigDay.textContent = DAYS[day];
+  bigDate.textContent = date;
+}
 
 function displayCalendarDates(firstDay, lastDate) {
   const allDatesInCalendar = document.querySelectorAll(
@@ -35,7 +41,6 @@ function displayCalendarDates(firstDay, lastDate) {
       allDatesInCalendar[i].textContent = i;
       continue;
     }
-
     allDatesInCalendar[i].textContent = "";
   }
 }
@@ -64,6 +69,9 @@ function displayCalendar(newDateObject) {
   const lastDate = getLastDate(year, month);
   displayCalendarTitle(year, month);
   displayCalendarDates(firstDay, lastDate);
+  if (refreshed) {
+    displayCalendarToday(day, date);
+  }
 }
 
 function initialize() {
