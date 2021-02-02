@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Baseball</title>
+  </head>
+  <body>
+    <h1>Baseball</h1>
+    <div class="input-container">
+      <input type="number" id="input" minlength="4" , maxlength="4" placeholder="4-digit" />
+      <button id="check">check</button>
+    </div>
+    <div class="result-container">
+      <div id="current"></div>
+      <div id="history"></div>
+    </div>
+
+    <div class="popup-container" id="popup-container">
+      <div class="popup">
+        <h2 id="final-message">Please Press the Button to play the game</h2>
+        <button id="play-button">Play</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
