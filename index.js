@@ -13,19 +13,44 @@ const MONTHS = [
   "NOV",
   "DEC",
 ];
-
-let pageRefreshed = true;
+const now = new Date();
 let currentDateObject = new Date();
-const now = currentDateObject;
+
+function handleDateClick(event) {
+  const differenceWithClickedDate = document.getElementById(
+    "jsDifferenceWithClickedDate"
+  );
+  const currentClickedDate = event.target;
+  const ONE_DAY = 1000 * 60 * 60 * 24;
+  const clickedDateObject = new Date(
+    currentDateObject.getFullYear(),
+    currentDateObject.getMonth(),
+    parseInt(currentClickedDate.textContent)
+  );
+
+  if (isDateToday(clickedDateObject.getDate())) {
+    displayCalendar(currentDateObject);
+    differenceWithClickedDate.textContent = "";
+  }
+
+  const dateDifferenceFromNow = Math.ceil((clickedDateObject - now) / ONE_DAY);
+
+  if (dateDifferenceFromNow) {
+    displayCalendar(currentDateObject);
+    differenceWithClickedDate.textContent =
+      dateDifferenceFromNow + " day difference";
+    currentClickedDate.style.color = "blue";
+    currentClickedDate.style.fontWeight = 1000;
+  }
+}
 
 function handleMoveMonthButton(event) {
-  pageRefreshed = false;
   const clickedButton = event.target.className;
   if (clickedButton === "previous-month-button") {
-    currentDateObject.setMonth(now.getMonth() - 1);
+    currentDateObject.setMonth(currentDateObject.getMonth() - 1);
   }
   if (clickedButton === "next-month-button") {
-    currentDateObject.setMonth(now.getMonth() + 1);
+    currentDateObject.setMonth(currentDateObject.getMonth() + 1);
   }
   displayCalendar(currentDateObject);
 }
@@ -37,10 +62,19 @@ function displayCalendarToday() {
   bigDate.textContent = now.getDate();
 }
 
+function isDateToday(date) {
+  return (
+    date === now.getDate() &&
+    currentDateObject.getMonth() === now.getMonth() &&
+    currentDateObject.getFullYear() === now.getFullYear()
+  );
+}
+
 function resetCalendarDates(allDatesInCalendar) {
   const totalCalendarCells = allDatesInCalendar.length;
   for (let i = 0; i < totalCalendarCells; i++) {
     allDatesInCalendar[i].textContent = "";
+    allDatesInCalendar[i].style.fontWeight = "normal";
   }
 }
 
@@ -48,11 +82,16 @@ function displayCalendarDates(firstDay, lastDate) {
   const allDatesInCalendar = document.querySelectorAll(
     "#jsCalendarTable > tbody td"
   );
-
   resetCalendarDates(allDatesInCalendar);
 
   for (let i = 1, indexForDate = firstDay; i <= lastDate; i++) {
     allDatesInCalendar[indexForDate].textContent = i;
+    if (isDateToday(i)) {
+      allDatesInCalendar[indexForDate].style.color = "red";
+      allDatesInCalendar[indexForDate].style.fontWeight = 1000;
+    } else {
+      allDatesInCalendar[indexForDate].style.color = "black";
+    }
     indexForDate += 1;
   }
 }
@@ -81,17 +120,17 @@ function displayCalendar(newDateObject) {
   const lastDate = getLastDate(year, month);
   displayCalendarTitle(year, month);
   displayCalendarDates(firstDay, lastDate);
-  if (pageRefreshed) {
-    displayCalendarToday(day, date);
-  }
+  displayCalendarToday(day, date);
 }
 
 function initialize() {
   displayCalendar(now);
   const previousMonthButton = document.getElementById("jsPreviousMonthButton");
   const nextMonthButton = document.getElementById("jsNextMonthButton");
+  const calenderTable = document.getElementById("jsCalendarTable");
   previousMonthButton.addEventListener("click", handleMoveMonthButton);
   nextMonthButton.addEventListener("click", handleMoveMonthButton);
+  calenderTable.addEventListener("click", handleDateClick);
 }
 
 initialize();
