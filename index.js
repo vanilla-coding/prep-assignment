@@ -14,34 +14,46 @@ const MONTHS = [
   "DEC",
 ];
 
-const previousMonthButton = document.getElementById("jsPreviousMonthButton");
-const nextMonthButton = document.getElementById("jsNextMonthButton");
+let pageRefreshed = true;
+let currentDateObject = new Date();
+const now = currentDateObject;
 
-const now = new Date();
-let refreshed = true;
+function handleMoveMonthButton(event) {
+  pageRefreshed = false;
+  const clickedButton = event.target.className;
+  if (clickedButton === "previous-month-button") {
+    currentDateObject.setMonth(now.getMonth() - 1);
+  }
+  if (clickedButton === "next-month-button") {
+    currentDateObject.setMonth(now.getMonth() + 1);
+  }
+  displayCalendar(currentDateObject);
+}
 
-function displayCalendarToday(day, date) {
+function displayCalendarToday() {
   const bigDay = document.getElementById("jsBigDay");
   const bigDate = document.getElementById("jsBigDate");
-  bigDay.textContent = DAYS[day];
-  bigDate.textContent = date;
+  bigDay.textContent = DAYS[now.getDay()];
+  bigDate.textContent = now.getDate();
+}
+
+function resetCalendarDates(allDatesInCalendar) {
+  const totalCalendarCells = allDatesInCalendar.length;
+  for (let i = 0; i < totalCalendarCells; i++) {
+    allDatesInCalendar[i].textContent = "";
+  }
 }
 
 function displayCalendarDates(firstDay, lastDate) {
   const allDatesInCalendar = document.querySelectorAll(
     "#jsCalendarTable > tbody td"
   );
-  const totalCalendarCells = allDatesInCalendar.length;
-  for (let i = 0; i < totalCalendarCells; i++) {
-    if (i == now.getDate()) {
-      allDatesInCalendar[i].style.color = "red";
-      allDatesInCalendar[i].style.fontWeight = 1000;
-    }
-    if (firstDay <= i && i <= lastDate) {
-      allDatesInCalendar[i].textContent = i;
-      continue;
-    }
-    allDatesInCalendar[i].textContent = "";
+
+  resetCalendarDates(allDatesInCalendar);
+
+  for (let i = 1, indexForDate = firstDay; i <= lastDate; i++) {
+    allDatesInCalendar[indexForDate].textContent = i;
+    indexForDate += 1;
   }
 }
 
@@ -69,15 +81,17 @@ function displayCalendar(newDateObject) {
   const lastDate = getLastDate(year, month);
   displayCalendarTitle(year, month);
   displayCalendarDates(firstDay, lastDate);
-  if (refreshed) {
+  if (pageRefreshed) {
     displayCalendarToday(day, date);
   }
 }
 
 function initialize() {
   displayCalendar(now);
-  //   previousMonthButton.addEventListener("click", handleMoveMonthButton);
-  //   nextMonthButton.addEventListener("click", handleMoveMonthButton);
+  const previousMonthButton = document.getElementById("jsPreviousMonthButton");
+  const nextMonthButton = document.getElementById("jsNextMonthButton");
+  previousMonthButton.addEventListener("click", handleMoveMonthButton);
+  nextMonthButton.addEventListener("click", handleMoveMonthButton);
 }
 
 initialize();
