@@ -21,17 +21,19 @@
         <img src="images/vanilla_coding_logo.png" />
       </div>
       <h1>Calendar</h1>
-      <div class="today">
-        <p class="today__day"></p>
-        <p class="today__date"></p>
+      <div class="today difference-with-clicked-date">
+        <p class="day"></p>
+        <p class="date"></p>
       </div>
       <div class="calendar">
-        <h2 class="calendar__title">
-          <span class="calendar__title__month"></span>
-          <span class="calendar__title__year"></span>
+        <h2 class="calendar__title" id="jsCalendarTitle">
+          <span id="jsCalendarTitleMonth"></span>
+          <span id="jsCalendarTitleYear"></span>
         </h2>
-        <button class="previous-month-button"><<</button>
-        <table>
+        <button class="previous-month-button" id="jsPreviousMonthButton">
+          <<
+        </button>
+        <table class="calendar__table" id="jsCalendarTable">
           <tr>
             <th>SUN</th>
             <th>MON</th>
@@ -98,7 +100,7 @@
             </tr>
           </tbody>
         </table>
-        <button class="next-month-button">>></button>
+        <button class="next-month-button" id="jsNextMonthButton">>></button>
       </div>
     </section>
     <script src="index.js"></script>

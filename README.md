@@ -4,7 +4,7 @@ Interactive Calendar built with html, css and javascript
 
 ### **To Do**
 
-- [ ]  html structure
+- [x]  html structure
 - [ ]  css layout
 - make it interactive
     - [ ]  if '<<', '>>' button clicked, it changes calendar without refreshing page.
