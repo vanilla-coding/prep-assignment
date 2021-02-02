@@ -5,7 +5,7 @@ Interactive Calendar built with html, css and javascript
 ### **To Do**
 
 - [x]  html structure
-- [ ]  css layout
+- [x]  css layout
 - make it interactive
     - [x]  if '<<', '>>' button clicked, it changes calendar without refreshing page.
     - [x]  if page refreshed, it shows today's calendar. And today's date font colored red.
