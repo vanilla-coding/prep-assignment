@@ -37,8 +37,11 @@ function handleDateClick(event) {
 
   if (dateDifferenceFromNow) {
     displayCalendar(currentDateObject);
-    differenceWithClickedDate.textContent =
-      dateDifferenceFromNow + " day difference from Today";
+    differenceWithClickedDate.textContent = `${
+      Math.abs(dateDifferenceFromNow) < 2
+        ? `${dateDifferenceFromNow} day`
+        : `${dateDifferenceFromNow} days`
+    } difference from Today`;
     currentClickedDate.style.color = "blue";
     currentClickedDate.style.fontWeight = 1000;
   }
@@ -90,6 +93,7 @@ function displayCalendarDates(firstDay, lastDate) {
 
   for (let i = 1, indexForDate = firstDay; i <= lastDate; i++) {
     allDatesInCalendar[indexForDate].textContent = i;
+    allDatesInCalendar[indexForDate].classList.add("date-inside");
     if (isDateToday(i)) {
       allDatesInCalendar[indexForDate].style.color = "red";
       allDatesInCalendar[indexForDate].style.fontWeight = 1000;
