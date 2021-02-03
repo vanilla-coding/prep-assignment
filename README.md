@@ -53,6 +53,8 @@
 
 `git push origin master` 이제 Github 저장소로 저장하겠다는 메시지입니다.
 
+이후 처음 사용시 Github 계정정보를 요구할 수 있는데요. 가입하신 Github 계정정보를 입력해주시면 됩니다.
+
 아래 사진도 첨부했으니 확인해주세요.
 
 <img width="1244" alt="스크린샷 2021-01-26 오전 10 53 20" src="https://user-images.githubusercontent.com/69792673/105788936-c8ade380-5fc4-11eb-9d6d-852403b37f1a.png">
