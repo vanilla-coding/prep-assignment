@@ -82,6 +82,7 @@ function resetCalendarDates(allDatesInCalendar) {
   for (let i = 0; i < totalCalendarCells; i++) {
     allDatesInCalendar[i].textContent = "";
     allDatesInCalendar[i].style.fontWeight = "normal";
+    allDatesInCalendar[i].className = "";
   }
 }
 
