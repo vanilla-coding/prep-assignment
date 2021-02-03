@@ -1,7 +1,7 @@
 @import "reset.css";
 
 body {
-  position: fixed;
+  position: relative;
   background-image: url("https://images.unsplash.com/photo-1602977430379-7265065d9538?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=784&q=80");
   background-repeat: repeat;
   background-size: cover;
@@ -26,17 +26,17 @@ section > * {
 }
 
 .image-box {
-  position: absolute;
-  margin: 2vh 2vh 1vh 2vh;
-  min-width: 200px;
-  min-height: 50px;
-  align-self: flex-end;
+  position: relative;
+  align-self: flex-start;
+  margin: 10px 10px 10px 10px;
+  width: auto;
+  height: auto;
 }
 
 .image-box > img {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  max-width: 12vw;
+  max-height: 4vw;
 }
 
 h1 {
@@ -46,17 +46,17 @@ h1 {
 }
 
 .today {
-  font-size: 50px;
+  font-size: 9vw;
   text-align: center;
   font-weight: 800;
 }
 
 .today > p:nth-child(1) {
-  font-size: 30px;
+  font-size: 5vw;
 }
 
 .today > p:nth-child(3) {
-  font-size: 25px;
+  font-size: 4vw;
 }
 
 .delimeter {
@@ -66,7 +66,7 @@ h1 {
 }
 
 .calendar--title {
-  font-size: 5vh;
+  font-size: 5vw;
   font-weight: 800;
 }
 
@@ -74,8 +74,12 @@ h1 {
   display: flex;
   position: relative;
   justify-content: center;
-  /* background: linear-gradient(to bottom, transparent, white, transparent); */
-
+  background: linear-gradient(
+    to bottom,
+    transparent 5%,
+    rgba(4, 197, 155, 0.8),
+    transparent 95%
+  );
   padding: 10px 10px 10px 10px;
 }
 
@@ -83,13 +87,19 @@ h1 {
   border-radius: 30px;
   background-color: transparent;
   border: 1px solid black;
-  height: 30%;
+  width: 30px;
+  height: 15vh;
   align-self: center;
 }
 
 .calendar button:hover {
   transform: scale(1.1);
+  background-color: rgb(255, 255, 255, 0.5);
   box-shadow: 2px 2px;
+}
+
+.calendar button:active {
+  transform: scale(1.2);
 }
 
 .calendar__table {
@@ -99,18 +109,16 @@ h1 {
   border-collapse: collapse;
   width: 30%;
   min-width: 350px;
-  border-radius: 50px;
   margin-left: 10px;
   margin-right: 10px;
-  background: radial-gradient(rgb(255, 255, 255, 0.5) 40%, transparent 70%);
 }
 
-table th {
+.calendar__table th {
   font-weight: bold;
   height: 16px;
 }
 
-table td {
+.calendar__table td {
   vertical-align: middle;
 }
 
@@ -122,5 +130,5 @@ table td {
 }
 
 table .date-inside:active {
-  transform: scale(1.1) rotate(3deg);
+  transform: scale(1.2);
 }
