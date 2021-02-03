@@ -13,38 +13,53 @@ const MONTHS = [
   "NOV",
   "DEC",
 ];
+
 const now = new Date();
 let currentDateObject = new Date();
+const differenceWithClickedDate = document.getElementById(
+  "jsDifferenceWithClickedDate"
+);
+
+function displayClickedResult(currentClickedDate, dateDifferenceFromNow) {
+  currentClickedDate.style.color = "blue";
+  currentClickedDate.style.fontWeight = 1000;
+
+  differenceWithClickedDate.textContent = `${
+    Math.abs(dateDifferenceFromNow) < 2
+      ? `${dateDifferenceFromNow} day`
+      : `${dateDifferenceFromNow} days`
+  } difference from Today`;
+}
+
+function calculateDateDifference(currentClickedDate, clickedDateObject) {
+  const ONE_DAY = 1000 * 60 * 60 * 24;
+  const dateDifferenceFromNow = Math.ceil((clickedDateObject - now) / ONE_DAY);
+
+  displayCalendar(currentDateObject);
+
+  if (dateDifferenceFromNow) {
+    displayClickedResult(currentClickedDate, dateDifferenceFromNow);
+  }
+}
+
+function handleTodayClick(clickedDateObject) {
+  if (isDateToday(clickedDateObject.getDate())) {
+    displayCalendar(currentDateObject);
+    differenceWithClickedDate.textContent = "Today";
+  }
+}
 
 function handleDateClick(event) {
-  const differenceWithClickedDate = document.getElementById(
-    "jsDifferenceWithClickedDate"
-  );
   const currentClickedDate = event.target;
-  const ONE_DAY = 1000 * 60 * 60 * 24;
+
   const clickedDateObject = new Date(
     currentDateObject.getFullYear(),
     currentDateObject.getMonth(),
     parseInt(currentClickedDate.textContent)
   );
 
-  if (isDateToday(clickedDateObject.getDate())) {
-    displayCalendar(currentDateObject);
-    differenceWithClickedDate.textContent = "";
-  }
-
-  const dateDifferenceFromNow = Math.ceil((clickedDateObject - now) / ONE_DAY);
-
-  if (dateDifferenceFromNow) {
-    displayCalendar(currentDateObject);
-    differenceWithClickedDate.textContent = `${
-      Math.abs(dateDifferenceFromNow) < 2
-        ? `${dateDifferenceFromNow} day`
-        : `${dateDifferenceFromNow} days`
-    } difference from Today`;
-    currentClickedDate.style.color = "blue";
-    currentClickedDate.style.fontWeight = 1000;
-  }
+  handleTodayClick(clickedDateObject);
+  calculateDateDifference(currentClickedDate, clickedDateObject);
 }
 
 function handleMoveMonthButton(event) {
