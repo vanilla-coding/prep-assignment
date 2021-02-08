@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Baseball Project</title>
+  </head>
+
+  <body>
+    <section>
+      <div class="image-box">
+        <img src="images/vanilla_coding_logo.png" />
+      </div>
+        <h1>Baseball</h1>
+        <div class="page-start">
+          <button class="startBtn-start">start</button>
+          </div>
+      <!-- 야구게임 Start -->
+        <div class="page-playing hiding">
+          <form class="form-playing">
+            <input class="input-playing" type="text" placeholder="세자리수를 입력하세요"oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
+          </form>
+          <h2 class="scoreboard-playing"></h2>
+        </div>
+      <!-- 야구게임 End -->
+        <div class="page-end hiding">
+          <div class="leaderBoard-end"></div>
+          <button class="restartBtn-end">Re</button>
+        </div>
+    </section>
+
+    <script src="index.js"></script>
+  </body>
+</html>
