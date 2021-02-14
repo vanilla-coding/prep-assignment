@@ -21,28 +21,28 @@ let ballCount,
     strikeCount,
     inningCount;
 
-let invaildityMatch = 0; //유효하지 않은 숫자 입력시 inningCount가 올라가는 것을 방지 1은 유효하지않은게임 0은 유효한 게임
+let invaildMatch = 0; //유효하지 않은 숫자 입력시 inningCount가 올라가는 것을 방지 1은 유효하지않은게임 0은 유효한 게임
 
 let r3d = []; // 랜덤 숫자 3개
 let i3d = []; // 입력받은 숫자 3개
 
-const set3RandomDigit = () => {
+function set3RandomDigit() {
     for (let i = 0; i < 3; i++) {
         r3d[i] = parseInt(Math.random() * 9);
     }
     if (r3d[0] === r3d[1] || r3d[0] === r3d[2] || r3d[1] === r3d[2]) {
         set3RandomDigit();
     }
-    console.log(r3d);
+    console.log(`랜덤 숫자는 ${r3d}`);
 }
 
-const checksVaildDigit = (value) => {
+function checksVaildDigit(value) {
     const valueLength = value.length;
-    invaildityMatch = 0;
+    invaildMatch = 0;
     if (valueLength !== VAILD_DIGIT_LENGTH) {
         alert("세자리 숫자를 입력해주세요.");
         digitInput.value = "";
-        invaildityMatch = 1;
+        invaildMatch = 1;
     } else {
         for (let i = 0; i < 3; i++) {
             i3d[i] = value.charAt(i);
@@ -51,7 +51,7 @@ const checksVaildDigit = (value) => {
     return;
 }
 
-const compareDigit = () => {
+function compareDigit() {
     strikeCount[inningCount] = 0;
     ballCount[inningCount] = 0;
     for (let i = 0; i < 3; i++) {
@@ -68,31 +68,29 @@ const compareDigit = () => {
     }
 }
 
-const checkResult = (inningC, scoreT) => {
-    if (strikeCount[inningC] === 3) {
+function checkResult (inningC, scoreT) {
+    if (strikeCount[inningC] == 3) {
         scoreT.innerText = `${inningC+1}R VICTORY`;
-    } else if (strikeCount[inningC] === 0) {
-        if (strikeCount[inningC] == ballCount[inningC]) {
+    } else if (strikeCount[inningC] == 0 && ballCount[inningC] == 0) {
             scoreT.innerText = `${inningC+1}R OUT`;
-        }
     } else {
         scoreT.innerText = `${inningC+1}R ${strikeCount[inningC]}S ${ballCount[inningC]}B`;
     }
 }
 
-const printCurretScore = () => {
+function printCurretScore() {
     checkResult(inningCount, scoreBoard);
 }
 
-const printWholeScore = () => {
+function printWholeScore() {
     for (let i = 0; i <= inningCount; i++) {
-        const matchhistory = document.createElement("h3");
-        checkResult(i, matchhistory);
-        leaderBoard.appendChild(matchhistory);
+        const matchHistory = document.createElement("h3");
+        checkResult(i, matchHistory);
+        leaderBoard.appendChild(matchHistory);
     }
 }
 
-const initializeGame = () => {
+function initializeGame() {
     digitInput.value = "";
     ballCount = [];
     strikeCount = [];
@@ -101,30 +99,30 @@ const initializeGame = () => {
     leaderBoard.innerText = "";
 }
 
-const loadPage = pageName => {
+function loadPage(pageName) {
     wholePage.forEach(page => {
         page.classList.add(HIDING);
     })
     pageName.classList.remove(HIDING);
 }
 
-const startGame = () => {
+function startGame() {
     initializeGame();
     set3RandomDigit();
     loadPage(playingPage);
 }
 
-const gameOver = () => {
-    loadPage(endPage);
+function gameOver() {
     printWholeScore();
+    loadPage(endPage);
 }
 
-const handlesubmit = event => {
-    invaildityMatch=0;
+function handlesubmit(event) {
+    invaildMatch=0;
     event.preventDefault();
     const currentdigit = digitInput.value;
     checksVaildDigit(currentdigit);
-    if (invaildityMatch === 0) {
+    if (invaildMatch == 0) {
         compareDigit();
         printCurretScore();
         if (strikeCount[inningCount] === 3) {
