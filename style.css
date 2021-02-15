@@ -1,0 +1,38 @@
+body {
+  background-image: url("./images/bg.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "Varela Round", sans-serif;
+}
+
+h1 {
+  font-family: "Pacifico", cursive;
+  text-align: center;
+  font-size: 72px;
+}
+.current_try{
+  font-weight: bold;
+  text-align: center;
+  font-size: 35px;
+}
+.input_container{
+  position: relative;
+  width: 300px;
+  margin: 0 auto;
+  font-size: 48px;
+}
+.submit_container{
+  position: relative;
+  text-align:center;
+  width: 250px;
+  height: 100px;
+  margin: 0 auto;
+  padding-top: 50px;
+}
+.start{
+  text-align:center;
+}
+#startbtn{
+  font-size: 30px;
+  cursor: pointer
+}

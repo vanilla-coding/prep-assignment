@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Baseball Project</title>
+  </head>
+
+  <body>
+    <section>
+      <div class="image-box">
+        <img src="images/vanilla_coding_logo.png" />
+      </div>
+      <h1>Baseball</h1>
+
+      <!-- 야구게임 Start -->
+      <div class ="baseball_container">
+        <div id="try" class ="current_try">
+          Prep 사전학습 야구게임
+        </div>
+        <div class="submit_container">
+          <input id="user_answer" type="text" onkeyup="enterkey()"><input type ="button" onclick="search_try()" value="맞추기">
+        </div>
+        <div class="start">
+          <input type ="button" id="startbtn" value="게임시작" onclick="setanswer()">
+        </div>
+      </div>
+      <!-- 야구게임 End -->
+    </section>
+
+    <script src="index.js"></script>
+  </body>
+</html>
