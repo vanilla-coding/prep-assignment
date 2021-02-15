@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet" />
+  <link rel="icon" href="/images/favicon.ico" />
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <title>Calendar Project</title>
+</head>
+
+<body>
+  <section>
+    <div class="image-box">
+      <img src="images/vanilla_coding_logo.png" />
+    </div>
+    <h1>Calendar</h1>
+    <div class="js-clock">
+      <h1>00:00</h1>
+    </div>
+    <div class="calendar-container">
+      <div class="current-day">
+        <!-- p 2개 넣고 js로 뿌려주기-->
+        <p></p>
+        <p></p>
+      </div>
+      <p class="current-month"></p>
+      <!-- 달력 Start -->
+      <div class="calendar">
+        <table class="calendar_table">
+          <thead>
+            <tr>
+              <th>SUN</th>
+              <th>MON</th>
+              <th>TUES</th>
+              <th>WED</th>
+              <th>THUR</th>
+              <th>FRI</th>
+              <th>SAT</th>
+            </tr>
+          </thead>
+          <tbody class="calendar-body"></tbody>
+        </table>
+        <button class="button-prev">
+          << </button>
+            <button class="button-next">>></button>
+      </div>
+    </div>
+
+    <!-- 달력 End -->
+  </section>
+
+
+  <script src="clock.js"></script>
+  <script src="calendar.js""></script>
+</body>
+
+</html>
