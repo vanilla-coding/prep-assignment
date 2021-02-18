@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Baseball Project</title>
+
+    <script type="text/javascript">
+      var random_3_num;
+      var count = 0;
+      var win_array = [1, 1, 1];
+
+      //restart button
+      //count->0
+      //text3-> show count 0
+      function btn_restart() {
+        count = 0;
+        document.getElementById("text3").innerHTML = "Count : 0";
+      }
+
+      //generate 3-digit random number!
+      //load  i-th random number and remove it from stirng_number!
+      //independent 3 digit random numbers are made.
+      function generate_3_num() {
+        var string_number = "123456789123456789";
+
+        var first_random_number = string_number.charAt(
+          Math.floor(Math.random() * 10)
+        );
+        string_number = string_number.replaceAll(first_random_number, "");
+
+        var second_random_number = string_number.charAt(
+          Math.floor(Math.random() * 10)
+        );
+        string_number = string_number.replaceAll(second_random_number, "");
+
+        var third_random_number = string_number.charAt(
+          Math.floor(Math.random() * 10)
+        );
+        string_number = string_number.replaceAll(third_random_number, "");
+
+        random_3_num =
+          first_random_number + second_random_number + third_random_number;
+        alert(random_3_num);
+      }
+
+      //ex)[1,0,0]-> first number strike
+      //ex)[0,1,0]-> second number strike
+      //ex)[1,1,1]-> first,second, third number strike
+      function strike_check_function(random, input) {
+        var strike = [];
+        if (random[0] == input[0]) {
+          strike[0] = 1;
+        } else {
+          strike[0] = 0;
+        }
+        if (random[1] == input[1]) {
+          strike[1] = 1;
+        } else {
+          strike[1] = 0;
+        }
+        if (random[2] == input[2]) {
+          strike[2] = 1;
+        } else {
+          strike[2] = 0;
+        }
+        //alert(strike);
+        return strike;
+      }
+
+      //ex)[1,0,0]-> first number ball
+      //ex)[0,1,0]-> second number ball
+      //ex) [1,1,0] : first, second number ball
+      function ball_check_function(random, input) {
+        var ball = [];
+        if (random[0] == input[1] || random[0] == input[2]) {
+          ball[0] = 1;
+        } else {
+          ball[0] = 0;
+        }
+        if (random[1] == input[0] || random[1] == input[2]) {
+          ball[1] = 1;
+        } else {
+          ball[1] = 0;
+        }
+        if (random[2] == input[0] || random[2] == input[1]) {
+          ball[2] = 1;
+        } else {
+          ball[2] = 0;
+        }
+        //alert(ball);
+        return ball;
+      }
+
+      //check input whether it has 3-digit string number.
+      function input_enter() {
+        if (window.event.keyCode == 13) {
+          var input_value = document.getElementById("input_01").value;
+
+          if (input_value.length == 3) {
+            //check strike position [_,_,_]
+            var strike_position = strike_check_function(
+              random_3_num,
+              input_value
+            );
+            //alert(strike_position);
+
+            //check ball position [_,_,_]
+            var ball_position = ball_check_function(random_3_num, input_value);
+            //alert(strike_position + "\n" + ball_position);
+
+            //show strike position & ball position && status[win or over or count]
+            document.getElementById("text1").innerHTML =
+              "strike_position : " + strike_position;
+            document.getElementById("text2").innerHTML =
+              "ball_position : " + ball_position;
+            if (count >= 10) {
+              document.getElementById("text3").innerHTML = "GameOver ";
+            } else if (
+              strike_position[0] == 1 &&
+              strike_position[1] == 1 &&
+              strike_position[2] == 1
+            ) {
+              document.getElementById("text3").innerHTML = "Win!!! ";
+            } else {
+              document.getElementById("text3").innerHTML = "Count : " + ++count;
+            }
+          } else {
+            alert("length is not 3 !!!!!!");
+          }
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <section>
+      <div class="image-box">
+        <img src="images/vanilla_coding_logo.png" />
+      </div>
+      <h1>Baseball</h1>
+
+      <!-- 야구게임 Start -->
+      <input
+        type="button"
+        value="generate_3_num"
+        id="btn_gamestart"
+        onclick="generate_3_num()"
+      />
+
+      <input
+        type="number"
+        id="input_01"
+        placeholder="input 3 number and enter"
+        onkeypress="input_enter()"
+      />
+
+      <p id="text1" class="text"></p>
+      <p id="text2" class="text"></p>
+      <p id="text3" class="text"></p>
+
+      <input
+        type="button"
+        value="restart"
+        id="btn_restart"
+        onclick="btn_restart()"
+      />
+      <!-- 야구게임 End -->
+    </section>
+
+    <script src="index.js"></script>
+  </body>
+</html>
