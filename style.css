@@ -1,0 +1,93 @@
+@font-face {
+  font-family: 'NanumBarunpen';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumBarunpen.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  background-image: url("./images/bg.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "Varela Round", sans-serif;
+}
+
+h1 {
+  font-family: "Pacifico", cursive;
+  text-align: center;
+  font-size: 72px;
+  margin: 0;
+}
+
+.dissapear {
+  display: none;
+}
+
+.element-align {
+  margin: 0 auto;
+  padding: 5px;
+  width: 250px;
+}
+
+.notice {
+  color: rgba(255, 99, 71, 0.6);
+  background-color:rgba(4, 7, 36, 0.4);
+  border-radius: 5px;
+}
+
+.try-counter {
+  padding-top: 5px;
+}
+
+.ball-counter {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.counters {
+  color: rgb(255, 255, 255);
+  font-family: 'NanumBarunpen', sans-serif;
+  font-size: 18px;
+  text-align: center;
+}
+
+.input-margin {
+  margin: 10px 0;
+}
+
+.number-input {
+  color:tomato;
+  font-family: 'NanumBarunpen', sans-serif;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  width: 240px;
+  height: 50px;
+  padding: 0 0 0 10px;
+}
+
+.number-input:hover {
+  color:tomato;
+  font-size: 20px;
+  box-shadow: rgba(0, 0, 0, 0.7) 0 0 0 40px inset;
+}
+
+.start-button {
+  margin-top: 30px;
+}
+
+.start-button, .restart-button {
+  color: rgba(255, 99, 71, 0.6);
+  box-shadow: rgba(255, 99, 71, 0.4) 0 0 0 2px;
+  font-family: "Pacifico", cursive;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  width: 250px;
+  height: 50px;
+}
+
+.start-button:hover, .restart-button:hover {
+  color: rgba(255, 255, 255, 0.85);
+  box-shadow: rgba(255, 99, 71, 0.7) 0 0 0 40px inset;
+}
