@@ -1,0 +1,86 @@
+body {
+  background-image: url("./images/bg.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "Varela Round", sans-serif;
+}
+
+h1 {
+  font-family: "Pacifico", cursive;
+  text-align: center;
+  font-size: 72px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.image-box {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+.image-box img {
+  width: 150px;
+}
+
+.js-date, .js-day {
+  font-size: 55px;
+  text-align: center;
+  height: 85px;
+}
+
+.js-monthYear {
+  font-size: 30px;
+  text-align: center;
+  padding-top: 20px;
+  height: 60px;
+}
+
+.table {
+  display: flex;
+  justify-content: center;
+}
+
+.left, .right {
+  width: 100px;
+  height: 50px;
+  margin: 60px 15px;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 5px;
+  border: solid 1px;
+  border-color: rgba(255, 255, 255, 0);
+  transition: border 0.5s;
+  transition: background-color 0.1s;
+  user-select: none;
+}
+
+.left:hover, .right:hover {
+  border: solid 1px;
+  border-color: black;
+}
+
+.left:active, .right:active {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+th, td {
+  width: 40px;
+}
+
+td {
+  border-radius: 5px;
+  border: solid 1px;
+  border-color: rgba(255, 255, 255, 0);
+  transition: border 0.5s;
+  transition: background-color 0.1s;
+}
+
+td:hover {
+  border: solid 1px;
+  border-color: black;
+}
+
+td:active {
+  background: rgba(0, 0, 0, 0.4);
+}
