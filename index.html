@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap"
+      rel="stylesheet"
+    />
+    <!-- <link rel="icon" href="/images/favicon.ico" /> -->
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Calendar Project</title>
+  </head>
+
+  <body>
+    <section>
+      <div class="image-box">
+        <img src="images/vanilla_coding_logo.png" />
+      </div>
+      <h1 class="class">Calendar</h1>
+
+      <!-- 달력 Start  -->
+      <div> <!--오늘날짜 표시 영역-->
+        <h2 id="today_week"></h2>
+        <h2 id="today_day"></h2>
+      </div>
+      <div id='calendar_top'>
+        <span id="cal_month"></span>
+        <span id="cal_year"></span>
+      </div>
+        <div id='container'> <!--달력 영역-->
+          <div id="left_btn">
+            <p><<</p>
+          </div>
+          <table id='calendar'>
+            <thead>
+              <tr id='week_name'></tr>
+            </thead>
+            <tbody>
+              <tr id='day_num1'></tr>
+              <tr id='day_num2'></tr>
+              <tr id='day_num3'></tr>
+              <tr id='day_num4'></tr>
+              <tr id='day_num5'></tr>
+              <tr id='day_num6'></tr>
+            </tbody>
+          </table>
+          <div id="right_btn" onClick = "dayclick(this.id)">
+            <p>>></p>
+          </div>
+      </div>
+
+       <!-- 달력 End  -->
+     </section>
+
+
+    <script src="index.js">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  </body>
+</html>
