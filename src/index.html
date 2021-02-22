@@ -12,7 +12,7 @@
       rel="stylesheet"
     />
     <link rel="icon" href="/images/favicon.ico" />
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
     <title>Calendar Project</title>
   </head>
   <body>
@@ -24,19 +24,21 @@
       <div class="today">
         <p>Today is ...</p>
         <p>
-          <span id="jsBigDay"></span>
-          <span id="jsBigDate"></span>
+          <span id="jsTodayDay"></span>
+          <span id="jsTodayDate"></span>
         </p>
         <p>
-          <span id="jsBigMonth"></span>
-          <span id="jsBigYear"></span>
+          <span id="jsTodayMonth"></span>
+          <span id="jsTodayYear"></span>
         </p>
       </div>
       <hr class="delimeter" />
       <div id="jsDifferenceWithClickedDate"></div>
       <h2 class="calendar--title" id="jsCalendarTitle">
-        <span id="jsCalendarTitleMonth"></span>
-        <span id="jsCalendarTitleYear"></span>
+        <span id="jsSelectedDayText"></span>
+        <span id="jsSelectedDateText"></span>
+        <span id="jsSelectedMonthText"></span>
+        <span id="jsSelectedYearText"></span>
       </h2>
       <div class="calendar">
         <button class="previous-month-button" id="jsPreviousMonthButton">
@@ -45,13 +47,13 @@
         <table class="calendar__table" id="jsCalendarTable">
           <tbody>
             <tr>
-              <th>SUN</th>
-              <th>MON</th>
-              <th>TUE</th>
-              <th>WED</th>
-              <th>THU</th>
-              <th>FRI</th>
-              <th>SAT</th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
             </tr>
             <tr>
               <td></td>
@@ -112,6 +114,6 @@
         <button class="next-month-button" id="jsNextMonthButton">>></button>
       </div>
     </section>
-    <script src="index.js"></script>
+    <script src="../dist/js/bundle.js"></script>
   </body>
 </html>

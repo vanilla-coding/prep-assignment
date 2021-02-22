@@ -19,7 +19,9 @@ Interactive Calendar built with html, css and javascript
 
 ### Refactoring
 
-- [ ]  객체 지향 패러다임 적용하기
+- [x]  객체 지향 패러다임 적용하기
+- [x]  캘린더의 테이블의 요일(MON, TUE ...) 하드코딩하지 않고 javascript로 제어하기
+- [x]  모든 함수를 익명 함수 표현식으로 재정의하기
 
 
 ### Commit Message Rule
