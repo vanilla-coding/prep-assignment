@@ -1,0 +1,87 @@
+body {
+    background-image: url("./images/bg.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#image-box {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 50px;
+}
+#image-box img {
+    margin-top:10px;
+    width: 250px;
+    height: 80px;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    margin-top : 80px;
+    font-family: "Pacifico", cursive;
+    font-size: 50px;
+}
+
+nav,
+footer,
+form,
+h3,
+h2 {
+    display: flex;
+    justify-content: center;
+}
+
+/* buttons*/
+nav button,
+footer button {
+    cursor: pointer;
+    border: none;
+    outline:none;
+    background-color: transparent;
+    border-radius: 50%;
+}
+
+nav .gameStartBtn,
+footer .gameRestartBtn{
+    padding: 25px;
+    font-weight: bold;
+    font-size: large;
+}
+
+nav button:hover,
+footer button:hover {
+    border:2px solid black;
+    border-radius: 30px;
+}
+
+/* input*/
+form{
+    margin-top: 30px;
+}
+
+.userAnswer{
+    border: 2px solid black;
+    padding: 20px;
+    width: 220px;
+    background-color: transparent;
+    border-radius: 30px;
+    outline:none;
+    
+}
+
+input, textarea{
+    font-size: 25px;   
+    text-align: center; 
+}
+
+
+/*remain*/
+
+/*output*/
+
+h2{
+    margin-top: 30px;
+}
+
