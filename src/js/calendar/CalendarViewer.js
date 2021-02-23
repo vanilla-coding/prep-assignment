@@ -2,7 +2,7 @@ import { DAYS } from "./day";
 import Month from "./Month";
 import SelectedDate from "./SelectedDate";
 import YearRepository from "./YearRepository";
-import { handleDateClick } from "./handler";
+import { handleDateClick } from "./eventHandler";
 import CalendarController from "./CalendarController";
 import {
   selectedDateText,
@@ -13,7 +13,6 @@ import {
 } from "./element";
 
 export default class CalendarViewer {
-  static #selectedDateObject = SelectedDate.getDate();
   static #dateEventListenerRepository = {};
 
   static display() {
@@ -46,24 +45,18 @@ export default class CalendarViewer {
   }
 
   static #displaySelectedDateText() {
-    selectedDayText.textContent = DAYS[this.#selectedDateObject.getDay()];
-    selectedDateText.textContent = this.#selectedDateObject.getDate();
-    selectedMonthText.textContent = Month.getNames()[
-      this.#selectedDateObject.getMonth()
-    ];
-    selectedYearText.textContent = this.#selectedDateObject.getFullYear();
+    selectedDayText.textContent = DAYS[SelectedDate.getDay()];
+    selectedDateText.textContent = SelectedDate.getDate();
+    selectedMonthText.textContent = Month.getNames()[SelectedDate.getMonth()];
+    selectedYearText.textContent = SelectedDate.getFullYear();
   }
 
   static #displaySelectedDates() {
-    if (
-      !YearRepository.hasYearInRepository(
-        this.#selectedDateObject.getFullYear()
-      )
-    ) {
-      YearRepository.createNewYear(this.#selectedDateObject);
+    if (!YearRepository.hasYearInRepository(SelectedDate.getFullYear())) {
+      YearRepository.createNewYear(SelectedDate);
     }
     this.#resetCalendarDates();
-    this.#printCalendarDates(this.#selectedDateObject);
+    this.#printCalendarDates();
   }
 
   static #resetCalendarDates() {
@@ -80,9 +73,9 @@ export default class CalendarViewer {
     }
   }
 
-  static #printCalendarDates(selectedDateObject) {
-    const thisYear = YearRepository.getYear(selectedDateObject);
-    const thisMonth = thisYear.getMonth(selectedDateObject);
+  static #printCalendarDates() {
+    const thisYear = YearRepository.getYear(SelectedDate.getDateObject());
+    const thisMonth = thisYear.getMonth(SelectedDate.getDateObject());
     let dayOfFirstDate = thisMonth.getDayOfFirstDate();
     let lastDate = thisMonth.getLastDate();
     for (
@@ -91,17 +84,19 @@ export default class CalendarViewer {
       i++, indexForDate++
     ) {
       const dateElement = allDatesInCalendar[indexForDate];
-      const dateObject = thisMonth.getDateByNumber(i).getDate();
-
+      const dateOfCalendarInstance = thisMonth.getDateByNumber(i);
       dateElement.textContent = i;
       dateElement.classList.add("date-inside");
-      if (CalendarController.isDateToday(dateObject)) {
+      if (CalendarController.isDateToday(dateOfCalendarInstance.getDate())) {
         dateElement.style.color = "red";
         dateElement.style.fontWeight = 1000;
       } else {
         dateElement.style.color = "black";
       }
-      const clickCallBack = handleDateClick(dateObject, dateElement);
+      const clickCallBack = handleDateClick(
+        dateOfCalendarInstance,
+        dateElement
+      );
       dateElement.addEventListener("click", clickCallBack);
 
       this.#dateEventListenerRepository[indexForDate] = clickCallBack; // 이벤트 리스너 지우기 위해 따로 저장

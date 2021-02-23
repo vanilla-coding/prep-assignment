@@ -5,32 +5,24 @@ export default class YearRepository {
 
   static createNewYear(dateObject) {
     const newYear = new Year(dateObject.getFullYear());
-    this.#addYearToRepository(newYear);
+    YearRepository.#addYearToRepository(newYear);
   }
 
-  static #addYearToRepository(year) {
-    if (year instanceof Year) {
-      this.#years.push(year);
-      return;
-    }
-    alert("error!");
+  static #addYearToRepository(newYear) {
+    YearRepository.#years.push(newYear);
   }
 
   static hasYearInRepository(yearNumber) {
     return (
-      this.#years.filter((yearObject) => {
-        return yearObject.getYearNumber() === yearNumber;
+      YearRepository.#years.filter((yearObject) => {
+        return yearObject.getNumber() === yearNumber;
       }).length !== 0
     );
   }
 
   static getYear(dateObject) {
-    return this.#years.find((yearObject) => {
-      return yearObject.getYearNumber() === dateObject.getFullYear();
+    return YearRepository.#years.find((yearObject) => {
+      return yearObject.getNumber() === dateObject.getFullYear();
     });
-  }
-
-  static getYears() {
-    return this.#years;
   }
 }

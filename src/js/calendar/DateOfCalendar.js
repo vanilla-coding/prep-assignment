@@ -1,22 +1,24 @@
 export default class DateOfCalendar {
-  monthBelongTo;
-  number;
-  monthNumber;
-  yearNumber;
-  taskRepository;
+  #monthBelongTo;
+  #yearBelongTo;
+  #number;
+  #monthNumber;
+  #yearNumber;
+  #taskRepository;
 
-  constructor(dateNumber, monthObject, monthNumber, yearNumber) {
-    this.monthBelongTo = monthObject;
-    this.number = dateNumber;
-    this.monthNumber = monthNumber;
-    this.yearNumber = yearNumber;
+  constructor(dateNumber, monthObject, yearObject) {
+    this.#monthBelongTo = monthObject;
+    this.#yearBelongTo = yearObject;
+    this.#number = dateNumber;
+    this.#yearNumber = yearObject.getNumber();
+    this.#monthNumber = monthObject.getNumber();
   }
 
   getNumber() {
-    return this.number;
+    return this.#number;
   }
 
   getDate() {
-    return new Date(this.yearNumber, this.monthNumber, this.number);
+    return new Date(this.#yearNumber, this.#monthNumber, this.#number);
   }
 }
