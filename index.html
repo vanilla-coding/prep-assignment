@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+    <title>Baseball Project</title>
+  </head>
+
+  <body>
+    <section>
+      <div class="image-box">
+        <img class="image" src="images/vanilla_coding_logo.png" />
+      </div>
+      <h1>Baseball</h1>
+
+      <!-- 야구게임 Start -->
+      <header class="nav">
+        <div class="nav-play__column">
+          <button class="play-button">PLAY</button>
+          <button class="replay-button"></button>
+        </div>
+        <div class="nav-life__column">
+          <span id="life-icon">❤ </span>
+          <span id="life-count">10</span>
+        </div>
+      </header>
+      <div class="result-form">
+        <div class="result">
+          <span class="result-text">Press the PLAY</span>
+        </div>
+        <div class="strike-ball">
+          <span id="strike"></span>
+          <span id="ball"></span>
+        </div>
+      </div>
+      <form class="number-form">
+        <input class="number-input" type="number" disabled="" />
+        <button class="number-enter" onclick="clickCount" id="count">
+          GO !
+        </button>
+      </form>
+      <div id="mobile-size">
+        <span>🙊 Screen is too big 🙈</span>
+      </div>
+    </section>
+    <!-- 야구게임 End -->
+
+    <script src="index.js"></script>
+  </body>
+</html>
