@@ -1,0 +1,65 @@
+body {
+  background-image: url("./images/bg.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "Varela Round", sans-serif;
+}
+
+h1 {
+  font-family: "Pacifico", cursive;
+  text-align: center;
+  font-size: 72px;
+}
+
+.baseballContainer {
+  box-sizing: content-box;
+}
+
+.btncontainer {
+  display: block;
+  text-align: center;
+}
+
+.btn {
+  width: 90px;
+  height: 40px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  background-color: black;
+  color: white;
+  font-size: 17px;
+  border: none;
+}
+
+.playContainer {
+  display: flex;
+  justify-content: center;
+}
+
+#result {
+  font-size: 20px;
+  color: red;
+  margin: 20px;
+  border: 2px grey;
+}
+
+#play {
+  width: 187px;
+  height: 50px;
+  border: none;
+  margin-top: 20px;
+  margin-left: 36px;
+  background-color: black;
+  color: white;
+  padding: 0;
+  font-size: 20px;
+}
+
+#submit {
+  width: 50px;
+  height: 50px;
+  background-color: gray;
+  margin-top: 20px;
+  border: none;
+  font-size: 15px;
+}

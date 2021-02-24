@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Baseball Project</title>
+  </head>
+
+  <body>
+    <section>
+      <div class="image-box">
+        <img src="images/vanilla_coding_logo.png" />
+      </div>
+      <h1>Baseball</h1>
+
+      <!-- 야구게임 Start -->
+       <div class="baseballContainer">
+        <div class="btncontainer">
+          <button class="btn" id="startClick" onclick="window.location.reload()">게임 시작</button>
+          <button class="btn" id="reset" onclick="resetbtn();">재시작</button>
+        </div>
+        <label for="play" class="playContainer">
+         <input type="number" id="play" onchange="validCheck()"><button id="submit" onclick="findResultValue();"> 제출</button><span id="result"></span>
+        </label>
+       </div>
+      <!-- 야구게임 End -->
+    </section>
+
+
+  <script src="index.js"></script>
+
+  </body>
+</html>
