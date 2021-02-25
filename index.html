@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Baseball Project11</title>
+  </head>
+
+  <body>
+    <section>
+      <div class="image-box">
+        <img src="images/vanilla_coding_logo.png" />
+      </div>
+      <h1>Baseball</h1>
+
+      <!-- 야구게임 Start -->
+      <div class="all">
+        <div class="first">
+          <input type="text" id="num"><button onclick="valid()">입력</button>
+        </div>
+        <div class="first second">
+          <p class="chance">10번의 기회가 있습니다.</p>
+          <p id="hint"></p>
+        </div>
+        <div class="first">
+          <button>게임시작</button>
+          <button onclick="restart()">재시작</button>
+        </div>
+      </div>
+      <!-- 야구게임 End -->
+    </section>
+
+    <script src="index.js"></script>
+  </body>
+</html>
