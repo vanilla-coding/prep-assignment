@@ -132,6 +132,7 @@ h1 {
 }
 
 .calendar__table td {
+  position: relative;
   vertical-align: middle;
 }
 
@@ -145,6 +146,20 @@ h1 {
 
 table .date-inside:active {
   transform: scale(1.2);
+}
+
+table .task-notification {
+  position: absolute;
+  top: 10%;
+  left: 60%;
+  background-color: rgb(255, 255, 255);
+  height: 10px;
+  width: 10px;
+  text-align: center;
+  font-size: 5px;
+  font-weight: 1000;
+  line-height: 10px;
+  border-radius: 10px;
 }
 
 .board {

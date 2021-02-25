@@ -14,7 +14,7 @@ Interactive Calendar built with html, css and javascript
 
 - [x]  날짜 클릭하면 TO DO 조회/추가/수정/삭제 할 수 있도록 만들기
   - [x]  TASK 엘리먼트를 클릭하면 TASK의 내용을 수정할 수 있도록 하기
-- [ ]  TO DO 가 있는 날은 빨간 색으로 날짜 옆에 알림이 생기도록 만들기
+- [x]]  TASK를 등록날 날은 날짜 옆에 몇 개의 TASK가 있는지 알림 표시가 생기도록 만들기
 
 
 ### Refactoring

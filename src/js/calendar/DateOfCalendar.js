@@ -40,19 +40,19 @@ export default class DateOfCalendar {
   }
 
   addTask(content) {
-    console.log("add one task");
     const newTask = new Task(content, this);
     this.#taskRepository.push(newTask);
   }
 
   deleteTask(task) {
-    console.log("delete one task");
     const taskIndex = this.#taskRepository.indexOf(task);
     this.#taskRepository.splice(taskIndex, 1);
   }
 
   deleteAllTasks() {
-    console.log("delete all tasks");
     this.#taskRepository = [];
+  }
+  getTaskLength() {
+    return this.#taskRepository.length;
   }
 }

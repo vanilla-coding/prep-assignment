@@ -99,7 +99,22 @@ export default class CalendarViewer {
       );
       dateElement.addEventListener("click", clickCallBack);
 
+      CalendarViewer.#createAndAddNotificationOnDate(
+        dateOfCalendarInstance,
+        dateElement
+      );
+
       this.#dateEventListenerRepository[indexForDate] = clickCallBack; // 이벤트 리스너 지우기 위해 따로 저장
+    }
+  }
+
+  static #createAndAddNotificationOnDate(dateOfCalendarInstance, dateElement) {
+    const taskLength = dateOfCalendarInstance.getTaskLength();
+    if (taskLength > 0) {
+      const notification = document.createElement("div");
+      notification.classList.add("task-notification");
+      notification.textContent = taskLength;
+      dateElement.appendChild(notification);
     }
   }
 }
