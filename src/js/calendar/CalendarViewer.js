@@ -2,7 +2,7 @@ import { DAYS } from "./day";
 import Month from "./Month";
 import SelectedDate from "./SelectedDate";
 import YearRepository from "./YearRepository";
-import { handleDateClick } from "./eventHandler";
+import { handleDateClick } from "../calendarEventHandler";
 import CalendarController from "./CalendarController";
 import {
   selectedDateText,
@@ -10,7 +10,7 @@ import {
   selectedDayText,
   selectedYearText,
   allDatesInCalendar,
-} from "./element";
+} from "../element";
 
 export default class CalendarViewer {
   static #dateEventListenerRepository = {};

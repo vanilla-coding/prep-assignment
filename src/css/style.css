@@ -83,22 +83,23 @@ h1 {
   padding: 10px 10px 10px 10px;
 }
 
-.calendar button {
+.calendar__button--move {
   border-radius: 30px;
   background-color: transparent;
   border: 1px solid black;
   width: 30px;
   height: 15vh;
-  align-self: center;
+  margin-top: 30px;
+  align-self: flex-start;
 }
 
-.calendar button:hover {
+.calendar__button--move:hover {
   transform: scale(1.1);
   background-color: rgb(255, 255, 255, 0.5);
   box-shadow: 2px 2px;
 }
 
-.calendar button:active {
+.calendar__button--move:active {
   transform: scale(1.2);
 }
 
@@ -127,6 +128,193 @@ h1 {
   border-radius: 10px;
   box-shadow: 2px 2px 2px 2px;
   background-color: rgb(255, 255, 255, 0.5);
+}
+
+.board {
+  background-color: rgba(255, 255, 255, 0.1);
+  width: 30%;
+  height: fit-content;
+  min-width: 350px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 10px 10px 10px 10px;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+.board--invisible {
+  display: none;
+}
+
+.board--visible {
+  display: block;
+}
+
+.board__form-container {
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  background-color: rgba(128, 128, 128, 0.5);
+  width: 100%;
+  height: 100%;
+}
+
+.board__form-container--invisible {
+  display: none;
+}
+
+.board__form-container--visible {
+  display: block;
+}
+
+.board__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  padding: 30px 30px 30px 30px;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100px;
+  background-color: rgba(128, 128, 128, 0.5);
+}
+
+.task-content-text-input {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.board__form__button-container {
+  position: relative;
+}
+
+.board__form__button-container button {
+  border-radius: 10px;
+}
+
+.task-submission-ok {
+  background-color: greenyellow;
+}
+
+.task-submission-cancel {
+  background-color: red;
+}
+
+.board__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.board__date--text {
+  font-size: 20px;
+}
+
+.board__button {
+  border-radius: 10px;
+  background-color: transparent;
+  border: 1px solid black;
+}
+
+.board__button:hover {
+  transform: scale(1.1);
+  box-shadow: 2px 2px;
+}
+
+.board__button:active {
+  transform: scale(1.2);
+}
+
+.board__button--add {
+  background-color: rgba(0, 255, 128, 0.5);
+}
+
+.board__button--delete-all {
+  background-color: rgba(255, 0, 0, 0.5);
+}
+
+.board .board__content {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 10px 10px 10px 10px;
+}
+
+.task {
+  max-width: 700px;
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 5px 5px 5px;
+  height: 3vh;
+  line-height: 3vh;
+  padding: 5px 5px 5px 5px;
+  border: 0px;
+}
+
+.task:hover {
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px 0px;
+  height: fit-content;
+}
+
+.task__button-container {
+  display: relative;
+  min-width: 30px;
+}
+
+.task__button {
+  border: none;
+  width: fit-content;
+  font-size: 0.5vh;
+  background-color: transparent;
+  border-radius: 10px;
+  padding: 0 0 0 0;
+}
+
+.task__button:hover {
+  transform: scale(1.1);
+}
+
+.task__button:active {
+  transform: scale(1.2);
+}
+
+.task__status {
+  min-width: 40px;
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  font-size: 10px;
+  line-height: 21px;
+  padding: 3px 3px 3px 3px;
+  margin-right: 5px;
+}
+
+.task__status:hover {
+  transform: scale(1.1);
+}
+
+.task__status:active {
+  transform: scale(1.2);
+}
+
+.task__content {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.task__content:hover {
+  overflow: unset;
+  text-overflow: unset;
+  white-space: normal;
+}
+
+.task__button--update {
+}
+
+.task__button--delete {
 }
 
 table .date-inside:active {

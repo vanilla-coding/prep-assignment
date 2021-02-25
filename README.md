@@ -12,16 +12,20 @@ Interactive Calendar built with html, css and javascript
 
 ### Features to make
 
-- [ ]  날짜 클릭하면 TO DO 조회/추가/수정/삭제 할 수 있도록 만들기
-- [ ]  새로고침되어도 데이터가 유지되도록 만들기
+- [x]  날짜 클릭하면 TO DO 조회/추가/수정/삭제 할 수 있도록 만들기
 - [ ]  TO DO 가 있는 날은 빨간 색으로 날짜 옆에 알림이 생기도록 만들기
-- [ ]  모바일로도 반응할 수 있도록 하기
+
 
 ### Refactoring
 
 - [x]  객체 지향 패러다임 적용하기
 - [x]  캘린더의 테이블의 요일(MON, TUE ...) 하드코딩하지 않고 javascript로 제어하기
 - [x]  모든 함수를 익명 함수 표현식으로 재정의하기
+
+
+### 새로 배운 것
+
+### 아쉬운 점
 
 
 ### Commit Message Rule

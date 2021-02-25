@@ -1,11 +1,15 @@
-import CalendarController from "./CalendarController";
-import CalendarViewer from "./CalendarViewer";
-import Now from "./Now";
-import SelectedDate from "./SelectedDate";
+import CalendarController from "./calendar/CalendarController";
+import CalendarViewer from "./calendar/CalendarViewer";
+import Now from "./calendar/Now";
+import SelectedDate from "./calendar/SelectedDate";
 import { differenceWithClickedDate } from "./element";
+import { handleBoardViewWhenDateClick, removeBoard } from "./boardEventHandler";
 
 export const handleMoveMonthButton = (event) => {
-  const clickedButton = event.target.className;
+  const clickedButton = event.target.classList[1];
+
+  removeBoard();
+
   if (clickedButton === "previous-month-button") {
     SelectedDate.setMonthOfDateObject(SelectedDate.getMonth() - 1);
   }
@@ -17,18 +21,24 @@ export const handleMoveMonthButton = (event) => {
   CalendarViewer.display();
 };
 
-// 클로저 사용(<코어자바스크립트>128p)
+export let previousClickedDateObject;
 export const handleDateClick = (dateOfCalendar, dateElement) => {
   return () => {
+    previousClickedDateObject = SelectedDate.getDateObject();
     SelectedDate.setDateOfDateObject(dateOfCalendar.getNumber());
 
-    if (CalendarController.isDateToday(dateOfCalendar.getDate())) {
-      CalendarViewer.display();
-      differenceWithClickedDate.textContent = "Today";
-      return;
-    }
+    handleTodayClick(dateOfCalendar);
     handleClickDifferentDate(dateOfCalendar, dateElement);
+    handleBoardViewWhenDateClick(dateOfCalendar);
   };
+};
+
+const handleTodayClick = (dateOfCalendar) => {
+  if (CalendarController.isDateToday(dateOfCalendar.getDate())) {
+    CalendarViewer.display();
+    differenceWithClickedDate.textContent = "Today";
+    return;
+  }
 };
 
 const handleClickDifferentDate = (dateOfCalendar, dateElement) => {

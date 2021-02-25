@@ -1,7 +1,7 @@
-import { handleMoveMonthButton } from "./eventHandler";
+import { handleMoveMonthButton } from "../calendarEventHandler";
 import CalendarViewer from "./CalendarViewer";
 import Now from "./Now";
-import { previousMonthButton, nextMonthButton } from "./element";
+import { previousMonthButton, nextMonthButton } from "../element";
 
 export default class CalendarController {
   constructor() {
