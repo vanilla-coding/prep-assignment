@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="image/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Calendar Project</title>
+  </head>
+
+  <body>
+    <section>
+      <div class="image-box">
+        <img src="image/vanilla_coding_logo.png" />
+      </div>
+      <h1>Calendar</h1>
+
+      <!-- 달력 Start -->
+      <div class="day">
+        <p id="js-day"></p>
+        <p id="js-date"></p>
+      </div>
+
+      <div class="month">
+        <p class="js-month"></p>
+      </div>
+
+      <div class="js-calendar-container calenderContainer">
+        <table class="calendar">
+          <thead>
+            <tr>
+              <th>SUN</th>
+              <th>MON</th>
+              <th>TUE</th>
+              <th>WED</th>
+              <th>THU</th>
+              <th>FRI</th>
+              <th>SAT</th>
+            </tr>
+          </thead>
+          <tbody class="js-calendarBody">
+          </tbody>
+        </table>
+        <button class="prevBtn"><<</button>
+        <button class="nextBtn">>></button>
+      </div>
+      <!-- 달력 End -->
+    </section>
+
+    <script src="index.js"></script>
+  </body>
+</html>

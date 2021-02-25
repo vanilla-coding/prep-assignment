@@ -1,0 +1,78 @@
+body {
+  background-image: url("bg.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "Varela Round", sans-serif;
+}
+.image-box {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+
+}
+
+.image-box img {
+  width: 180px;
+  height: 80;
+}
+
+h1 {
+  font-family: "Pacifico", cursive;
+  text-align: center;
+  font-size: 85px;
+}
+
+.day p {
+  display: block;
+  margin: 20px 0;
+  text-align: center;
+  font-size: 58px;
+  font-weight: bold;
+}
+
+.month p {
+  margin-top: 80px;
+  text-align: center;
+  font-size: 28px;
+}
+
+table {
+  display: table;
+  margin: auto;
+  width: 300px;
+  text-align: center;
+  font-size: 20px;
+}
+
+tbody td {
+  padding: 5px 0;
+}
+
+.calenderContainer {
+  position: relative;
+  width: 350px;
+  margin: 0 auto;
+}
+
+button {
+  position: absolute;
+  top: 50%;
+  margin-top: -20px;
+  width: 100px;
+  height: 40px;
+  font-size: 20px;
+  background: none;
+  border: none;
+}
+
+.prevBtn {
+  left: -100px;
+}
+
+.nextBtn {
+  right: -100px;
+}
+
+.painting {
+  color: red;
+}
