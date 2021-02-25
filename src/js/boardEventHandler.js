@@ -13,18 +13,20 @@ import {
 import { previousClickedDateObject } from "./calendarEventHandler";
 import Status from "./board/Status";
 
+let clickedDateOfCalendar;
 let isBoardVisible = false;
 export const handleBoardViewWhenDateClick = (dateOfCalendar) => {
+  clickedDateOfCalendar = dateOfCalendar;
   removePreviousBoardButtonEventListner();
 
-  displayBoardDateText(dateOfCalendar);
-  handleBoardButtons(dateOfCalendar);
+  displayBoardDateText();
+  handleBoardButtons();
 
   if (isBoardVisible) {
-    handleDateClickWhenBoardVisible(dateOfCalendar);
+    handleDateClickWhenBoardVisible();
     return;
   }
-  handleDateClickWhenBoardInvisible(dateOfCalendar);
+  handleDateClickWhenBoardInvisible();
 };
 
 const removePreviousBoardButtonEventListner = () => {
@@ -35,8 +37,8 @@ const removePreviousBoardButtonEventListner = () => {
   );
 };
 
-const displayBoardDateText = (dateOfCalendar) => {
-  const clickedDate = dateOfCalendar.getDate();
+const displayBoardDateText = () => {
+  const clickedDate = clickedDateOfCalendar.getDate();
   boardDateText.textContent = `TO DO LIST${
     clickedDate.getMonth() + 1
   }.${clickedDate.getDate()}`;
@@ -44,31 +46,26 @@ const displayBoardDateText = (dateOfCalendar) => {
 
 let boardButtonAddCallback;
 let boardButtonDeleteAllCallback;
-const handleBoardButtons = (dateOfCalendar) => {
-  boardButtonAddCallback = handleBoardButtonAdd(dateOfCalendar);
-  boardButtonDeleteAllCallback = handleBoardButtonDeleteAll(dateOfCalendar);
+const handleBoardButtons = () => {
+  boardButtonAddCallback = handleBoardButtonAdd();
+  boardButtonDeleteAllCallback = handleBoardButtonDeleteAll();
 
   boardButtonAdd.addEventListener("click", boardButtonAddCallback);
   boardButtonDeleteAll.addEventListener("click", boardButtonDeleteAllCallback);
 };
-
-const handleBoardButtonAdd = (dateOfCalendar) => {
+const handleBoardButtonAdd = () => {
   return () => {
-    displayTaskSubmissionForm(dateOfCalendar);
+    displayTaskSubmissionForm();
   };
 };
 
 let clickTaskSubmissionOKCallBack;
 let clickTaskSubmissionCancelCallBack;
-const displayTaskSubmissionForm = (dateOfCalendar) => {
-  boardFormContainer.classList.remove("board__form-container--invisible");
-  boardFormContainer.classList.add("board__form-container--visible");
+const displayTaskSubmissionForm = () => {
+  displayBoardFormContainerElement();
 
-  clickTaskSubmissionOKCallBack = handleClickTaskSubmissionOK(dateOfCalendar);
-  clickTaskSubmissionCancelCallBack = handleClickTaskSubmissionCancel(
-    dateOfCalendar
-  );
-
+  clickTaskSubmissionOKCallBack = handleClickTaskSubmissionOK();
+  clickTaskSubmissionCancelCallBack = handleClickTaskSubmissionCancel();
   taskSubmissionOK.addEventListener("click", clickTaskSubmissionOKCallBack);
   taskSubmissionCancel.addEventListener(
     "click",
@@ -76,11 +73,16 @@ const displayTaskSubmissionForm = (dateOfCalendar) => {
   );
 };
 
-const handleClickTaskSubmissionOK = (dateOfCalendar) => {
+const displayBoardFormContainerElement = () => {
+  boardFormContainer.classList.remove("board__form-container--invisible");
+  boardFormContainer.classList.add("board__form-container--visible");
+};
+
+const handleClickTaskSubmissionOK = () => {
   return () => {
-    dateOfCalendar.addTask(taskContentTextInput.value);
+    clickedDateOfCalendar.addTask(taskContentTextInput.value);
     removeTaskSubmissionForm();
-    displayBoard(dateOfCalendar);
+    displayBoard();
   };
 };
 
@@ -92,15 +94,13 @@ const removeTaskSubmissionForm = () => {
   );
   clearInputTextArea();
   removeTaskList();
-
-  boardFormContainer.classList.remove("board__form-container--visible");
-  boardFormContainer.classList.add("board__form-container--invisible");
+  removeBoardFormContainerElement();
 };
 
-const handleClickTaskSubmissionCancel = (dateOfCalendar) => {
+const handleClickTaskSubmissionCancel = () => {
   return () => {
     removeTaskSubmissionForm();
-    displayBoard(dateOfCalendar);
+    displayBoard();
   };
 };
 
@@ -108,94 +108,119 @@ const clearInputTextArea = () => {
   taskContentTextInput.value = "";
 };
 
-const handleBoardButtonDeleteAll = (dateOfCalendar) => {
+const removeBoardFormContainerElement = () => {
+  boardFormContainer.classList.remove("board__form-container--visible");
+  boardFormContainer.classList.add("board__form-container--invisible");
+};
+
+const handleBoardButtonDeleteAll = () => {
   return () => {
-    dateOfCalendar.deleteAllTasks();
-    displayBoard(dateOfCalendar);
+    clickedDateOfCalendar.deleteAllTasks();
+    displayBoard();
   };
 };
 
-const handleDateClickWhenBoardVisible = (dateOfCalendar) => {
-  if (sameDateClicked(dateOfCalendar)) {
+const handleDateClickWhenBoardVisible = () => {
+  if (sameDateClicked()) {
     removeBoard();
     return;
   }
-
-  displayBoard(dateOfCalendar);
+  displayBoard();
 };
 
 const removeTaskList = () => {
   taskList.innerHTML = "";
 };
 
-const sameDateClicked = (dateOfCalendar) => {
-  return dateOfCalendar.getNumber() === previousClickedDateObject.getDate();
+const sameDateClicked = () => {
+  return (
+    clickedDateOfCalendar.getNumber() === previousClickedDateObject.getDate()
+  );
 };
 
-const handleDateClickWhenBoardInvisible = (dateOfCalendar) => {
-  displayBoard(dateOfCalendar);
+const handleDateClickWhenBoardInvisible = () => {
+  displayBoard();
 };
 
 export const removeBoard = () => {
-  boardElement.classList.remove("board--visible");
-  boardElement.classList.add("board--invisible");
-
+  removeBoardElement();
   removeTaskList();
   clearInputTextArea();
+};
 
+const removeBoardElement = () => {
+  boardElement.classList.remove("board--visible");
+  boardElement.classList.add("board--invisible");
   isBoardVisible = false;
 };
 
-const displayBoard = (dateOfCalendar) => {
+const displayBoard = () => {
+  displayBoardElement();
   removeTaskList();
   clearInputTextArea();
-  displayTasksOnBoard(dateOfCalendar);
+  displayTasksOnBoard();
+};
+
+const displayBoardElement = () => {
   boardElement.classList.add("board--visible");
   boardElement.classList.remove("board--invisible");
   isBoardVisible = true;
 };
 
-const displayTasksOnBoard = (dateOfCalendar) => {
-  const tasks = dateOfCalendar.getAllTasks();
+const displayTasksOnBoard = () => {
+  const tasks = clickedDateOfCalendar.getAllTasks();
   tasks.forEach(createAndAddTaskElement);
 };
 
 let taskElement;
 let taskStatus;
 let taskContent;
+let taskButtonContainer;
 let updateButton;
 let deleteButton;
 const createAndAddTaskElement = (task) => {
-  taskElement = document.createElement("li");
-  taskElement.classList.add("task");
-  taskStatus = document.createElement("span");
-  taskStatus.classList.add("task__status");
-  taskStatus.textContent = task.getStatus().getText();
-  colorTaskSatus(task.getStatus(), taskStatus);
-  taskContent = document.createElement("span");
-  taskContent.classList.add("task__content");
-  taskContent.textContent = task.getContent();
+  createTaskElements();
+  addClassNameToTaskElements();
+  addTextContentToTaskElements(task);
+  combineTaskElements();
+  colorTaskSatus(task.getStatus()); // status 엘리먼트가 만들어지고 나서 수행
+  addEventListenerToTaskButtons(task);
+};
 
-  const taskButtonContainer = document.createElement("span");
-  taskButtonContainer.classList.add("task__button-container");
+const createTaskElements = () => {
+  taskElement = document.createElement("li");
+  taskStatus = document.createElement("span");
+  taskContent = document.createElement("span");
+  taskButtonContainer = document.createElement("span");
   updateButton = document.createElement("button");
+  deleteButton = document.createElement("button");
+};
+
+const addClassNameToTaskElements = () => {
+  taskElement.classList.add("task");
+  taskStatus.classList.add("task__status");
+  taskContent.classList.add("task__content");
+  taskButtonContainer.classList.add("task__button-container");
   updateButton.classList.add("task__button");
   updateButton.classList.add("task__button--update");
-  updateButton.textContent = "✅";
-  deleteButton = document.createElement("button");
   deleteButton.classList.add("task__button");
   deleteButton.classList.add("task__button--delete");
+};
+
+const addTextContentToTaskElements = (task) => {
+  taskStatus.textContent = task.getStatus().getText();
+  taskContent.textContent = task.getContent();
+  updateButton.textContent = "✅";
   deleteButton.textContent = "⛔";
+};
+
+const combineTaskElements = () => {
   taskButtonContainer.appendChild(updateButton);
   taskButtonContainer.appendChild(deleteButton);
-
   taskElement.appendChild(taskStatus);
   taskElement.appendChild(taskContent);
   taskElement.appendChild(taskButtonContainer);
-
   taskList.appendChild(taskElement);
-
-  addEventListenerToTaskButtons(task);
 };
 
 const colorTaskSatus = (status) => {
@@ -206,6 +231,15 @@ const colorTaskSatus = (status) => {
 
 const addEventListenerToTaskButtons = (task) => {
   taskStatus.addEventListener("click", handleClickUpdateTaskButton(task));
+  taskContent.addEventListener(
+    "click",
+    handleClickModifyingContent(
+      taskElement,
+      taskContent,
+      taskButtonContainer,
+      task
+    )
+  );
   updateButton.addEventListener("click", handleClickUpdateTaskButton(task));
   deleteButton.addEventListener("click", handleClickDeleteTaskButton(task));
 };
@@ -213,13 +247,39 @@ const addEventListenerToTaskButtons = (task) => {
 const handleClickUpdateTaskButton = (task) => {
   return () => {
     task.updateStatus();
-    displayBoard(task.getAssignedDate());
+    displayBoard();
   };
+};
+
+const handleClickModifyingContent = (
+  itsTaskElement,
+  itsTaskContent,
+  taskButtonContainer,
+  task
+) => {
+  return () => {
+    itsTaskContent.innerHTML = "";
+    const inputElementForModifying = document.createElement("input");
+    inputElementForModifying.value = task.getContent();
+    inputElementForModifying.addEventListener(
+      "keydown",
+      handleEnterModifyingInput.bind(null, task, inputElementForModifying)
+    );
+    itsTaskElement.insertBefore(inputElementForModifying, taskButtonContainer);
+  };
+};
+
+const handleEnterModifyingInput = (task, inputElementForModifying, event) => {
+  if (event.keyCode === 13) {
+    const newTextContent = inputElementForModifying.value;
+    task.updateTextContent(newTextContent);
+    displayBoard();
+  }
 };
 
 const handleClickDeleteTaskButton = (task) => {
   return () => {
     task.getAssignedDate().deleteTask(task);
-    displayBoard(task.getAssignedDate());
+    displayBoard();
   };
 };

@@ -28,4 +28,7 @@ export default class Task {
   getAssignedDate() {
     return this.#assignedDate;
   }
+  updateTextContent(newTextContent) {
+    this.#content = newTextContent;
+  }
 }
