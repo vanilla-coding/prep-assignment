@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="/Users/hammyeong-yeon/desktop/baseball_boilerplate/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Baseball Project</title>
+  </head>
+  <body>
+    <section>
+      <div class="image-box">
+        <img src="images/vanilla_coding_logo.png" />
+      </div>
+      <h1>Baseball</h1>
+       <hr><br>
+       <div class="main">
+       <button class="start" type="button" onclick="start()">game start!</button>
+        <div class="game">
+           세자리 숫자를 입력후 'enter'키를 누르세요!<br>
+            <input type="number" name="data1" id="data">
+            <input type="button" onclick="enter()" name="enter" id="enter" value="enter"><br>
+          <div class="score">
+            strike: <span id="strike">0</span> ball: <span id="ball">0</span> out: <span id="out">0</span><br>
+            시도횟수 <span id="try">0</span>회 (10회로 제한됩니다.)<br>
+         </div>
+       </div>
+          <button class="reset" id='resetform' onclick="rst()" >reset!</button>
+       </div>
+    </section>
+    <script src="index.js"></script>
+  </body>
+</html>
