@@ -306,14 +306,6 @@ table .task-notification {
   padding: 0 0 0 0;
 }
 
-/* .task__button:hover {
-  transform: scale(1.1);
-}
-
-.task__button:active {
-  transform: scale(1.2);
-} */
-
 .task__status {
   min-width: 40px;
   text-align: center;
@@ -342,10 +334,4 @@ table .task-notification {
   overflow: unset;
   text-overflow: unset;
   white-space: normal;
-}
-
-.task__button--update {
-}
-
-.task__button--delete {
 }
