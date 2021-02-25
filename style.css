@@ -1,0 +1,81 @@
+body {
+  background-image: url("./images/bg.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "Varela Round", sans-serif;
+}
+
+h1 {
+  font-family: "Pacifico", cursive;
+  text-align: center;
+  font-size: 72px;
+}
+
+h2 {
+  text-align: center;
+  color: #2b69a7;
+}
+
+h3 {
+  text-align: center;
+  color: #05315c;
+}
+
+button.startBtn {
+  cursor: pointer;
+  color: white;
+  background-color: #323232;
+  border: none;
+  border-radius: 6px;
+  height: 80px;
+  width: 200px;
+  font-size: 24px;
+  margin: 0 auto;
+  opacity: 0.7;
+  transition: 0.5s;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  
+}
+button.startBtn:hover {
+  opacity: 1.0;
+}
+
+form {
+  text-align: center;
+}
+
+form input {
+  border: none;
+  border-radius: 6px;
+  height: 40px;
+  width: 240px;
+  font-size: 18px;
+  text-align: center;
+}
+
+form button {
+  cursor: pointer;
+  color: white;
+  background-color: #323232;
+  border: none;
+  border-radius: 6px;
+  height: 40px;
+  width: 60px;
+  font-size: 18px;
+  opacity: 0.7;
+  transition: 0.5s;
+}
+form button:hover {
+  opacity: 1.0;
+}
+
+div {
+  display:inline-block;
+}
+
+.enter {
+  cursor: pointer;
+}
