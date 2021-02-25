@@ -1,0 +1,40 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.taskList = exports.taskSubmissionCancel = exports.taskSubmissionOK = exports.taskContentTextInput = exports.boardFormContainer = exports.boardButtonAdd = exports.boardButtonDeleteAll = exports.boardDateText = exports.boardElement = exports.differenceWithClickedDate = exports.nextMonthButton = exports.previousMonthButton = exports.allDatesInCalendar = exports.selectedYearText = exports.selectedDayText = exports.selectedMonthText = exports.selectedDateText = void 0;
+var selectedDateText = document.getElementById("jsSelectedDateText");
+exports.selectedDateText = selectedDateText;
+var selectedMonthText = document.getElementById("jsSelectedMonthText");
+exports.selectedMonthText = selectedMonthText;
+var selectedDayText = document.getElementById("jsSelectedDayText");
+exports.selectedDayText = selectedDayText;
+var selectedYearText = document.getElementById("jsSelectedYearText");
+exports.selectedYearText = selectedYearText;
+var allDatesInCalendar = document.querySelectorAll("#jsCalendarTable > tbody td");
+exports.allDatesInCalendar = allDatesInCalendar;
+var previousMonthButton = document.getElementById("jsPreviousMonthButton");
+exports.previousMonthButton = previousMonthButton;
+var nextMonthButton = document.getElementById("jsNextMonthButton");
+exports.nextMonthButton = nextMonthButton;
+var differenceWithClickedDate = document.getElementById("jsDifferenceWithClickedDate");
+exports.differenceWithClickedDate = differenceWithClickedDate;
+var boardElement = document.getElementById("jsBoard");
+exports.boardElement = boardElement;
+var boardDateText = document.getElementById("jsBoardDateText");
+exports.boardDateText = boardDateText;
+var boardButtonDeleteAll = document.getElementById("jsBoardButtonDeleteAll");
+exports.boardButtonDeleteAll = boardButtonDeleteAll;
+var boardButtonAdd = document.getElementById("jsBoardButtonAdd");
+exports.boardButtonAdd = boardButtonAdd;
+var boardFormContainer = document.getElementById("jsBoardFormContainer");
+exports.boardFormContainer = boardFormContainer;
+var taskContentTextInput = document.getElementById("jsTaskContentTextInput");
+exports.taskContentTextInput = taskContentTextInput;
+var taskSubmissionOK = document.getElementById("jsTaskSubmissionOK");
+exports.taskSubmissionOK = taskSubmissionOK;
+var taskSubmissionCancel = document.getElementById("jsTaskSubmissionCancel");
+exports.taskSubmissionCancel = taskSubmissionCancel;
+var taskList = document.getElementById("jsTaskList");
+exports.taskList = taskList;
