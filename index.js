@@ -3,10 +3,20 @@ let random_num=-1
 let count=0
 function startButton_click(s) {
     random_num=String(Math.floor(Math.random()*999))
+    document.getElementById('startButton').style.display="none"
+    document.getElementById('inputVal').style.display="inline"
+    document.getElementById('submitButton').style.display="inline"
 }
 function resetButton_click(s) {
+
     count=0
     random_num=-1
+    document.getElementById('startButton').style.display="inline"
+    document.getElementById('inputVal').style.display="none"
+    document.getElementById('submitButton').style.display="none"
+    document.getElementById('result').style.display="none"
+    document.getElementById('resetButton').style.display="none"
+
 
 }
 
@@ -18,6 +28,9 @@ function inputProcess() {
     }
     else if (count ==10){
         alert( " 10회 시도가 완료되었습니다.");
+       
+        document.getElementById('resetButton').style.display="inline"
+    
     }
     else{
         let strike=0
@@ -26,11 +39,18 @@ function inputProcess() {
         for(let i=0;i<3;i++){
             if(random_num.indexOf(inputVal[i])==i){
                 strike++
-                console.log("strike증가")
             }else{
                 ball++
-                console.log("ball증가")
             }
+        }
+        if(strike==3 &&ball==0){
+            alert( "이겼습니다!!");
+            document.getElementById('inputVal').style.display="none"
+            document.getElementById('submitButton').style.display="none"
+            document.getElementById('result').style.display="none"
+            document.getElementById('resetButton').style.display="inline"
+
+
         }
         document.getElementById("result").innerText = strike+"S,"+ball+"B, count:"+count;
 

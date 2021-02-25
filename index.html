@@ -19,19 +19,23 @@
   <body>
     <section>
       <div class="image-box">
-        <img src="images/vanilla_coding_logo.png" />
+        <img class="vanillacoding-image" src="images/vanilla_coding_logo.png" />
       </div>
       <h1>Baseball</h1>
 
       <!-- 야구게임 Start -->
-      <button id="startButton" onclick="startButton_click('start');">게임시작</button>
-      <input type="number" id='inputVal' onchange='inputProcess()'/>
-      <button name="submit">제출</button>
-      <div id='result'></div>
-      
-      <button id="resetButton" onclick="resetButton_click();">재시도</button>
-
-
+      <div class="game"> 
+        <button class="button button1" id="startButton" onclick="startButton_click('start');">게임시작</button>
+        <input style="display: none;" type="number" id='inputVal' onchange='inputProcess()'/>
+        <br>
+        <br>
+        <br>
+        <button style="display: none;" class="button button2" id='submitButton' name="submit">제출</button>
+        <br>
+        <div id='result'></div>
+        <br>
+        <button style="display: none;" class="button button3" id="resetButton" onclick="resetButton_click();">재시도</button>
+      </div>
 
       <!-- 야구게임 End -->
     </section>
