@@ -2,7 +2,7 @@ import { DAYS } from "./day";
 import Month from "./Month";
 import SelectedDate from "./SelectedDate";
 import YearRepository from "./YearRepository";
-import { handleDateClick } from "../calendarEventHandler";
+import { handleDateClick } from "./calendarEventHandler";
 import CalendarController from "./CalendarController";
 import {
   selectedDateText,

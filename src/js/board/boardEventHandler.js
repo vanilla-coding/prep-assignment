@@ -8,10 +8,10 @@ import {
   taskSubmissionOK,
   taskSubmissionCancel,
   taskList,
-} from "./element";
+} from "../element";
 
-import { previousClickedDateObject } from "./calendarEventHandler";
-import Status from "./board/Status";
+import { previousClickedDateObject } from "../calendar/calendarEventHandler";
+import Status from "./Status";
 
 let clickedDateOfCalendar;
 let isBoardVisible = false;

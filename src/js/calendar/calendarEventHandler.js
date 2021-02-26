@@ -1,9 +1,9 @@
-import CalendarController from "./calendar/CalendarController";
-import CalendarViewer from "./calendar/CalendarViewer";
-import Now from "./calendar/Now";
-import SelectedDate from "./calendar/SelectedDate";
-import { differenceWithClickedDate } from "./element";
-import { handleBoardViewWhenDateClick, removeBoard } from "./boardEventHandler";
+import CalendarController from "./CalendarController";
+import CalendarViewer from "./CalendarViewer";
+import Now from "./Now";
+import SelectedDate from "./SelectedDate";
+import { differenceWithClickedDate } from "../element";
+import { handleBoardViewWhenDateClick, removeBoard } from "../board/boardEventHandler";
 
 export const handleMoveMonthButton = (event) => {
   const clickedButton = event.target.classList[1];

@@ -1,4 +1,4 @@
-import { handleMoveMonthButton } from "../calendarEventHandler";
+import { handleMoveMonthButton } from "./calendarEventHandler";
 import CalendarViewer from "./CalendarViewer";
 import Now from "./Now";
 import { previousMonthButton, nextMonthButton } from "../element";

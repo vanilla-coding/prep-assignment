@@ -12,6 +12,7 @@ body {
 
 button:hover {
   transform: scale(1.1);
+  cursor: pointer;
 }
 
 button:active {
@@ -50,31 +51,31 @@ section > * {
 h1 {
   font-family: "Pacifico", cursive;
   text-align: center;
-  font-size: 50px;
+  font-size: 20px;
 }
 
 .today {
-  font-size: 5vw;
+  font-size: 3vw;
   text-align: center;
   font-weight: 800;
 }
 
 .today > p:nth-child(1) {
-  font-size: 2vw;
+  font-size: 1vw;
 }
 
 .today > p:nth-child(3) {
-  font-size: 2vw;
+  font-size: 1vw;
 }
 
-.delimeter {
+.delimiter {
   width: 30%;
   min-width: 350px;
   border: 1px solid black;
 }
 
 .calendar--title {
-  font-size: 2vw;
+  font-size: 1.5vw;
   font-weight: 800;
 }
 
@@ -293,8 +294,16 @@ table .task-notification {
 }
 
 .task__button-container {
-  display: relative;
+  position: relative;
   min-width: 30px;
+}
+
+.task__button--update {
+  cursor: pointer;
+}
+
+.task__button--delete {
+  cursor: pointer;
 }
 
 .task__button {
@@ -314,6 +323,7 @@ table .task-notification {
   font-size: 10px;
   padding: 3px 3px 3px 3px;
   margin-right: 5px;
+  cursor: pointer;
 }
 
 .task__status:hover {
@@ -334,4 +344,5 @@ table .task-notification {
   overflow: unset;
   text-overflow: unset;
   white-space: normal;
+  cursor: pointer;
 }
