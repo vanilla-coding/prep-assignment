@@ -1,0 +1,41 @@
+body {
+  background-image: url("./images/bg.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "Varela Round", sans-serif;
+}
+
+h1 {
+  font-family: "Pacifico", cursive;
+  text-align: center;
+  font-size: 72px;
+}
+
+.image-box{
+    margin: auto;
+    padding-top: 50px;
+}
+
+.top-text{
+  text-align: center;
+  font-size: 30px;
+  font-weight:bolder;
+}
+
+.middle-text{
+  margin: auto;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: bold;
+
+}
+
+div {
+ text-align: center;
+}
+
+table{
+  margin: auto;
+  font-size: 20px;
+  padding: 10px;
+}

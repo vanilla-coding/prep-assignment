@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width" />
+      <link
+        href="https://fonts.googleapis.com/css?family=Pacifico&display=swap"
+        rel="stylesheet"
+      />
+      <link
+        href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap"
+        rel="stylesheet"
+      />
+      <link rel="icon" href="/images/favicon.ico" />
+      <link rel="stylesheet" type="text/css" href="style.css" />
+      <title>Calendar Project</title>
+    <script>
+        var today = new Date();
+        var date = new Date();
+
+      function preMonth() {
+        today = new Date(today.getFullYear(), today.getMonth()-1, today.getDate()); 
+        calender();
+      }
+      function nextMonth() {
+        today = new Date(today.getFullYear(), today.getMonth()+1, today.getDate()); 
+        calender();
+      }
+
+      function calender() {
+      
+      var month = new Date(today.getFullYear(), today.getMonth(),1);
+      var endDate = new Date(today.getFullYear(), today.getMonth()+1,0);
+      
+      var tbCalendarMaker = document.getElementById("calendertb");
+      var aaa = document.getElementById("aaa");
+      aaa.innerHTML = (today.getMonth()+1) + " " + today.getFullYear();
+
+      var bbb = document.getElementById("bbb");
+      bbb.innerHTML = today.getDate();
+
+      var ccc = document.getElementById("ccc");
+      ccc.innerHTML = today.getDay();
+        
+      while (tbCalendarMaker.rows.length > 2) { 
+        tbCalendarMaker.deleteRow(tbCalendarMaker.rows.length -1)
+      }
+
+      var row = null;
+      row = tbCalendarMaker.insertRow();
+
+      var count = 0;
+      for (i=0; i<month.getDay(); i++){
+        cell = row.insertCell();
+        count = count+1;
+      }
+
+      for(i=1; i<=endDate.getDate(); i++)
+      {
+        cell=row.insertCell();
+        cell.innerHTML = i;
+        count = count +1;
+        if(count%7==1){
+          cell.innerHTML = i
+          }
+        if(count%7==0){
+          cell.innerHTML = i
+          row = calendertb.insertRow();
+        }
+        if (today.getFullYear() == date.getFullYear()
+                          && today.getMonth() == date.getMonth()
+                          && i == date.getDate()) {
+                          cell.bgColor = "red";/*글자만 변경찾기*/
+                      }
+
+      }
+    }
+      /*var month = today.getMonth() + 1;
+      var month_en
+      if (month==1){
+            month_en = "Jan";
+          } else if(month==2){
+            month_en="Feb";
+          } else if(month==3){
+            month_en="Mar";
+          } else if(month==4){
+            month_en="Apr";
+          } else if(month==5){
+            month_en="May";
+          } else if(month==6){
+            month_en="Jun";
+          } else if(month==7){
+            month_en="Jul";
+          } else if(month==8){
+            month_en="Aug";
+          } else if(month==9){
+            month_en="Sep";  
+          } else if(month==10){
+            month_en="Oct";
+          } else if(month==11){
+            month_en="Nov";
+          } else if(month==12){
+            month_en="Dec";
+          }
+
+          var day_ = today.getDay();
+          var day_en
+            if (day_==1){
+              day_en = "MON";
+              } else if(day_==2){
+                day_en="TUE";
+              } else if(day_==3){
+                day_en="WED";
+              } else if(day_==4){
+                day_en="THU";
+              } else if(day_==5){
+                day_en="FRI";
+              } else if(day_==6){
+                day_en="SAT";
+              } else if(day_==7){
+                day_en="SUN";
+              }*/
+     </script>
+  </head>
+  <body>
+      <div class="image-box">
+        <img src="images/vanilla_coding_logo.png"  width="100px"/>
+      </div>
+      <h1>Calendar</h1>
+      <table>
+        <tr>
+          <td align="center" id="ccc" ></td>
+      </table>
+
+      <table>
+        <tr>
+          <td align="center" id="bbb" colspan="5"></td>
+      </table>
+
+      <table id="calendertb" align="center">
+        <tr>
+          <td><input type="button" onclick="preMonth()"/></td>
+          <td align="center" id="aaa" colspan="5"></td>
+          <td><input type="button" onclick="nextMonth()"/></td>
+        </tr>
+        <tr>
+          <td>SUN</td>
+          <td>MON</td>
+          <td>TUE</td>
+          <td>WED</td>
+          <td>THU</td>
+          <td>FRI</td>
+          <td>SAT</td>         
+          </tr>
+      </table>
+      <script language="javascript" type="text/javascript">
+        calender();
+      </script>
+  </body>
+</html>
