@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset = "UTF-8">
+    <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href="index.css">
+    <link rel = "icon" href="favicon.ico" type = "image/x-icon">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <title>Calendar Project</title>
+</head>
+<body>
+    <div class = "logo">
+        <img src = "vanilla_coding_logo.png">
+    </div>
+    <h1>Calendar</h1>
+    <div class = "js-today">
+        <h2 class = "day"></h2>
+        <h2 class = "date"></h2>
+        <h3 class = "monthyear"></h3>
+    </div>
+    </div> 
+    <table id="calendar_table" >
+        <tr id="mainBar">
+            <td id="yearmonth" colspan="7"></td>
+        </tr>
+        <tr>
+			<td>SUN</td>
+			<td>MON</td>
+			<td>TUE</td>
+			<td>WED</td>
+			<td>THU</td>
+			<td>FRI</td>
+			<td>SAT</td>
+		</tr>
+    </table>
+        <div id="preventMonth">
+            <button id = "preventMonth_Button" type="button" onclick="prevMonth()">
+                <<
+            </button>
+        </div>
+        <div id="nextMonth">
+            <button id = "nextMonth_Button" type="button" onclick="nextMonth()">
+                >>
+            </button>
+        </div>
+    <script src = "index.js"></script>
+</body>
+</html>
