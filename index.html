@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet" />
+  <link rel="icon" href="/images/favicon.ico" />
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <title>Baseball Project</title>
+</head>
+<script>
+
+
+  var random_number = [];
+  var user_num = [];
+  var count = 0;
+  var strike = 0;
+  var ball = 0;
+
+
+  function make_number() {
+
+    for (var i = 0; i < 99; i++) {
+      var random = (Math.floor(Math.random() * 10))
+      if (random_number.indexOf(random) == -1) {
+          random_number.push(random)
+        if (random_number.length == 3) {
+          console.log(random_number)
+          break;
+
+        };
+      };
+    };
+  };
+
+
+
+
+
+
+  function enterkey() {
+    if (window.event.keyCode == 13) {
+        input_number()
+    };
+  };
+
+  function input_number() {
+    var input = document.getElementById("input").value.split("")
+    if (count < 10) {
+      if (input.length !== 3) {
+        alert("숫자는 3자리만 입력이 가능합니다.")
+        return false;
+      } else {
+        for (i = 0; i < input.length; i++) {
+          input_trans = Number(input[i])
+          user_num.push(input_trans);
+          count++
+        };
+        console.log(user_num)
+        score();
+      };
+    } else {
+      alert("게임이 종료되었습니다. 도전은 10회만 가능합니다.")
+    };
+  };
+
+
+
+  function score(){
+  for (var i = 0; i < user_num.length; i++) {
+          if (user_num[i] == random_number[0] ||
+            user_num[i] == random_number[1] ||
+            user_num[i] == random_number[2]) {
+            ball = ball + 1;
+          };
+        };
+
+        for (var i = 0; i < user_num.length; i++) {
+          if (user_num[i] == random_number[i] ||
+            user_num[i] == random_number[i] ||
+            user_num[i] == random_number[i]) {
+            strike = strike + 1;
+          };
+        };
+        
+        console.log(ball, strike);
+        var str_score = document.getElementById("str_score")
+        var ball_score = document.getElementById("ball_score")
+        str_score.innerHTML = strike;
+        ball_score.innerHTML = ball - strike;
+  };
+
+
+
+
+</script>
+
+<body>
+  <section>
+    <!-- <div class="image-box">
+      <img src="images/vanilla_coding_logo.png" />
+    </div>
+
+  -->
+
+
+    <h1>Baseball</h1>
+
+    <!-- 야구게임 Start -->
+    <input type="button" value="게임시작" onclick="make_number()">
+    <input type="number" id="input" placeholder="숫자만입력하세요" onkeyup="enterkey()">
+    <h3>Ball Score</h3>
+    <div id="ball_score"></div>
+    <h3>Strike Score</h3>
+    <div id="str_score"></div>
+    <form><input type="button" value="재시작" onClick="window.location.reload()"></form>
+
+
+    <!-- 야구게임 End -->
+  </section>
+
+  <script src="index.js"></script>
+</body>
+
+</html>
