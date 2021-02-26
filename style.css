@@ -1,0 +1,59 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 500px;
+  height: 350px;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.col {
+  float: left;
+  display: flex;
+  width: 50%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.answerBox {
+  width: 150px;
+  height: 50px;
+  font-size: 2.1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.notSolved {
+  border: 2px solid coral;
+}
+
+.failed {
+  background-color: coral;
+  color: white;
+}
+
+.solved {
+  border: 2px solid green;
+}
+
+.questionForm {
+  float: right;
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
