@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Calendar Project</title>
+  </head>
+<!--Html 을 했는데 js통해서 동작하는 부분의 이해 및 구문 숙달 부족, table을 사용하는 방법도 진행하다 if,for 에서 막힘 -->
+  <body>
+    <section>
+      <div class="image-box">
+        <img src="images/vanilla_coding_logo.png" />
+      </div>
+      <h1>Calendar</h1>
+
+      <!-- 달력 Start -->
+      <div class='Calendar'>
+        <div class="header">
+            <div class="month-year"></div>
+            <div calass="nav">
+              <button class="nav-btn go-prev">&lt;</button>
+              <button class="nav-btn go-next">&gt;</button>
+            </div>
+        </div>
+        <div class="main">
+            <div class="days">
+              <div class="day">SUN</div>
+              <div class="day">MON</div>
+              <div class="day">TUE</div>
+              <div class="day">WED</div>
+              <div class="day">THU</div>
+              <div class="day">FRI</div>
+              <div class="day">SAT</div>
+            </div>
+            <div class="dates"></div>
+        </div>
+      <!-- 달력 End -->
+    </section>
+
+    <script src="index.js"></script>
+  </body>
+</html>
