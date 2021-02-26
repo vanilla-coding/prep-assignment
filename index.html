@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" href="style.css">
+ <script src="index.js"></script>
+ <title>Baseball Game</title>
+</head>
+<body>
+ <div class="container">
+     <div class="title">
+         Baseball Game
+     </div>
+     <div class="col">
+         <div class="answerBox notSolved">
+             ?
+         </div>
+     </div>
+     <div class="col">
+         <div class="questionBox">
+
+         </div>
+     </div>
+     <form class="questionForm" method="GET" onsubmit="askQuestion(event)">
+         <input type="number" name="question">
+         <input type="submit" value="입력">
+     </form>
+ </div>
+</body>
+</html>
