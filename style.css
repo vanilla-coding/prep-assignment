@@ -1,0 +1,93 @@
+body {
+  background-image: url("./images/bg.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "Varela Round", sans-serif;
+}
+
+h1 {
+  font-family: "Pacifico", cursive;
+  text-align: center;
+  font-size: 72px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+img {
+  height: 80px;
+}
+
+.active-box, .result-box, .message-box {
+  text-align: center;
+}
+
+.rule-box {
+  border: 3px black solid;
+  width: 60%;
+  height: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.talk {
+  font-size: 18px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.list {
+  text-align: left;
+  font-size: 16px;
+}
+
+.start-btn, .retry-btn {
+  width: 150px;
+  height: 50px;
+  background-color: aliceblue;
+  margin-bottom: 30px;
+  font-size: 20px;
+}
+
+.start-btn:hover {
+  background-color: #d1d8e0;
+}
+
+.retry-btn:hover {
+  background-color: #d1d8e0;
+}
+
+.no-num {
+  list-style: none;
+}
+
+.no-show {
+  display: none;
+}
+
+.write-num {
+  width: 280px;
+  height: 60px;
+  text-align: center;
+  background-color: aliceblue;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.write-num:focus::placeholder {
+  color: transparent;
+}
+
+.result-list {
+  list-style: none;
+  padding-left: 0px;
+  font-size: 20px;
+}
+
+.message {
+  font-size: 30px;
+}
+
+li {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

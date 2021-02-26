@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Baseball Project</title>
+  </head>
+
+  <body>
+    <section>
+      <div class="image-box">
+        <img src="images/vanilla_coding_logo.png" />
+      </div>
+      <h1>Baseball</h1>
+
+      <!-- 야구게임 Start -->
+
+      <div class="active-box show">
+          <button class="start-btn" type="button">
+            시작
+          </button>
+          <fieldset class="rule-box">
+            <h2>⚾️ 게임 규칙 ⚾️</h2>
+            <p class="talk">⚠️ 규칙을 잘 숙지하신 후에 게임을 진행해 주세요 ⚠️</p>
+            <ol class="list">
+              <li>시작 버튼을 누르면 0에서 9까지의 "서로 다른" 숫자가 사용된 임의의 세 자리 수(Random Number)가 생성되고, 이 수는 player에게 보이지 않습니다.</li>
+              <li>Random Number를 추리하여 입력창에 입력한 후 enter key를 눌러주세요.</li>
+              <li class="no-num">🌟 시도 가능 횟수는 "10회"입니다. 🌟</li>
+              <li value="3">player가 입력한 수와 Random Number를 비교한 결과가 입력창 아래쪽에 표시됩니다.</li>
+              <li class="no-num">🌟 숫자와 위치가 전부 맞으면 스트라이크(S), 숫자는 맞지만 위치가 틀렸을 때는 볼(B), 숫자와 위치가 전부 틀리면 아웃(Out)입니다. 🌟</li>
+              <li class="no-num">🌟 무엇이 볼이고 스트라이크인지는 알려드리지 않습니다. 🌟</li>
+              <li class="no-num">🌟 언제든지 재시작 버튼을 눌러 새로운 Random Number를 생성하여 새 게임을 진행할 수 있습니다. 🌟</li>
+              <li value="4">스트라이크가 세 개, 즉 3S가 나오면 player의 승리입니다. 🎉</li>
+            </ol>
+            <p class="talk">준비를 마치셨다면 시작 버튼을 눌러주세요 ☺︎</p>
+          </fieldset>
+      </div>
+
+      <div class="active-box no-show">
+        <button class="retry-btn" type="button" onclick="retry()">
+          재시작
+        </button>
+        <form onsubmit="return false">
+          <input class="write-num" type="text" maxlength="3" placeholder="반드시 '세 자리' 숫자를 입력해 주세요." onkeypress="if(event.keyCode == 13){compare()}"/>
+        </form>
+      </div>
+
+      <div class="result-box">
+        <ul class="result-list">
+        </ul>
+      </div>
+
+      <div class="message-box">
+        <p class="message"></p>
+      </div>
+
+      <!-- 야구게임 End -->
+
+    </section>
+
+    <script src="index.js"></script>
+  </body>
+</html>
