@@ -1,110 +1,122 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Pacifico&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="icon" href="/images/favicon.ico" />
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    <title>Calendar Project</title>
-  </head>
 
-  <body>
-    <section>
-      <div class="image-box">
-        <img src="images/vanilla_coding_logo.png" />
-      </div>
-      <h1>Calendar</h1>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet" />
+  <link rel="icon" href="/images/favicon.ico" />
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <title>Baseball Project</title>
+  <style>
+    .image-box{margin-top:100px;text-align:center;}
+    .image-box img{width:400px;}
+    h1{font-size:50px}
+    .baseball{width:400px;margin:0 auto; text-align:center;}
+    .baseball > *{height:30px;line-height:30px;box-sizing:border-box;vertical-align:middle;}
+    .baseball span{display:block;margin-top:10px;}
+  </style>
+</head>
 
-      <div class="calendar-container">
-        <div class="current-day">
-          <p></p>
-          <p></p>
-        </div>
-        <p class="current-month"></p>
-        <div class="calendar">
-          <table>
-            <thead>
-              <tr>
-                <th>SUN</th>
-                <th>MON</th>
-                <th>TUE</th>
-                <th>WED</th>
-                <th>THU</th>
-                <th>FRI</th>
-                <th>SAT</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
-          <button class="button prev"><<</button>
-          <button class="button next">>></button>
-        </div>
-      </div>
-    </section>
+<body>
+  <section>
+    <div class="image-box">
+      <img src="images/vanilla_coding_logo.png" />
+    </div>
+    <h1>Baseball</h1>
 
-    <script src="index.js"></script>
-  </body>
+    <!-- 야구게임 Start -->
+    <div class="baseball">
+      <input type="text" id="userNum">
+      <button type="button" id="btnStart">게임 START</button>
+      <button type="button" id="btnConfirm" onclick="confirm();">확인</button>
+      <span id="txt"></span>
+    </div>
+
+    <!-- 야구게임 End -->
+  </section>
+
+  <script src="index.js"></script>
+  <script>
+  // 랜덤 3자리 숫자 생성
+   function ranNum() {
+      const numbers = [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ];
+
+      let pickNumbers = [];
+      
+      for (let i = 0; i < 3; i++) {
+        const randomNum = Math.floor(Math.random() * numbers.length);
+        pickNumbers[i] = numbers.splice(randomNum, 1)[0]
+      }
+
+      // return pickNumbers.toString();
+      // console.log(typeof(pickNumbers));
+      // console.log(pickNumbers);
+      return pickNumbers;
+    }
+    
+    var makeRanNum = ranNum(); // random number 생성
+
+    console.log(makeRanNum);
+
+    function confirm(){
+      let userNum = document.getElementById("userNum").value; // 사용자가 입력한 값
+
+      if (userNum.length > 3) {
+        alert("3글자만 입력해주세요!");
+      }
+
+      let userNumbers = []; // 사용자가 입력한 값을 넣을 배열
+
+      userNumbers.push(userNum.substring(0,1)); // ,로 사용자가 입력한 값 쪼개기 위해 값 배열에 담기
+      userNumbers.push(userNum.substring(1,2));
+      userNumbers.push(userNum.substring(2,3));
+
+      // userNumbers = userNumbers.toString();
+      
+      // console.log(userNumbers);
+      // console.log(makeRanNum); // return값 (random number) 가져오는지 확인
+
+      // 사용자에게 받아온 값 숫자형으로 변환
+      let userNumbers2 = userNumbers.map(function(stringNum) {
+        return Number(stringNum);
+      });
+
+      // console.log(userNumbers2); // 숫자형 변환 확인
+
+      let count = 1;
+      let strike = 0;
+      let ball = 0;
+
+      for(let i=0; i<makeRanNum.length; i++){
+        for(let j=0; j<userNumbers2.length; j++){
+          if(makeRanNum[i] == userNumbers2[j]){
+            if (i === j) {
+              console.log(strike++);
+            } else {
+              console.log(ball++);
+            }
+          }
+       }
+     } if (strike === 3) {
+      document.getElementById("txt").innerHTML = "홈런!!! 스트라이크!!!!";
+     } else {
+      document.getElementById("txt").innerHTML = strike + "스트라이크 " + ball + "볼";
+     }
+    }
+  </script>
+</body>
+
 </html>
