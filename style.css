@@ -1,0 +1,51 @@
+body {
+  background-image: url("./images/bg.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "Varela Round", sans-serif;
+}
+
+h1 {
+  font-family: "Pacifico", cursive;
+  text-align: center;
+  font-size: 72px;
+}
+.startbtn-wrap {
+  text-align: center;
+  line-height: 100%;
+  margin: 20px 20px;
+}
+
+.input-wrap {
+  width: 25%;
+  border: 1px solid gray;
+  background-color: white;
+  padding: 5px 5px;
+  border-radius: 10px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+}
+
+#input-number {
+  border: none;
+  background-color: white;
+  margin-right: 10px;
+}
+
+#enter-btn {
+  margin-left: auto;
+}
+
+.restartbtn-wrap {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.result-wrap {
+  text-align: center;
+}
+
+#result {
+  font-size: 30px;
+}
