@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+        <head>
+            <meta charset="utf-8">
+            <title>number baseball</title>
+        </head>
+
+        <body>
+            <button type="button" id="start">게임시작</button>
+            <input type="number" name="usernnn" id="nnn" min="100" max="999" title="세자리숫자입력">
+            <button type="submit" name="enter" id="enter">Enter</button>
+            
+            <button id="restart">게임재시작</button>
+            <script>
+                var btn = document.getElementById('start');
+                btn.addEventListener('click',rnnn);
+
+                function rnnn() {
+                    console.log(((Math.random()*0.9)+ 0.1).toFixed(3)*1000)
+                };
+                var usernnn = document.getElementById('nnn')
+
+                /*var ent = document.getElementById('enter');
+                ent.addEventListener('click',subm)
+
+                function subm(){
+                    if (String(usernnn).length !== 3){
+                        alert("세자리 숫자를 입력하세요")
+                    }
+                    else (){
+                    }
+                        
+
+                }*/
+            </script>
+        </body>
