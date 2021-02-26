@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Calendar Project</title>
+  </head>
+
+  <body>
+    <section>
+      <div class="image-box">
+        <img class="vanilla-logo" src="images/vanilla_coding_logo.png" />
+      </div>
+      <h1>Calendar</h1>
+      <!-- 달력 Start -->
+      <main class="calendar-container">
+        <div class="day-container">
+          <span class="current-day"></span>
+          <span class="current-date"></span>
+          <div class="current-mon-year">
+            <span class="current-month"></span>
+            <span class="current-year"></span>
+          </div>
+        </div>
+
+        <table align="center" class="calendar-table">
+          <thead>
+            <tr>
+              <th align="center">일</th>
+              <th align="center">월</th>
+              <th align="center">화</th>
+              <th align="center">수</th>
+              <th align="center">목</th>
+              <th align="center">금</th>
+              <th align="center">토</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+
+        <div class="chevrons">
+          <span class="left-chevron"><i class="fas fa-chevron-left"></i></span>
+          <span class="right-chevron"
+            ><i class="fas fa-chevron-right"></i
+          ></span>
+        </div>
+      </main>
+      <!-- 달력 End -->
+    </section>
+    <script
+      src="https://kit.fontawesome.com/cbb2c3f215.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="index.js"></script>
+  </body>
+</html>
