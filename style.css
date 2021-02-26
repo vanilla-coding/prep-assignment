@@ -1,0 +1,62 @@
+body {
+  background-image: url("./images/bg.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "Varela Round", sans-serif;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-family: "Pacifico", cursive;
+  text-align: center;
+  font-size: 72px;
+}
+
+.start {
+	display: block;
+	font-family: "Pacifico", cursive;
+	font-size: 84px;
+	margin: 0 auto;
+	border-radius: 10px;
+}
+
+
+.guess {
+	text-align: center;
+}
+
+.guess label {
+	font: 40px "Varela Round";
+}
+
+#guessNum {
+	display: block;
+	font: 40px "Varela Round";
+	width: 80px;
+	border-radius: 10px;
+	border: none;
+	outline: none;
+	margin: 15px auto;
+	padding: 10px 40px;
+}
+
+.scoreBoard {
+	border-collapse: collapse;
+	font-size: 20px;
+}
+
+.scoreBoard th {
+	border-bottom: solid 1px gray;
+	padding-left: 10px;
+}
+
+.scoreBoard td {
+	padding: 10px;
+}
+
+.disable {
+	display: none;
+}
