@@ -1,0 +1,47 @@
+body{
+    background-image: url('hlo.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+h1{
+  font-size: 72px;
+  font-family: Pacifico,cursive;
+  text-align: center;
+  font-weight: bold;
+}
+.current-day {
+    font-weight: 700;
+    text-align: center;
+    font-size: 48px;
+}
+.current-month {
+    text-align: center;
+    margin: 50px auto -20px;
+    font-size: 24px;
+}
+.button.pre{
+  left: -100px;
+
+}
+.button.next{
+  right: -100px;
+}
+.button{
+  position: absolute;
+    top: 50%;
+    margin-top: -20px;
+    width: 100px;
+    height: 40px;
+    font-size: 20px;
+    line-height: 40px;
+    background: none;
+    border: none;
+
+}
+
+ul {
+    position: relative;
+    width: 270px;
+    margin: 0 auto;
+    text-align: center;
+}
