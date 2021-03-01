@@ -28,11 +28,11 @@
 ├─ 📁dist/js
 └─ 📁src
 	├─  📁css
-	│	  ├─ reset.css
-	│	  └─ style.css
+	│   ├─ reset.css
+	│   └─ style.css
 	├─  📁images
 	├─  📁js
-	│	  ├─ 📁board
+	│   ├─ 📁board
 	│   │  ├─ boardEventHandler.js
 	│   │  ├─ Status.js
 	│   │  └─ Task.js
