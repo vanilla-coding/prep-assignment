@@ -3,7 +3,10 @@ import CalendarViewer from "./CalendarViewer";
 import Now from "./Now";
 import SelectedDate from "./SelectedDate";
 import { differenceWithClickedDate } from "../element";
-import { handleBoardViewWhenDateClick, removeBoard } from "../board/boardEventHandler";
+import {
+  handleBoardViewWhenDateClick,
+  removeBoard,
+} from "../board/boardEventHandler";
 
 export const handleMoveMonthButton = (event) => {
   const clickedButton = event.target.classList[1];
@@ -25,7 +28,7 @@ export let previousClickedDateObject;
 export const handleDateClick = (dateOfCalendar, dateElement) => {
   return () => {
     previousClickedDateObject = SelectedDate.getDateObject();
-    SelectedDate.setDateOfDateObject(dateOfCalendar.getNumber());
+    SelectedDate.setDateOfDateObject(dateOfCalendar.getDateNumber());
 
     handleTodayClick(dateOfCalendar);
     handleClickDifferentDate(dateOfCalendar, dateElement);
@@ -34,7 +37,7 @@ export const handleDateClick = (dateOfCalendar, dateElement) => {
 };
 
 const handleTodayClick = (dateOfCalendar) => {
-  if (CalendarController.isDateToday(dateOfCalendar.getDate())) {
+  if (Now.isDateToday(dateOfCalendar.getDateObject())) {
     CalendarViewer.display();
     differenceWithClickedDate.textContent = "Today";
     return;
@@ -42,10 +45,10 @@ const handleTodayClick = (dateOfCalendar) => {
 };
 
 const handleClickDifferentDate = (dateOfCalendar, dateElement) => {
-  const now = Now.getDate();
+  const now = Now.getDateObject();
   const ONE_DAY = 1000 * 60 * 60 * 24;
   const dateDifferenceFromNow = Math.ceil(
-    (dateOfCalendar.getDate() - now) / ONE_DAY
+    (dateOfCalendar.getDateObject() - now) / ONE_DAY
   );
 
   CalendarViewer.display();

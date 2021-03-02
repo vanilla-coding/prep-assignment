@@ -38,7 +38,7 @@ const removePreviousBoardButtonEventListner = () => {
 };
 
 const displayBoardDateText = () => {
-  const clickedDate = clickedDateOfCalendar.getDate();
+  const clickedDate = clickedDateOfCalendar.getDateObject();
   boardDateText.textContent = `TO DO LIST${
     clickedDate.getMonth() + 1
   }.${clickedDate.getDate()}`;
@@ -133,8 +133,10 @@ const removeTaskList = () => {
 };
 
 const sameDateClicked = () => {
+  // TODO: 오류 있음. 완전한 비교가 될 수 있도록 고칠 것
   return (
-    clickedDateOfCalendar.getNumber() === previousClickedDateObject.getDate()
+    clickedDateOfCalendar.getDateNumber() ===
+    previousClickedDateObject.getDate()
   );
 };
 

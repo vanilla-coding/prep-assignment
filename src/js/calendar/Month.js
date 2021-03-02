@@ -57,9 +57,9 @@ export default class Month {
     return this.#yearNumber;
   }
 
-  getDateByNumber(dateNumber) {
+  getDateOfCalendarByNumber(dateNumber) {
     return this.#dateRepository.find((dateOfCalendar) => {
-      return dateOfCalendar.getNumber() === dateNumber;
+      return dateOfCalendar.getDateNumber() === dateNumber;
     });
   }
 

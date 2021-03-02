@@ -11,6 +11,7 @@ import {
   selectedYearText,
   allDatesInCalendar,
 } from "../element";
+import Now from "./Now";
 
 export default class CalendarViewer {
   static #dateEventListenerRepository = {};
@@ -46,7 +47,7 @@ export default class CalendarViewer {
 
   static #displaySelectedDateText() {
     selectedDayText.textContent = DAYS[SelectedDate.getDay()];
-    selectedDateText.textContent = SelectedDate.getDate();
+    selectedDateText.textContent = SelectedDate.getDateNumber();
     selectedMonthText.textContent = Month.getNames()[SelectedDate.getMonth()];
     selectedYearText.textContent = SelectedDate.getFullYear();
   }
@@ -84,10 +85,10 @@ export default class CalendarViewer {
       i++, indexForDate++
     ) {
       const dateElement = allDatesInCalendar[indexForDate];
-      const dateOfCalendarInstance = thisMonth.getDateByNumber(i);
+      const dateOfCalendarInstance = thisMonth.getDateOfCalendarByNumber(i);
       dateElement.textContent = i;
       dateElement.classList.add("date-inside");
-      if (CalendarController.isDateToday(dateOfCalendarInstance.getDate())) {
+      if (Now.isDateToday(dateOfCalendarInstance.getDateObject())) {
         dateElement.style.color = "red";
         dateElement.style.fontWeight = 1000;
       } else {

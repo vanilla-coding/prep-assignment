@@ -21,7 +21,7 @@ export default class SelectedDate {
     return SelectedDate.#date.getDay();
   }
 
-  static getDate() {
+  static getDateNumber() {
     return SelectedDate.#date.getDate();
   }
 

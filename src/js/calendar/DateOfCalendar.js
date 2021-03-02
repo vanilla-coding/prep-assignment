@@ -1,3 +1,4 @@
+import Board from "../board/Board";
 import Status from "../board/Status";
 import Task from "../board/Task";
 
@@ -17,11 +18,11 @@ export default class DateOfCalendar {
     this.#monthNumber = monthObject.getNumber();
   }
 
-  getNumber() {
+  getDateNumber() {
     return this.#number;
   }
 
-  getDate() {
+  getDateObject() {
     return new Date(this.#yearNumber, this.#monthNumber, this.#number);
   }
 
@@ -52,7 +53,20 @@ export default class DateOfCalendar {
   deleteAllTasks() {
     this.#taskRepository = [];
   }
+
   getTaskLength() {
     return this.#taskRepository.length;
+  }
+
+  handleClicked() {
+    if (!Board.getVisibility()) {
+      Board.display(this);
+      return;
+    }
+    if (Board.isDateSameWithPreviousDate(this)) {
+      Board.hide();
+      return;
+    }
+    Board.display(this);
   }
 }

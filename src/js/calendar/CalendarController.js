@@ -15,7 +15,7 @@ export default class CalendarController {
   }
 
   static isDateToday(dateObject) {
-    const now = Now.getDate();
+    const now = Now.getDateObject();
     return (
       dateObject.getDate() === now.getDate() &&
       dateObject.getMonth() === now.getMonth() &&
