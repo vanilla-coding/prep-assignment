@@ -25,13 +25,13 @@ export const handleMoveMonthButton = (event) => {
 };
 
 export let previousClickedDateObject;
-export const handleDateClick = (dateOfCalendar, dateElement) => {
+export const handleDateClick = (dateOfCalendar, $dateElement) => {
   return () => {
     previousClickedDateObject = SelectedDate.getDateObject();
     SelectedDate.setDateOfDateObject(dateOfCalendar.getDateNumber());
 
     handleTodayClick(dateOfCalendar);
-    handleClickDifferentDate(dateOfCalendar, dateElement);
+    handleClickDifferentDate(dateOfCalendar, $dateElement);
     handleBoardViewWhenDateClick(dateOfCalendar);
   };
 };
@@ -44,7 +44,7 @@ const handleTodayClick = (dateOfCalendar) => {
   }
 };
 
-const handleClickDifferentDate = (dateOfCalendar, dateElement) => {
+const handleClickDifferentDate = (dateOfCalendar, $dateElement) => {
   const now = Now.getDateObject();
   const ONE_DAY = 1000 * 60 * 60 * 24;
   const $dateDifferenceFromNow = Math.ceil(
@@ -54,13 +54,12 @@ const handleClickDifferentDate = (dateOfCalendar, dateElement) => {
   CalendarViewer.display();
 
   if ($dateDifferenceFromNow) {
-    displayClickedResult(dateElement, $dateDifferenceFromNow);
+    displayClickedResult($dateElement, $dateDifferenceFromNow);
   }
 };
 
-const displayClickedResult = (dateElement, $dateDifferenceFromNow) => {
-  dateElement.style.color = "blue";
-  dateElement.style.fontWeight = 1000;
+const displayClickedResult = ($dateElement, $dateDifferenceFromNow) => {
+  $dateElement.classList.add("dateClicked");
 
   $differenceWithClickedDate.textContent = `${
     Math.abs($dateDifferenceFromNow) < 2

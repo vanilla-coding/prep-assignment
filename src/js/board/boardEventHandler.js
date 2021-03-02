@@ -12,6 +12,7 @@ import {
 
 import { previousClickedDateObject } from "../calendar/calendarEventHandler";
 import Status from "./Status";
+import CalendarViewer from "../calendar/CalendarViewer";
 
 let clickedDateOfCalendar;
 let isBoardVisible = false;
@@ -83,6 +84,7 @@ const handleClickTaskSubmissionOK = () => {
     clickedDateOfCalendar.addTask($taskContentTextInput.value);
     removeTaskSubmissionForm();
     displayBoard();
+    CalendarViewer.display();
   };
 };
 

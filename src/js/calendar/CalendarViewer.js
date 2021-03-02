@@ -63,9 +63,7 @@ export default class CalendarViewer {
     const totalCalendarCells = $allDatesInCalendar.length;
     for (let i = 0; i < totalCalendarCells; i++) {
       $allDatesInCalendar[i].textContent = "";
-      $allDatesInCalendar[i].style.fontWeight = "normal";
       $allDatesInCalendar[i].className = "";
-
       $allDatesInCalendar[i].removeEventListener(
         "click",
         this.#dateEventListenerRepository[i]
@@ -83,38 +81,37 @@ export default class CalendarViewer {
       i <= lastDate;
       i++, indexForDate++
     ) {
-      const dateElement = $allDatesInCalendar[indexForDate];
+      const $dateElement = $allDatesInCalendar[indexForDate];
       const dateOfCalendarInstance = thisMonth.getDateOfCalendarByNumber(i);
-      dateElement.textContent = i;
-      dateElement.classList.add("date-inside");
+      $dateElement.textContent = i;
+      $dateElement.classList.add("date-inside");
       if (Now.isDateToday(dateOfCalendarInstance.getDateObject())) {
-        dateElement.style.color = "red";
-        dateElement.style.fontWeight = 1000;
+        $dateElement.classList.add("isToday");
       } else {
-        dateElement.style.color = "black";
+        $dateElement.classList.add("isNotToday");
       }
       const clickCallBack = handleDateClick(
         dateOfCalendarInstance,
-        dateElement
+        $dateElement
       );
-      dateElement.addEventListener("click", clickCallBack);
+      $dateElement.addEventListener("click", clickCallBack);
 
       CalendarViewer.#createAndAddNotificationOnDate(
         dateOfCalendarInstance,
-        dateElement
+        $dateElement
       );
 
       this.#dateEventListenerRepository[indexForDate] = clickCallBack; // 이벤트 리스너 지우기 위해 따로 저장
     }
   }
 
-  static #createAndAddNotificationOnDate(dateOfCalendarInstance, dateElement) {
+  static #createAndAddNotificationOnDate(dateOfCalendarInstance, $dateElement) {
     const taskLength = dateOfCalendarInstance.getTaskLength();
     if (taskLength > 0) {
-      const notification = document.createElement("div");
-      notification.classList.add("task-notification");
-      notification.textContent = taskLength;
-      dateElement.appendChild(notification);
+      const $notification = document.createElement("div");
+      $notification.classList.add("task-notification");
+      $notification.textContent = taskLength;
+      $dateElement.appendChild($notification);
     }
   }
 }

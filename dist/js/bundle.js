@@ -268,6 +268,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../element */ "./src/js/element.js");
 /* harmony import */ var _calendar_calendarEventHandler__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../calendar/calendarEventHandler */ "./src/js/calendar/calendarEventHandler.js");
 /* harmony import */ var _Status__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Status */ "./src/js/board/Status.js");
+/* harmony import */ var _calendar_CalendarViewer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../calendar/CalendarViewer */ "./src/js/calendar/CalendarViewer.js");
+
 
 
 
@@ -334,6 +336,7 @@ var handleClickTaskSubmissionOK = function handleClickTaskSubmissionOK() {
     clickedDateOfCalendar.addTask(_element__WEBPACK_IMPORTED_MODULE_0__.$taskContentTextInput.value);
     removeTaskSubmissionForm();
     displayBoard();
+    _calendar_CalendarViewer__WEBPACK_IMPORTED_MODULE_3__.default.display();
   };
 };
 
@@ -616,14 +619,14 @@ var CalendarViewer = /*#__PURE__*/function () {
   return CalendarViewer;
 }();
 
-var _createAndAddNotificationOnDate = function _createAndAddNotificationOnDate(dateOfCalendarInstance, dateElement) {
+var _createAndAddNotificationOnDate = function _createAndAddNotificationOnDate(dateOfCalendarInstance, $dateElement) {
   var taskLength = dateOfCalendarInstance.getTaskLength();
 
   if (taskLength > 0) {
-    var notification = document.createElement("div");
-    notification.classList.add("task-notification");
-    notification.textContent = taskLength;
-    dateElement.appendChild(notification);
+    var $notification = document.createElement("div");
+    $notification.classList.add("task-notification");
+    $notification.textContent = taskLength;
+    $dateElement.appendChild($notification);
   }
 };
 
@@ -634,22 +637,21 @@ var _printCalendarDates = function _printCalendarDates() {
   var lastDate = thisMonth.getLastDate();
 
   for (var i = 1, indexForDate = dayOfFirstDate; i <= lastDate; i++, indexForDate++) {
-    var dateElement = _element__WEBPACK_IMPORTED_MODULE_5__.$allDatesInCalendar[indexForDate];
+    var $dateElement = _element__WEBPACK_IMPORTED_MODULE_5__.$allDatesInCalendar[indexForDate];
     var dateOfCalendarInstance = thisMonth.getDateOfCalendarByNumber(i);
-    dateElement.textContent = i;
-    dateElement.classList.add("date-inside");
+    $dateElement.textContent = i;
+    $dateElement.classList.add("date-inside");
 
     if (_Now__WEBPACK_IMPORTED_MODULE_6__.default.isDateToday(dateOfCalendarInstance.getDateObject())) {
-      dateElement.style.color = "red";
-      dateElement.style.fontWeight = 1000;
+      $dateElement.classList.add("isToday");
     } else {
-      dateElement.style.color = "black";
+      $dateElement.classList.add("isNotToday");
     }
 
-    var clickCallBack = (0,_calendarEventHandler__WEBPACK_IMPORTED_MODULE_4__.handleDateClick)(dateOfCalendarInstance, dateElement);
-    dateElement.addEventListener("click", clickCallBack);
+    var clickCallBack = (0,_calendarEventHandler__WEBPACK_IMPORTED_MODULE_4__.handleDateClick)(dateOfCalendarInstance, $dateElement);
+    $dateElement.addEventListener("click", clickCallBack);
 
-    _classStaticPrivateMethodGet(CalendarViewer, CalendarViewer, _createAndAddNotificationOnDate).call(CalendarViewer, dateOfCalendarInstance, dateElement);
+    _classStaticPrivateMethodGet(CalendarViewer, CalendarViewer, _createAndAddNotificationOnDate).call(CalendarViewer, dateOfCalendarInstance, $dateElement);
 
     _classStaticPrivateFieldSpecGet(this, CalendarViewer, _dateEventListenerRepository)[indexForDate] = clickCallBack; // 이벤트 리스너 지우기 위해 따로 저장
   }
@@ -660,7 +662,6 @@ var _resetCalendarDates = function _resetCalendarDates() {
 
   for (var i = 0; i < totalCalendarCells; i++) {
     _element__WEBPACK_IMPORTED_MODULE_5__.$allDatesInCalendar[i].textContent = "";
-    _element__WEBPACK_IMPORTED_MODULE_5__.$allDatesInCalendar[i].style.fontWeight = "normal";
     _element__WEBPACK_IMPORTED_MODULE_5__.$allDatesInCalendar[i].className = "";
     _element__WEBPACK_IMPORTED_MODULE_5__.$allDatesInCalendar[i].removeEventListener("click", _classStaticPrivateFieldSpecGet(this, CalendarViewer, _dateEventListenerRepository)[i]);
   }
@@ -1332,12 +1333,12 @@ var handleMoveMonthButton = function handleMoveMonthButton(event) {
   _CalendarViewer__WEBPACK_IMPORTED_MODULE_1__.default.display();
 };
 var previousClickedDateObject;
-var handleDateClick = function handleDateClick(dateOfCalendar, dateElement) {
+var handleDateClick = function handleDateClick(dateOfCalendar, $dateElement) {
   return function () {
     previousClickedDateObject = _SelectedDate__WEBPACK_IMPORTED_MODULE_3__.default.getDateObject();
     _SelectedDate__WEBPACK_IMPORTED_MODULE_3__.default.setDateOfDateObject(dateOfCalendar.getDateNumber());
     handleTodayClick(dateOfCalendar);
-    handleClickDifferentDate(dateOfCalendar, dateElement);
+    handleClickDifferentDate(dateOfCalendar, $dateElement);
     (0,_board_boardEventHandler__WEBPACK_IMPORTED_MODULE_5__.handleBoardViewWhenDateClick)(dateOfCalendar);
   };
 };
@@ -1350,20 +1351,19 @@ var handleTodayClick = function handleTodayClick(dateOfCalendar) {
   }
 };
 
-var handleClickDifferentDate = function handleClickDifferentDate(dateOfCalendar, dateElement) {
+var handleClickDifferentDate = function handleClickDifferentDate(dateOfCalendar, $dateElement) {
   var now = _Now__WEBPACK_IMPORTED_MODULE_2__.default.getDateObject();
   var ONE_DAY = 1000 * 60 * 60 * 24;
   var $dateDifferenceFromNow = Math.ceil((dateOfCalendar.getDateObject() - now) / ONE_DAY);
   _CalendarViewer__WEBPACK_IMPORTED_MODULE_1__.default.display();
 
   if ($dateDifferenceFromNow) {
-    displayClickedResult(dateElement, $dateDifferenceFromNow);
+    displayClickedResult($dateElement, $dateDifferenceFromNow);
   }
 };
 
-var displayClickedResult = function displayClickedResult(dateElement, $dateDifferenceFromNow) {
-  dateElement.style.color = "blue";
-  dateElement.style.fontWeight = 1000;
+var displayClickedResult = function displayClickedResult($dateElement, $dateDifferenceFromNow) {
+  $dateElement.classList.add("dateClicked");
   _element__WEBPACK_IMPORTED_MODULE_4__.$differenceWithClickedDate.textContent = "".concat(Math.abs($dateDifferenceFromNow) < 2 ? "".concat($dateDifferenceFromNow, " day") : "".concat($dateDifferenceFromNow, " days"), " difference from Today");
 };
 
