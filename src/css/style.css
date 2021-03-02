@@ -364,4 +364,5 @@ table .task-notification {
   text-overflow: unset;
   white-space: normal;
   cursor: pointer;
+  word-break: break-all;
 }
