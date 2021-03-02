@@ -273,6 +273,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var ERROR_MESSAGE_NO_CONTENT_IN_TASK = "할 일에 내용이 없습니다!";
 var clickedDateOfCalendar;
 var isBoardVisible = false;
 var handleBoardViewWhenDateClick = function handleBoardViewWhenDateClick(dateOfCalendar) {
@@ -333,10 +334,15 @@ var displayBoardFormContainerElement = function displayBoardFormContainerElement
 
 var handleClickTaskSubmissionOK = function handleClickTaskSubmissionOK() {
   return function () {
-    clickedDateOfCalendar.addTask(_element__WEBPACK_IMPORTED_MODULE_0__.$taskContentTextInput.value);
-    removeTaskSubmissionForm();
-    displayBoard();
-    _calendar_CalendarViewer__WEBPACK_IMPORTED_MODULE_3__.default.display();
+    if (_element__WEBPACK_IMPORTED_MODULE_0__.$taskContentTextInput.value.trim()) {
+      clickedDateOfCalendar.addTask(_element__WEBPACK_IMPORTED_MODULE_0__.$taskContentTextInput.value);
+      removeTaskSubmissionForm();
+      displayBoard();
+      _calendar_CalendarViewer__WEBPACK_IMPORTED_MODULE_3__.default.display();
+      return;
+    }
+
+    alert(ERROR_MESSAGE_NO_CONTENT_IN_TASK);
   };
 };
 
@@ -368,6 +374,7 @@ var handleBoardButtonDeleteAll = function handleBoardButtonDeleteAll() {
   return function () {
     clickedDateOfCalendar.deleteAllTasks();
     displayBoard();
+    _calendar_CalendarViewer__WEBPACK_IMPORTED_MODULE_3__.default.display();
   };
 };
 
@@ -516,6 +523,7 @@ var handleClickDeleteTaskButton = function handleClickDeleteTaskButton(task) {
   return function () {
     task.getAssignedDate().deleteTask(task);
     displayBoard();
+    _calendar_CalendarViewer__WEBPACK_IMPORTED_MODULE_3__.default.display();
   };
 };
 

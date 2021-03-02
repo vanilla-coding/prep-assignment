@@ -14,6 +14,8 @@ import { previousClickedDateObject } from "../calendar/calendarEventHandler";
 import Status from "./Status";
 import CalendarViewer from "../calendar/CalendarViewer";
 
+const ERROR_MESSAGE_NO_CONTENT_IN_TASK = "할 일에 내용이 없습니다!";
+
 let clickedDateOfCalendar;
 let isBoardVisible = false;
 export const handleBoardViewWhenDateClick = (dateOfCalendar) => {
@@ -81,10 +83,14 @@ const displayBoardFormContainerElement = () => {
 
 const handleClickTaskSubmissionOK = () => {
   return () => {
-    clickedDateOfCalendar.addTask($taskContentTextInput.value);
-    removeTaskSubmissionForm();
-    displayBoard();
-    CalendarViewer.display();
+    if ($taskContentTextInput.value.trim()) {
+      clickedDateOfCalendar.addTask($taskContentTextInput.value);
+      removeTaskSubmissionForm();
+      displayBoard();
+      CalendarViewer.display();
+      return;
+    }
+    alert(ERROR_MESSAGE_NO_CONTENT_IN_TASK);
   };
 };
 
@@ -119,6 +125,7 @@ const handleBoardButtonDeleteAll = () => {
   return () => {
     clickedDateOfCalendar.deleteAllTasks();
     displayBoard();
+    CalendarViewer.display();
   };
 };
 
@@ -288,5 +295,6 @@ const handleClickDeleteTaskButton = (task) => {
   return () => {
     task.getAssignedDate().deleteTask(task);
     displayBoard();
+    CalendarViewer.display();
   };
 };
