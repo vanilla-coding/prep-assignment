@@ -2,7 +2,7 @@ import CalendarController from "./CalendarController";
 import CalendarViewer from "./CalendarViewer";
 import Now from "./Now";
 import SelectedDate from "./SelectedDate";
-import { differenceWithClickedDate } from "../element";
+import { $differenceWithClickedDate } from "../element";
 import {
   handleBoardViewWhenDateClick,
   removeBoard,
@@ -20,7 +20,7 @@ export const handleMoveMonthButton = (event) => {
     SelectedDate.setMonthOfDateObject(SelectedDate.getMonth() + 1);
   }
   SelectedDate.setDateOfDateObject(1);
-  differenceWithClickedDate.textContent = "";
+  $differenceWithClickedDate.textContent = "";
   CalendarViewer.display();
 };
 
@@ -39,7 +39,7 @@ export const handleDateClick = (dateOfCalendar, dateElement) => {
 const handleTodayClick = (dateOfCalendar) => {
   if (Now.isDateToday(dateOfCalendar.getDateObject())) {
     CalendarViewer.display();
-    differenceWithClickedDate.textContent = "Today";
+    $differenceWithClickedDate.textContent = "Today";
     return;
   }
 };
@@ -47,24 +47,24 @@ const handleTodayClick = (dateOfCalendar) => {
 const handleClickDifferentDate = (dateOfCalendar, dateElement) => {
   const now = Now.getDateObject();
   const ONE_DAY = 1000 * 60 * 60 * 24;
-  const dateDifferenceFromNow = Math.ceil(
+  const $dateDifferenceFromNow = Math.ceil(
     (dateOfCalendar.getDateObject() - now) / ONE_DAY
   );
 
   CalendarViewer.display();
 
-  if (dateDifferenceFromNow) {
-    displayClickedResult(dateElement, dateDifferenceFromNow);
+  if ($dateDifferenceFromNow) {
+    displayClickedResult(dateElement, $dateDifferenceFromNow);
   }
 };
 
-const displayClickedResult = (dateElement, dateDifferenceFromNow) => {
+const displayClickedResult = (dateElement, $dateDifferenceFromNow) => {
   dateElement.style.color = "blue";
   dateElement.style.fontWeight = 1000;
 
-  differenceWithClickedDate.textContent = `${
-    Math.abs(dateDifferenceFromNow) < 2
-      ? `${dateDifferenceFromNow} day`
-      : `${dateDifferenceFromNow} days`
+  $differenceWithClickedDate.textContent = `${
+    Math.abs($dateDifferenceFromNow) < 2
+      ? `${$dateDifferenceFromNow} day`
+      : `${$dateDifferenceFromNow} days`
   } difference from Today`;
 };

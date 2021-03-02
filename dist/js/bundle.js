@@ -2,266 +2,58 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/js/boardEventHandler.js":
-/*!*************************************!*\
-  !*** ./src/js/boardEventHandler.js ***!
-  \*************************************/
+/***/ "./src/js/board/Board.js":
+/*!*******************************!*\
+  !*** ./src/js/board/Board.js ***!
+  \*******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "handleBoardViewWhenDateClick": () => (/* binding */ handleBoardViewWhenDateClick),
-/* harmony export */   "removeBoard": () => (/* binding */ removeBoard)
+/* harmony export */   "default": () => (/* binding */ Board)
 /* harmony export */ });
-/* harmony import */ var _element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./element */ "./src/js/element.js");
-/* harmony import */ var _calendarEventHandler__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./calendarEventHandler */ "./src/js/calendarEventHandler.js");
-/* harmony import */ var _board_Status__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./board/Status */ "./src/js/board/Status.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var Board = /*#__PURE__*/function () {
+  function Board() {
+    _classCallCheck(this, Board);
+  } // 이미 Board는 존재하니까 필요 없을 것 같다.
 
 
+  _createClass(Board, null, [{
+    key: "display",
+    value: function display(dateOfCalendar) {
+      this.currentDisplayingDateOfCalendar = dateOfCalendar;
+    }
+  }, {
+    key: "getVisibility",
+    value: function getVisibility() {
+      return this.isVisible;
+    }
+  }, {
+    key: "isDateSameWithPreviousDate",
+    value: function isDateSameWithPreviousDate(dateOfCalendar) {
+      var date = dateOfCalendar.getDateObject();
+      return this.currentDisplayingDateOfCalendar.getDate() === date.getDate() && this.currentDisplayingDateOfCalendar.getMonth() === date.getMonth() && this.currentDisplayingDateOfCalendar.getFullYear() === date.getFullYear();
+    }
+  }]);
 
-var clickedDateOfCalendar;
-var isBoardVisible = false;
-var handleBoardViewWhenDateClick = function handleBoardViewWhenDateClick(dateOfCalendar) {
-  clickedDateOfCalendar = dateOfCalendar;
-  removePreviousBoardButtonEventListner();
-  displayBoardDateText();
-  handleBoardButtons();
+  return Board;
+}();
 
-  if (isBoardVisible) {
-    handleDateClickWhenBoardVisible();
-    return;
-  }
+_defineProperty(Board, "isVisible", void 0);
 
-  handleDateClickWhenBoardInvisible();
-};
+_defineProperty(Board, "currentDisplayingDateOfCalendar", void 0);
 
-var removePreviousBoardButtonEventListner = function removePreviousBoardButtonEventListner() {
-  _element__WEBPACK_IMPORTED_MODULE_0__.boardButtonAdd.removeEventListener("click", boardButtonAddCallback);
-  _element__WEBPACK_IMPORTED_MODULE_0__.boardButtonDeleteAll.removeEventListener("click", boardButtonDeleteAllCallback);
-};
+_defineProperty(Board, "lastSelectedDateOfCalendar", void 0);
 
-var displayBoardDateText = function displayBoardDateText() {
-  var clickedDate = clickedDateOfCalendar.getDate();
-  _element__WEBPACK_IMPORTED_MODULE_0__.boardDateText.textContent = "TO DO LIST".concat(clickedDate.getMonth() + 1, ".").concat(clickedDate.getDate());
-};
 
-var boardButtonAddCallback;
-var boardButtonDeleteAllCallback;
-
-var handleBoardButtons = function handleBoardButtons() {
-  boardButtonAddCallback = handleBoardButtonAdd();
-  boardButtonDeleteAllCallback = handleBoardButtonDeleteAll();
-  _element__WEBPACK_IMPORTED_MODULE_0__.boardButtonAdd.addEventListener("click", boardButtonAddCallback);
-  _element__WEBPACK_IMPORTED_MODULE_0__.boardButtonDeleteAll.addEventListener("click", boardButtonDeleteAllCallback);
-};
-
-var handleBoardButtonAdd = function handleBoardButtonAdd() {
-  return function () {
-    displayTaskSubmissionForm();
-  };
-};
-
-var clickTaskSubmissionOKCallBack;
-var clickTaskSubmissionCancelCallBack;
-
-var displayTaskSubmissionForm = function displayTaskSubmissionForm() {
-  displayBoardFormContainerElement();
-  clickTaskSubmissionOKCallBack = handleClickTaskSubmissionOK();
-  clickTaskSubmissionCancelCallBack = handleClickTaskSubmissionCancel();
-  _element__WEBPACK_IMPORTED_MODULE_0__.taskSubmissionOK.addEventListener("click", clickTaskSubmissionOKCallBack);
-  _element__WEBPACK_IMPORTED_MODULE_0__.taskSubmissionCancel.addEventListener("click", clickTaskSubmissionCancelCallBack);
-};
-
-var displayBoardFormContainerElement = function displayBoardFormContainerElement() {
-  _element__WEBPACK_IMPORTED_MODULE_0__.boardFormContainer.classList.remove("board__form-container--invisible");
-  _element__WEBPACK_IMPORTED_MODULE_0__.boardFormContainer.classList.add("board__form-container--visible");
-};
-
-var handleClickTaskSubmissionOK = function handleClickTaskSubmissionOK() {
-  return function () {
-    clickedDateOfCalendar.addTask(_element__WEBPACK_IMPORTED_MODULE_0__.taskContentTextInput.value);
-    removeTaskSubmissionForm();
-    displayBoard();
-  };
-};
-
-var removeTaskSubmissionForm = function removeTaskSubmissionForm() {
-  _element__WEBPACK_IMPORTED_MODULE_0__.taskSubmissionOK.removeEventListener("click", clickTaskSubmissionOKCallBack);
-  _element__WEBPACK_IMPORTED_MODULE_0__.taskSubmissionCancel.removeEventListener("click", clickTaskSubmissionCancelCallBack);
-  clearInputTextArea();
-  removeTaskList();
-  removeBoardFormContainerElement();
-};
-
-var handleClickTaskSubmissionCancel = function handleClickTaskSubmissionCancel() {
-  return function () {
-    removeTaskSubmissionForm();
-    displayBoard();
-  };
-};
-
-var clearInputTextArea = function clearInputTextArea() {
-  _element__WEBPACK_IMPORTED_MODULE_0__.taskContentTextInput.value = "";
-};
-
-var removeBoardFormContainerElement = function removeBoardFormContainerElement() {
-  _element__WEBPACK_IMPORTED_MODULE_0__.boardFormContainer.classList.remove("board__form-container--visible");
-  _element__WEBPACK_IMPORTED_MODULE_0__.boardFormContainer.classList.add("board__form-container--invisible");
-};
-
-var handleBoardButtonDeleteAll = function handleBoardButtonDeleteAll() {
-  return function () {
-    clickedDateOfCalendar.deleteAllTasks();
-    displayBoard();
-  };
-};
-
-var handleDateClickWhenBoardVisible = function handleDateClickWhenBoardVisible() {
-  if (sameDateClicked()) {
-    removeBoard();
-    return;
-  }
-
-  displayBoard();
-};
-
-var removeTaskList = function removeTaskList() {
-  _element__WEBPACK_IMPORTED_MODULE_0__.taskList.innerHTML = "";
-};
-
-var sameDateClicked = function sameDateClicked() {
-  return clickedDateOfCalendar.getNumber() === _calendarEventHandler__WEBPACK_IMPORTED_MODULE_1__.previousClickedDateObject.getDate();
-};
-
-var handleDateClickWhenBoardInvisible = function handleDateClickWhenBoardInvisible() {
-  displayBoard();
-};
-
-var removeBoard = function removeBoard() {
-  removeBoardElement();
-  removeTaskList();
-  clearInputTextArea();
-};
-
-var removeBoardElement = function removeBoardElement() {
-  _element__WEBPACK_IMPORTED_MODULE_0__.boardElement.classList.remove("board--visible");
-  _element__WEBPACK_IMPORTED_MODULE_0__.boardElement.classList.add("board--invisible");
-  isBoardVisible = false;
-};
-
-var displayBoard = function displayBoard() {
-  displayBoardElement();
-  removeTaskList();
-  clearInputTextArea();
-  displayTasksOnBoard();
-};
-
-var displayBoardElement = function displayBoardElement() {
-  _element__WEBPACK_IMPORTED_MODULE_0__.boardElement.classList.add("board--visible");
-  _element__WEBPACK_IMPORTED_MODULE_0__.boardElement.classList.remove("board--invisible");
-  isBoardVisible = true;
-};
-
-var displayTasksOnBoard = function displayTasksOnBoard() {
-  var tasks = clickedDateOfCalendar.getAllTasks();
-  tasks.forEach(createAndAddTaskElement);
-};
-
-var taskElement;
-var taskStatus;
-var taskContent;
-var taskButtonContainer;
-var updateButton;
-var deleteButton;
-
-var createAndAddTaskElement = function createAndAddTaskElement(task) {
-  createTaskElements();
-  addClassNameToTaskElements();
-  addTextContentToTaskElements(task);
-  combineTaskElements();
-  colorTaskSatus(task.getStatus()); // status 엘리먼트가 만들어지고 나서 수행
-
-  addEventListenerToTaskButtons(task);
-};
-
-var createTaskElements = function createTaskElements() {
-  taskElement = document.createElement("li");
-  taskStatus = document.createElement("span");
-  taskContent = document.createElement("span");
-  taskButtonContainer = document.createElement("span");
-  updateButton = document.createElement("button");
-  deleteButton = document.createElement("button");
-};
-
-var addClassNameToTaskElements = function addClassNameToTaskElements() {
-  taskElement.classList.add("task");
-  taskStatus.classList.add("task__status");
-  taskContent.classList.add("task__content");
-  taskButtonContainer.classList.add("task__button-container");
-  updateButton.classList.add("task__button");
-  updateButton.classList.add("task__button--update");
-  deleteButton.classList.add("task__button");
-  deleteButton.classList.add("task__button--delete");
-};
-
-var addTextContentToTaskElements = function addTextContentToTaskElements(task) {
-  taskStatus.textContent = task.getStatus().getText();
-  taskContent.textContent = task.getContent();
-  updateButton.textContent = "✅";
-  deleteButton.textContent = "⛔";
-};
-
-var combineTaskElements = function combineTaskElements() {
-  taskButtonContainer.appendChild(updateButton);
-  taskButtonContainer.appendChild(deleteButton);
-  taskElement.appendChild(taskStatus);
-  taskElement.appendChild(taskContent);
-  taskElement.appendChild(taskButtonContainer);
-  _element__WEBPACK_IMPORTED_MODULE_0__.taskList.appendChild(taskElement);
-};
-
-var colorTaskSatus = function colorTaskSatus(status) {
-  taskStatus.style.backgroundColor = _board_Status__WEBPACK_IMPORTED_MODULE_2__.default.getColors()[_board_Status__WEBPACK_IMPORTED_MODULE_2__.default.getRepository().indexOf(status.getText())];
-};
-
-var addEventListenerToTaskButtons = function addEventListenerToTaskButtons(task) {
-  taskStatus.addEventListener("click", handleClickUpdateTaskButton(task));
-  taskContent.addEventListener("click", handleClickModifyingContent(taskElement, taskContent, taskButtonContainer, task));
-  updateButton.addEventListener("click", handleClickUpdateTaskButton(task));
-  deleteButton.addEventListener("click", handleClickDeleteTaskButton(task));
-};
-
-var handleClickUpdateTaskButton = function handleClickUpdateTaskButton(task) {
-  return function () {
-    task.updateStatus();
-    displayBoard();
-  };
-};
-
-var handleClickModifyingContent = function handleClickModifyingContent(itsTaskElement, itsTaskContent, taskButtonContainer, task) {
-  return function () {
-    itsTaskContent.innerHTML = "";
-    var inputElementForModifying = document.createElement("input");
-    inputElementForModifying.value = task.getContent();
-    inputElementForModifying.addEventListener("keydown", handleEnterModifyingInput.bind(null, task, inputElementForModifying));
-    itsTaskElement.insertBefore(inputElementForModifying, taskButtonContainer);
-  };
-};
-
-var handleEnterModifyingInput = function handleEnterModifyingInput(task, inputElementForModifying, event) {
-  if (event.keyCode === 13) {
-    var newTextContent = inputElementForModifying.value;
-    task.updateTextContent(newTextContent);
-    displayBoard();
-  }
-};
-
-var handleClickDeleteTaskButton = function handleClickDeleteTaskButton(task) {
-  return function () {
-    task.getAssignedDate().deleteTask(task);
-    displayBoard();
-  };
-};
 
 /***/ }),
 
@@ -292,8 +84,6 @@ var _statusName = new WeakMap();
 var _cannotUpdateMessage = new WeakMap();
 
 var Status = /*#__PURE__*/function () {
-  // 초기 상태 정보 목록
-  // 커스텀 상태 정보
   function Status() {
     _classCallCheck(this, Status);
 
@@ -464,80 +254,266 @@ var Task = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ "./src/js/calendarEventHandler.js":
-/*!****************************************!*\
-  !*** ./src/js/calendarEventHandler.js ***!
-  \****************************************/
+/***/ "./src/js/board/boardEventHandler.js":
+/*!*******************************************!*\
+  !*** ./src/js/board/boardEventHandler.js ***!
+  \*******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "handleMoveMonthButton": () => (/* binding */ handleMoveMonthButton),
-/* harmony export */   "previousClickedDateObject": () => (/* binding */ previousClickedDateObject),
-/* harmony export */   "handleDateClick": () => (/* binding */ handleDateClick)
+/* harmony export */   "handleBoardViewWhenDateClick": () => (/* binding */ handleBoardViewWhenDateClick),
+/* harmony export */   "removeBoard": () => (/* binding */ removeBoard)
 /* harmony export */ });
-/* harmony import */ var _calendar_CalendarController__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./calendar/CalendarController */ "./src/js/calendar/CalendarController.js");
-/* harmony import */ var _calendar_CalendarViewer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./calendar/CalendarViewer */ "./src/js/calendar/CalendarViewer.js");
-/* harmony import */ var _calendar_Now__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./calendar/Now */ "./src/js/calendar/Now.js");
-/* harmony import */ var _calendar_SelectedDate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./calendar/SelectedDate */ "./src/js/calendar/SelectedDate.js");
-/* harmony import */ var _element__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./element */ "./src/js/element.js");
-/* harmony import */ var _boardEventHandler__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./boardEventHandler */ "./src/js/boardEventHandler.js");
+/* harmony import */ var _element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../element */ "./src/js/element.js");
+/* harmony import */ var _calendar_calendarEventHandler__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../calendar/calendarEventHandler */ "./src/js/calendar/calendarEventHandler.js");
+/* harmony import */ var _Status__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Status */ "./src/js/board/Status.js");
 
 
 
+var clickedDateOfCalendar;
+var isBoardVisible = false;
+var handleBoardViewWhenDateClick = function handleBoardViewWhenDateClick(dateOfCalendar) {
+  clickedDateOfCalendar = dateOfCalendar;
+  removePreviousBoardButtonEventListner();
+  displayBoardDateText();
+  handleBoardButtons();
 
-
-
-var handleMoveMonthButton = function handleMoveMonthButton(event) {
-  var clickedButton = event.target.classList[1];
-  (0,_boardEventHandler__WEBPACK_IMPORTED_MODULE_5__.removeBoard)();
-
-  if (clickedButton === "previous-month-button") {
-    _calendar_SelectedDate__WEBPACK_IMPORTED_MODULE_3__.default.setMonthOfDateObject(_calendar_SelectedDate__WEBPACK_IMPORTED_MODULE_3__.default.getMonth() - 1);
+  if (isBoardVisible) {
+    handleDateClickWhenBoardVisible();
+    return;
   }
 
-  if (clickedButton === "next-month-button") {
-    _calendar_SelectedDate__WEBPACK_IMPORTED_MODULE_3__.default.setMonthOfDateObject(_calendar_SelectedDate__WEBPACK_IMPORTED_MODULE_3__.default.getMonth() + 1);
-  }
-
-  _calendar_SelectedDate__WEBPACK_IMPORTED_MODULE_3__.default.setDateOfDateObject(1);
-  _element__WEBPACK_IMPORTED_MODULE_4__.differenceWithClickedDate.textContent = "";
-  _calendar_CalendarViewer__WEBPACK_IMPORTED_MODULE_1__.default.display();
+  handleDateClickWhenBoardInvisible();
 };
-var previousClickedDateObject;
-var handleDateClick = function handleDateClick(dateOfCalendar, dateElement) {
+
+var removePreviousBoardButtonEventListner = function removePreviousBoardButtonEventListner() {
+  _element__WEBPACK_IMPORTED_MODULE_0__.$boardButtonAdd.removeEventListener("click", boardButtonAddCallback);
+  _element__WEBPACK_IMPORTED_MODULE_0__.$boardButtonDeleteAll.removeEventListener("click", boardButtonDeleteAllCallback);
+};
+
+var displayBoardDateText = function displayBoardDateText() {
+  var clickedDate = clickedDateOfCalendar.getDateObject();
+  _element__WEBPACK_IMPORTED_MODULE_0__.$boardDateText.textContent = "TO DO LIST".concat(clickedDate.getMonth() + 1, ".").concat(clickedDate.getDate());
+};
+
+var boardButtonAddCallback;
+var boardButtonDeleteAllCallback;
+
+var handleBoardButtons = function handleBoardButtons() {
+  boardButtonAddCallback = handleBoardButtonAdd();
+  boardButtonDeleteAllCallback = handleBoardButtonDeleteAll();
+  _element__WEBPACK_IMPORTED_MODULE_0__.$boardButtonAdd.addEventListener("click", boardButtonAddCallback);
+  _element__WEBPACK_IMPORTED_MODULE_0__.$boardButtonDeleteAll.addEventListener("click", boardButtonDeleteAllCallback);
+};
+
+var handleBoardButtonAdd = function handleBoardButtonAdd() {
   return function () {
-    previousClickedDateObject = _calendar_SelectedDate__WEBPACK_IMPORTED_MODULE_3__.default.getDateObject();
-    _calendar_SelectedDate__WEBPACK_IMPORTED_MODULE_3__.default.setDateOfDateObject(dateOfCalendar.getNumber());
-    handleTodayClick(dateOfCalendar);
-    handleClickDifferentDate(dateOfCalendar, dateElement);
-    (0,_boardEventHandler__WEBPACK_IMPORTED_MODULE_5__.handleBoardViewWhenDateClick)(dateOfCalendar);
+    displayTaskSubmissionForm();
   };
 };
 
-var handleTodayClick = function handleTodayClick(dateOfCalendar) {
-  if (_calendar_CalendarController__WEBPACK_IMPORTED_MODULE_0__.default.isDateToday(dateOfCalendar.getDate())) {
-    _calendar_CalendarViewer__WEBPACK_IMPORTED_MODULE_1__.default.display();
-    _element__WEBPACK_IMPORTED_MODULE_4__.differenceWithClickedDate.textContent = "Today";
+var clickTaskSubmissionOKCallBack;
+var clickTaskSubmissionCancelCallBack;
+
+var displayTaskSubmissionForm = function displayTaskSubmissionForm() {
+  displayBoardFormContainerElement();
+  clickTaskSubmissionOKCallBack = handleClickTaskSubmissionOK();
+  clickTaskSubmissionCancelCallBack = handleClickTaskSubmissionCancel();
+  _element__WEBPACK_IMPORTED_MODULE_0__.$taskSubmissionOK.addEventListener("click", clickTaskSubmissionOKCallBack);
+  _element__WEBPACK_IMPORTED_MODULE_0__.$taskSubmissionCancel.addEventListener("click", clickTaskSubmissionCancelCallBack);
+};
+
+var displayBoardFormContainerElement = function displayBoardFormContainerElement() {
+  _element__WEBPACK_IMPORTED_MODULE_0__.$boardFormContainer.classList.remove("board__form-container--invisible");
+  _element__WEBPACK_IMPORTED_MODULE_0__.$boardFormContainer.classList.add("board__form-container--visible");
+};
+
+var handleClickTaskSubmissionOK = function handleClickTaskSubmissionOK() {
+  return function () {
+    clickedDateOfCalendar.addTask(_element__WEBPACK_IMPORTED_MODULE_0__.$taskContentTextInput.value);
+    removeTaskSubmissionForm();
+    displayBoard();
+  };
+};
+
+var removeTaskSubmissionForm = function removeTaskSubmissionForm() {
+  _element__WEBPACK_IMPORTED_MODULE_0__.$taskSubmissionOK.removeEventListener("click", clickTaskSubmissionOKCallBack);
+  _element__WEBPACK_IMPORTED_MODULE_0__.$taskSubmissionCancel.removeEventListener("click", clickTaskSubmissionCancelCallBack);
+  clearInputTextArea();
+  removeTaskList();
+  removeBoardFormContainerElement();
+};
+
+var handleClickTaskSubmissionCancel = function handleClickTaskSubmissionCancel() {
+  return function () {
+    removeTaskSubmissionForm();
+    displayBoard();
+  };
+};
+
+var clearInputTextArea = function clearInputTextArea() {
+  _element__WEBPACK_IMPORTED_MODULE_0__.$taskContentTextInput.value = "";
+};
+
+var removeBoardFormContainerElement = function removeBoardFormContainerElement() {
+  _element__WEBPACK_IMPORTED_MODULE_0__.$boardFormContainer.classList.remove("board__form-container--visible");
+  _element__WEBPACK_IMPORTED_MODULE_0__.$boardFormContainer.classList.add("board__form-container--invisible");
+};
+
+var handleBoardButtonDeleteAll = function handleBoardButtonDeleteAll() {
+  return function () {
+    clickedDateOfCalendar.deleteAllTasks();
+    displayBoard();
+  };
+};
+
+var handleDateClickWhenBoardVisible = function handleDateClickWhenBoardVisible() {
+  if (sameDateClicked()) {
+    removeBoard();
     return;
   }
+
+  displayBoard();
 };
 
-var handleClickDifferentDate = function handleClickDifferentDate(dateOfCalendar, dateElement) {
-  var now = _calendar_Now__WEBPACK_IMPORTED_MODULE_2__.default.getDate();
-  var ONE_DAY = 1000 * 60 * 60 * 24;
-  var dateDifferenceFromNow = Math.ceil((dateOfCalendar.getDate() - now) / ONE_DAY);
-  _calendar_CalendarViewer__WEBPACK_IMPORTED_MODULE_1__.default.display();
+var removeTaskList = function removeTaskList() {
+  _element__WEBPACK_IMPORTED_MODULE_0__.$taskList.innerHTML = "";
+};
 
-  if (dateDifferenceFromNow) {
-    displayClickedResult(dateElement, dateDifferenceFromNow);
+var sameDateClicked = function sameDateClicked() {
+  // TODO: 오류 있음. 완전한 비교가 될 수 있도록 고칠 것
+  return clickedDateOfCalendar.getDateNumber() === _calendar_calendarEventHandler__WEBPACK_IMPORTED_MODULE_1__.previousClickedDateObject.getDate();
+};
+
+var handleDateClickWhenBoardInvisible = function handleDateClickWhenBoardInvisible() {
+  displayBoard();
+};
+
+var removeBoard = function removeBoard() {
+  removeBoardElement();
+  removeTaskList();
+  clearInputTextArea();
+};
+
+var removeBoardElement = function removeBoardElement() {
+  _element__WEBPACK_IMPORTED_MODULE_0__.$boardElement.classList.remove("board--visible");
+  _element__WEBPACK_IMPORTED_MODULE_0__.$boardElement.classList.add("board--invisible");
+  isBoardVisible = false;
+};
+
+var displayBoard = function displayBoard() {
+  displayBoardElement();
+  removeTaskList();
+  clearInputTextArea();
+  displayTasksOnBoard();
+};
+
+var displayBoardElement = function displayBoardElement() {
+  _element__WEBPACK_IMPORTED_MODULE_0__.$boardElement.classList.add("board--visible");
+  _element__WEBPACK_IMPORTED_MODULE_0__.$boardElement.classList.remove("board--invisible");
+  isBoardVisible = true;
+};
+
+var displayTasksOnBoard = function displayTasksOnBoard() {
+  var tasks = clickedDateOfCalendar.getAllTasks();
+  tasks.forEach(createAndAddTaskElement);
+};
+
+var $taskElement;
+var $taskStatus;
+var $taskContent;
+var $taskButtonContainer;
+var $updateButton;
+var $deleteButton;
+
+var createAndAddTaskElement = function createAndAddTaskElement(task) {
+  createTaskElements();
+  addClassNameToTaskElements();
+  addTextContentToTaskElements(task);
+  combineTaskElements();
+  colorTaskSatus(task.getStatus()); // status 엘리먼트가 만들어지고 나서 수행
+
+  addEventListenerToTaskButtons(task);
+};
+
+var createTaskElements = function createTaskElements() {
+  $taskElement = document.createElement("li");
+  $taskStatus = document.createElement("span");
+  $taskContent = document.createElement("span");
+  $taskButtonContainer = document.createElement("span");
+  $updateButton = document.createElement("button");
+  $deleteButton = document.createElement("button");
+};
+
+var addClassNameToTaskElements = function addClassNameToTaskElements() {
+  $taskElement.classList.add("task");
+  $taskStatus.classList.add("task__status");
+  $taskContent.classList.add("task__content");
+  $taskButtonContainer.classList.add("task__button-container");
+  $updateButton.classList.add("task__button");
+  $updateButton.classList.add("task__button--update");
+  $deleteButton.classList.add("task__button");
+  $deleteButton.classList.add("task__button--delete");
+};
+
+var addTextContentToTaskElements = function addTextContentToTaskElements(task) {
+  $taskStatus.textContent = task.getStatus().getText();
+  $taskContent.textContent = task.getContent();
+  $updateButton.textContent = "✅";
+  $deleteButton.textContent = "⛔";
+};
+
+var combineTaskElements = function combineTaskElements() {
+  $taskButtonContainer.appendChild($updateButton);
+  $taskButtonContainer.appendChild($deleteButton);
+  $taskElement.appendChild($taskStatus);
+  $taskElement.appendChild($taskContent);
+  $taskElement.appendChild($taskButtonContainer);
+  _element__WEBPACK_IMPORTED_MODULE_0__.$taskList.appendChild($taskElement);
+};
+
+var colorTaskSatus = function colorTaskSatus(status) {
+  $taskStatus.style.backgroundColor = _Status__WEBPACK_IMPORTED_MODULE_2__.default.getColors()[_Status__WEBPACK_IMPORTED_MODULE_2__.default.getRepository().indexOf(status.getText())];
+};
+
+var addEventListenerToTaskButtons = function addEventListenerToTaskButtons(task) {
+  $taskStatus.addEventListener("click", handleClickUpdateTaskButton(task));
+  $taskContent.addEventListener("click", handleClickModifyingContent($taskElement, $taskContent, $taskButtonContainer, task));
+  $updateButton.addEventListener("click", handleClickUpdateTaskButton(task));
+  $deleteButton.addEventListener("click", handleClickDeleteTaskButton(task));
+};
+
+var handleClickUpdateTaskButton = function handleClickUpdateTaskButton(task) {
+  return function () {
+    task.updateStatus();
+    displayBoard();
+  };
+};
+
+var handleClickModifyingContent = function handleClickModifyingContent($itsTaskElement, $itsTaskContent, $taskButtonContainer, task) {
+  return function () {
+    $itsTaskContent.innerHTML = "";
+    var $inputElementForModifying = document.createElement("input");
+    $inputElementForModifying.value = task.getContent();
+    $inputElementForModifying.addEventListener("keydown", handleEnterModifyingInput.bind(null, task, $inputElementForModifying));
+    $itsTaskElement.insertBefore($inputElementForModifying, $taskButtonContainer);
+  };
+};
+
+var handleEnterModifyingInput = function handleEnterModifyingInput(task, $inputElementForModifying, event) {
+  if (event.keyCode === 13) {
+    var newTextContent = $inputElementForModifying.value;
+    task.updateTextContent(newTextContent);
+    displayBoard();
   }
 };
 
-var displayClickedResult = function displayClickedResult(dateElement, dateDifferenceFromNow) {
-  dateElement.style.color = "blue";
-  dateElement.style.fontWeight = 1000;
-  _element__WEBPACK_IMPORTED_MODULE_4__.differenceWithClickedDate.textContent = "".concat(Math.abs(dateDifferenceFromNow) < 2 ? "".concat(dateDifferenceFromNow, " day") : "".concat(dateDifferenceFromNow, " days"), " difference from Today");
+var handleClickDeleteTaskButton = function handleClickDeleteTaskButton(task) {
+  return function () {
+    task.getAssignedDate().deleteTask(task);
+    displayBoard();
+  };
 };
 
 /***/ }),
@@ -552,15 +528,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ CalendarController)
 /* harmony export */ });
-/* harmony import */ var _calendarEventHandler__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../calendarEventHandler */ "./src/js/calendarEventHandler.js");
+/* harmony import */ var _calendarEventHandler__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./calendarEventHandler */ "./src/js/calendar/calendarEventHandler.js");
 /* harmony import */ var _CalendarViewer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CalendarViewer */ "./src/js/calendar/CalendarViewer.js");
 /* harmony import */ var _Now__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Now */ "./src/js/calendar/Now.js");
 /* harmony import */ var _element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../element */ "./src/js/element.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 function _classPrivateMethodGet(receiver, privateSet, fn) { if (!privateSet.has(receiver)) { throw new TypeError("attempted to get private field on non-instance"); } return fn; }
 
@@ -571,31 +543,19 @@ function _classPrivateMethodGet(receiver, privateSet, fn) { if (!privateSet.has(
 
 var _initialAddingEventListner = new WeakSet();
 
-var CalendarController = /*#__PURE__*/function () {
-  function CalendarController() {
-    _classCallCheck(this, CalendarController);
+var CalendarController = function CalendarController() {
+  _classCallCheck(this, CalendarController);
 
-    _initialAddingEventListner.add(this);
+  _initialAddingEventListner.add(this);
 
-    _CalendarViewer__WEBPACK_IMPORTED_MODULE_1__.default.display();
+  _CalendarViewer__WEBPACK_IMPORTED_MODULE_1__.default.display();
 
-    _classPrivateMethodGet(this, _initialAddingEventListner, _initialAddingEventListner2).call(this);
-  }
-
-  _createClass(CalendarController, null, [{
-    key: "isDateToday",
-    value: function isDateToday(dateObject) {
-      var now = _Now__WEBPACK_IMPORTED_MODULE_2__.default.getDate();
-      return dateObject.getDate() === now.getDate() && dateObject.getMonth() === now.getMonth() && dateObject.getFullYear() === now.getFullYear();
-    }
-  }]);
-
-  return CalendarController;
-}();
+  _classPrivateMethodGet(this, _initialAddingEventListner, _initialAddingEventListner2).call(this);
+};
 
 var _initialAddingEventListner2 = function _initialAddingEventListner2() {
-  _element__WEBPACK_IMPORTED_MODULE_3__.previousMonthButton.addEventListener("click", _calendarEventHandler__WEBPACK_IMPORTED_MODULE_0__.handleMoveMonthButton);
-  _element__WEBPACK_IMPORTED_MODULE_3__.nextMonthButton.addEventListener("click", _calendarEventHandler__WEBPACK_IMPORTED_MODULE_0__.handleMoveMonthButton);
+  _element__WEBPACK_IMPORTED_MODULE_3__.$previousMonthButton.addEventListener("click", _calendarEventHandler__WEBPACK_IMPORTED_MODULE_0__.handleMoveMonthButton);
+  _element__WEBPACK_IMPORTED_MODULE_3__.$nextMonthButton.addEventListener("click", _calendarEventHandler__WEBPACK_IMPORTED_MODULE_0__.handleMoveMonthButton);
 };
 
 
@@ -616,9 +576,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Month__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Month */ "./src/js/calendar/Month.js");
 /* harmony import */ var _SelectedDate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SelectedDate */ "./src/js/calendar/SelectedDate.js");
 /* harmony import */ var _YearRepository__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./YearRepository */ "./src/js/calendar/YearRepository.js");
-/* harmony import */ var _calendarEventHandler__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../calendarEventHandler */ "./src/js/calendarEventHandler.js");
-/* harmony import */ var _CalendarController__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./CalendarController */ "./src/js/calendar/CalendarController.js");
-/* harmony import */ var _element__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../element */ "./src/js/element.js");
+/* harmony import */ var _calendarEventHandler__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./calendarEventHandler */ "./src/js/calendar/calendarEventHandler.js");
+/* harmony import */ var _element__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../element */ "./src/js/element.js");
+/* harmony import */ var _Now__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Now */ "./src/js/calendar/Now.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -674,12 +634,12 @@ var _printCalendarDates = function _printCalendarDates() {
   var lastDate = thisMonth.getLastDate();
 
   for (var i = 1, indexForDate = dayOfFirstDate; i <= lastDate; i++, indexForDate++) {
-    var dateElement = _element__WEBPACK_IMPORTED_MODULE_6__.allDatesInCalendar[indexForDate];
-    var dateOfCalendarInstance = thisMonth.getDateByNumber(i);
+    var dateElement = _element__WEBPACK_IMPORTED_MODULE_5__.$allDatesInCalendar[indexForDate];
+    var dateOfCalendarInstance = thisMonth.getDateOfCalendarByNumber(i);
     dateElement.textContent = i;
     dateElement.classList.add("date-inside");
 
-    if (_CalendarController__WEBPACK_IMPORTED_MODULE_5__.default.isDateToday(dateOfCalendarInstance.getDate())) {
+    if (_Now__WEBPACK_IMPORTED_MODULE_6__.default.isDateToday(dateOfCalendarInstance.getDateObject())) {
       dateElement.style.color = "red";
       dateElement.style.fontWeight = 1000;
     } else {
@@ -696,13 +656,13 @@ var _printCalendarDates = function _printCalendarDates() {
 };
 
 var _resetCalendarDates = function _resetCalendarDates() {
-  var totalCalendarCells = _element__WEBPACK_IMPORTED_MODULE_6__.allDatesInCalendar.length;
+  var totalCalendarCells = _element__WEBPACK_IMPORTED_MODULE_5__.$allDatesInCalendar.length;
 
   for (var i = 0; i < totalCalendarCells; i++) {
-    _element__WEBPACK_IMPORTED_MODULE_6__.allDatesInCalendar[i].textContent = "";
-    _element__WEBPACK_IMPORTED_MODULE_6__.allDatesInCalendar[i].style.fontWeight = "normal";
-    _element__WEBPACK_IMPORTED_MODULE_6__.allDatesInCalendar[i].className = "";
-    _element__WEBPACK_IMPORTED_MODULE_6__.allDatesInCalendar[i].removeEventListener("click", _classStaticPrivateFieldSpecGet(this, CalendarViewer, _dateEventListenerRepository)[i]);
+    _element__WEBPACK_IMPORTED_MODULE_5__.$allDatesInCalendar[i].textContent = "";
+    _element__WEBPACK_IMPORTED_MODULE_5__.$allDatesInCalendar[i].style.fontWeight = "normal";
+    _element__WEBPACK_IMPORTED_MODULE_5__.$allDatesInCalendar[i].className = "";
+    _element__WEBPACK_IMPORTED_MODULE_5__.$allDatesInCalendar[i].removeEventListener("click", _classStaticPrivateFieldSpecGet(this, CalendarViewer, _dateEventListenerRepository)[i]);
   }
 };
 
@@ -717,10 +677,10 @@ var _displaySelectedDates = function _displaySelectedDates() {
 };
 
 var _displaySelectedDateText = function _displaySelectedDateText() {
-  _element__WEBPACK_IMPORTED_MODULE_6__.selectedDayText.textContent = _day__WEBPACK_IMPORTED_MODULE_0__.DAYS[_SelectedDate__WEBPACK_IMPORTED_MODULE_2__.default.getDay()];
-  _element__WEBPACK_IMPORTED_MODULE_6__.selectedDateText.textContent = _SelectedDate__WEBPACK_IMPORTED_MODULE_2__.default.getDate();
-  _element__WEBPACK_IMPORTED_MODULE_6__.selectedMonthText.textContent = _Month__WEBPACK_IMPORTED_MODULE_1__.default.getNames()[_SelectedDate__WEBPACK_IMPORTED_MODULE_2__.default.getMonth()];
-  _element__WEBPACK_IMPORTED_MODULE_6__.selectedYearText.textContent = _SelectedDate__WEBPACK_IMPORTED_MODULE_2__.default.getFullYear();
+  _element__WEBPACK_IMPORTED_MODULE_5__.$selectedDayText.textContent = _day__WEBPACK_IMPORTED_MODULE_0__.DAYS[_SelectedDate__WEBPACK_IMPORTED_MODULE_2__.default.getDay()];
+  _element__WEBPACK_IMPORTED_MODULE_5__.$selectedDateText.textContent = _SelectedDate__WEBPACK_IMPORTED_MODULE_2__.default.getDateNumber();
+  _element__WEBPACK_IMPORTED_MODULE_5__.$selectedMonthText.textContent = _Month__WEBPACK_IMPORTED_MODULE_1__.default.getNames()[_SelectedDate__WEBPACK_IMPORTED_MODULE_2__.default.getMonth()];
+  _element__WEBPACK_IMPORTED_MODULE_5__.$selectedYearText.textContent = _SelectedDate__WEBPACK_IMPORTED_MODULE_2__.default.getFullYear();
 };
 
 var _displaySelectedCalendar = function _displaySelectedCalendar() {
@@ -730,7 +690,7 @@ var _displaySelectedCalendar = function _displaySelectedCalendar() {
 };
 
 var _displayToday = function _displayToday() {
-  var now = new Date();
+  var now = _Now__WEBPACK_IMPORTED_MODULE_6__.default.getDateObject();
   document.getElementById("jsTodayDay").textContent = _day__WEBPACK_IMPORTED_MODULE_0__.DAYS[now.getDay()];
   document.getElementById("jsTodayDate").textContent = now.getDate();
   document.getElementById("jsTodayMonth").textContent = _Month__WEBPACK_IMPORTED_MODULE_1__.default.getNames()[now.getMonth()];
@@ -763,8 +723,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ DateOfCalendar)
 /* harmony export */ });
-/* harmony import */ var _board_Status__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../board/Status */ "./src/js/board/Status.js");
-/* harmony import */ var _board_Task__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../board/Task */ "./src/js/board/Task.js");
+/* harmony import */ var _board_Board__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../board/Board */ "./src/js/board/Board.js");
+/* harmony import */ var _board_Status__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../board/Status */ "./src/js/board/Status.js");
+/* harmony import */ var _board_Task__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../board/Task */ "./src/js/board/Task.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -774,6 +735,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 function _classPrivateFieldGet(receiver, privateMap) { var descriptor = privateMap.get(receiver); if (!descriptor) { throw new TypeError("attempted to get private field on non-instance"); } if (descriptor.get) { return descriptor.get.call(receiver); } return descriptor.value; }
 
 function _classPrivateFieldSet(receiver, privateMap, value) { var descriptor = privateMap.get(receiver); if (!descriptor) { throw new TypeError("attempted to set private field on non-instance"); } if (descriptor.set) { descriptor.set.call(receiver, value); } else { if (!descriptor.writable) { throw new TypeError("attempted to set read only private field"); } descriptor.value = value; } return value; }
+
 
 
 
@@ -836,13 +798,13 @@ var DateOfCalendar = /*#__PURE__*/function () {
   }
 
   _createClass(DateOfCalendar, [{
-    key: "getNumber",
-    value: function getNumber() {
+    key: "getDateNumber",
+    value: function getDateNumber() {
       return _classPrivateFieldGet(this, _number);
     }
   }, {
-    key: "getDate",
-    value: function getDate() {
+    key: "getDateObject",
+    value: function getDateObject() {
       return new Date(_classPrivateFieldGet(this, _yearNumber), _classPrivateFieldGet(this, _monthNumber), _classPrivateFieldGet(this, _number));
     }
   }, {
@@ -855,7 +817,7 @@ var DateOfCalendar = /*#__PURE__*/function () {
     key: "sortTasks",
     value: function sortTasks() {
       _classPrivateFieldGet(this, _taskRepository).sort(function (task1, task2) {
-        var statusList = _board_Status__WEBPACK_IMPORTED_MODULE_0__.default.getRepository();
+        var statusList = _board_Status__WEBPACK_IMPORTED_MODULE_1__.default.getRepository();
         var index1 = statusList.indexOf(task1.getStatus().getText());
         var index2 = statusList.indexOf(task2.getStatus().getText());
         return index1 - index2;
@@ -864,7 +826,7 @@ var DateOfCalendar = /*#__PURE__*/function () {
   }, {
     key: "addTask",
     value: function addTask(content) {
-      var newTask = new _board_Task__WEBPACK_IMPORTED_MODULE_1__.default(content, this);
+      var newTask = new _board_Task__WEBPACK_IMPORTED_MODULE_2__.default(content, this);
 
       _classPrivateFieldGet(this, _taskRepository).push(newTask);
     }
@@ -884,6 +846,21 @@ var DateOfCalendar = /*#__PURE__*/function () {
     key: "getTaskLength",
     value: function getTaskLength() {
       return _classPrivateFieldGet(this, _taskRepository).length;
+    }
+  }, {
+    key: "handleClicked",
+    value: function handleClicked() {
+      if (!_board_Board__WEBPACK_IMPORTED_MODULE_0__.default.getVisibility()) {
+        _board_Board__WEBPACK_IMPORTED_MODULE_0__.default.display(this);
+        return;
+      }
+
+      if (_board_Board__WEBPACK_IMPORTED_MODULE_0__.default.isDateSameWithPreviousDate(this)) {
+        _board_Board__WEBPACK_IMPORTED_MODULE_0__.default.hide();
+        return;
+      }
+
+      _board_Board__WEBPACK_IMPORTED_MODULE_0__.default.display(this);
     }
   }]);
 
@@ -1015,10 +992,10 @@ var Month = /*#__PURE__*/function () {
       return _classPrivateFieldGet(this, _yearNumber);
     }
   }, {
-    key: "getDateByNumber",
-    value: function getDateByNumber(dateNumber) {
+    key: "getDateOfCalendarByNumber",
+    value: function getDateOfCalendarByNumber(dateNumber) {
       return _classPrivateFieldGet(this, _dateRepository).find(function (dateOfCalendar) {
-        return dateOfCalendar.getNumber() === dateNumber;
+        return dateOfCalendar.getDateNumber() === dateNumber;
       });
     }
   }], [{
@@ -1072,9 +1049,14 @@ var Now = /*#__PURE__*/function () {
   }
 
   _createClass(Now, null, [{
-    key: "getDate",
-    value: function getDate() {
+    key: "getDateObject",
+    value: function getDateObject() {
       return _classStaticPrivateFieldSpecGet(this, Now, _nowObject);
+    }
+  }, {
+    key: "isDateToday",
+    value: function isDateToday(dateObject) {
+      return _classStaticPrivateFieldSpecGet(this, Now, _nowObject).getDate() === dateObject.getDate() && _classStaticPrivateFieldSpecGet(this, Now, _nowObject).getMonth() === dateObject.getMonth() && _classStaticPrivateFieldSpecGet(this, Now, _nowObject).getFullYear() === dateObject.getFullYear();
     }
   }]);
 
@@ -1138,8 +1120,8 @@ var SelectedDate = /*#__PURE__*/function () {
       return _classStaticPrivateFieldSpecGet(SelectedDate, SelectedDate, _date).getDay();
     }
   }, {
-    key: "getDate",
-    value: function getDate() {
+    key: "getDateNumber",
+    value: function getDateNumber() {
       return _classStaticPrivateFieldSpecGet(SelectedDate, SelectedDate, _date).getDate();
     }
   }, {
@@ -1309,6 +1291,84 @@ var _years = {
 
 /***/ }),
 
+/***/ "./src/js/calendar/calendarEventHandler.js":
+/*!*************************************************!*\
+  !*** ./src/js/calendar/calendarEventHandler.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "handleMoveMonthButton": () => (/* binding */ handleMoveMonthButton),
+/* harmony export */   "previousClickedDateObject": () => (/* binding */ previousClickedDateObject),
+/* harmony export */   "handleDateClick": () => (/* binding */ handleDateClick)
+/* harmony export */ });
+/* harmony import */ var _CalendarController__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CalendarController */ "./src/js/calendar/CalendarController.js");
+/* harmony import */ var _CalendarViewer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CalendarViewer */ "./src/js/calendar/CalendarViewer.js");
+/* harmony import */ var _Now__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Now */ "./src/js/calendar/Now.js");
+/* harmony import */ var _SelectedDate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SelectedDate */ "./src/js/calendar/SelectedDate.js");
+/* harmony import */ var _element__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../element */ "./src/js/element.js");
+/* harmony import */ var _board_boardEventHandler__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../board/boardEventHandler */ "./src/js/board/boardEventHandler.js");
+
+
+
+
+
+
+var handleMoveMonthButton = function handleMoveMonthButton(event) {
+  var clickedButton = event.target.classList[1];
+  (0,_board_boardEventHandler__WEBPACK_IMPORTED_MODULE_5__.removeBoard)();
+
+  if (clickedButton === "previous-month-button") {
+    _SelectedDate__WEBPACK_IMPORTED_MODULE_3__.default.setMonthOfDateObject(_SelectedDate__WEBPACK_IMPORTED_MODULE_3__.default.getMonth() - 1);
+  }
+
+  if (clickedButton === "next-month-button") {
+    _SelectedDate__WEBPACK_IMPORTED_MODULE_3__.default.setMonthOfDateObject(_SelectedDate__WEBPACK_IMPORTED_MODULE_3__.default.getMonth() + 1);
+  }
+
+  _SelectedDate__WEBPACK_IMPORTED_MODULE_3__.default.setDateOfDateObject(1);
+  _element__WEBPACK_IMPORTED_MODULE_4__.$differenceWithClickedDate.textContent = "";
+  _CalendarViewer__WEBPACK_IMPORTED_MODULE_1__.default.display();
+};
+var previousClickedDateObject;
+var handleDateClick = function handleDateClick(dateOfCalendar, dateElement) {
+  return function () {
+    previousClickedDateObject = _SelectedDate__WEBPACK_IMPORTED_MODULE_3__.default.getDateObject();
+    _SelectedDate__WEBPACK_IMPORTED_MODULE_3__.default.setDateOfDateObject(dateOfCalendar.getDateNumber());
+    handleTodayClick(dateOfCalendar);
+    handleClickDifferentDate(dateOfCalendar, dateElement);
+    (0,_board_boardEventHandler__WEBPACK_IMPORTED_MODULE_5__.handleBoardViewWhenDateClick)(dateOfCalendar);
+  };
+};
+
+var handleTodayClick = function handleTodayClick(dateOfCalendar) {
+  if (_Now__WEBPACK_IMPORTED_MODULE_2__.default.isDateToday(dateOfCalendar.getDateObject())) {
+    _CalendarViewer__WEBPACK_IMPORTED_MODULE_1__.default.display();
+    _element__WEBPACK_IMPORTED_MODULE_4__.$differenceWithClickedDate.textContent = "Today";
+    return;
+  }
+};
+
+var handleClickDifferentDate = function handleClickDifferentDate(dateOfCalendar, dateElement) {
+  var now = _Now__WEBPACK_IMPORTED_MODULE_2__.default.getDateObject();
+  var ONE_DAY = 1000 * 60 * 60 * 24;
+  var $dateDifferenceFromNow = Math.ceil((dateOfCalendar.getDateObject() - now) / ONE_DAY);
+  _CalendarViewer__WEBPACK_IMPORTED_MODULE_1__.default.display();
+
+  if ($dateDifferenceFromNow) {
+    displayClickedResult(dateElement, $dateDifferenceFromNow);
+  }
+};
+
+var displayClickedResult = function displayClickedResult(dateElement, $dateDifferenceFromNow) {
+  dateElement.style.color = "blue";
+  dateElement.style.fontWeight = 1000;
+  _element__WEBPACK_IMPORTED_MODULE_4__.$differenceWithClickedDate.textContent = "".concat(Math.abs($dateDifferenceFromNow) < 2 ? "".concat($dateDifferenceFromNow, " day") : "".concat($dateDifferenceFromNow, " days"), " difference from Today");
+};
+
+/***/ }),
+
 /***/ "./src/js/calendar/day.js":
 /*!********************************!*\
   !*** ./src/js/calendar/day.js ***!
@@ -1331,41 +1391,41 @@ var DAYS = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "selectedDateText": () => (/* binding */ selectedDateText),
-/* harmony export */   "selectedMonthText": () => (/* binding */ selectedMonthText),
-/* harmony export */   "selectedDayText": () => (/* binding */ selectedDayText),
-/* harmony export */   "selectedYearText": () => (/* binding */ selectedYearText),
-/* harmony export */   "allDatesInCalendar": () => (/* binding */ allDatesInCalendar),
-/* harmony export */   "previousMonthButton": () => (/* binding */ previousMonthButton),
-/* harmony export */   "nextMonthButton": () => (/* binding */ nextMonthButton),
-/* harmony export */   "differenceWithClickedDate": () => (/* binding */ differenceWithClickedDate),
-/* harmony export */   "boardElement": () => (/* binding */ boardElement),
-/* harmony export */   "boardDateText": () => (/* binding */ boardDateText),
-/* harmony export */   "boardButtonDeleteAll": () => (/* binding */ boardButtonDeleteAll),
-/* harmony export */   "boardButtonAdd": () => (/* binding */ boardButtonAdd),
-/* harmony export */   "boardFormContainer": () => (/* binding */ boardFormContainer),
-/* harmony export */   "taskContentTextInput": () => (/* binding */ taskContentTextInput),
-/* harmony export */   "taskSubmissionOK": () => (/* binding */ taskSubmissionOK),
-/* harmony export */   "taskSubmissionCancel": () => (/* binding */ taskSubmissionCancel),
-/* harmony export */   "taskList": () => (/* binding */ taskList)
+/* harmony export */   "$selectedDateText": () => (/* binding */ $selectedDateText),
+/* harmony export */   "$selectedMonthText": () => (/* binding */ $selectedMonthText),
+/* harmony export */   "$selectedDayText": () => (/* binding */ $selectedDayText),
+/* harmony export */   "$selectedYearText": () => (/* binding */ $selectedYearText),
+/* harmony export */   "$allDatesInCalendar": () => (/* binding */ $allDatesInCalendar),
+/* harmony export */   "$previousMonthButton": () => (/* binding */ $previousMonthButton),
+/* harmony export */   "$nextMonthButton": () => (/* binding */ $nextMonthButton),
+/* harmony export */   "$differenceWithClickedDate": () => (/* binding */ $differenceWithClickedDate),
+/* harmony export */   "$boardElement": () => (/* binding */ $boardElement),
+/* harmony export */   "$boardDateText": () => (/* binding */ $boardDateText),
+/* harmony export */   "$boardButtonDeleteAll": () => (/* binding */ $boardButtonDeleteAll),
+/* harmony export */   "$boardButtonAdd": () => (/* binding */ $boardButtonAdd),
+/* harmony export */   "$boardFormContainer": () => (/* binding */ $boardFormContainer),
+/* harmony export */   "$taskContentTextInput": () => (/* binding */ $taskContentTextInput),
+/* harmony export */   "$taskSubmissionOK": () => (/* binding */ $taskSubmissionOK),
+/* harmony export */   "$taskSubmissionCancel": () => (/* binding */ $taskSubmissionCancel),
+/* harmony export */   "$taskList": () => (/* binding */ $taskList)
 /* harmony export */ });
-var selectedDateText = document.getElementById("jsSelectedDateText");
-var selectedMonthText = document.getElementById("jsSelectedMonthText");
-var selectedDayText = document.getElementById("jsSelectedDayText");
-var selectedYearText = document.getElementById("jsSelectedYearText");
-var allDatesInCalendar = document.querySelectorAll("#jsCalendarTable > tbody td");
-var previousMonthButton = document.getElementById("jsPreviousMonthButton");
-var nextMonthButton = document.getElementById("jsNextMonthButton");
-var differenceWithClickedDate = document.getElementById("jsDifferenceWithClickedDate");
-var boardElement = document.getElementById("jsBoard");
-var boardDateText = document.getElementById("jsBoardDateText");
-var boardButtonDeleteAll = document.getElementById("jsBoardButtonDeleteAll");
-var boardButtonAdd = document.getElementById("jsBoardButtonAdd");
-var boardFormContainer = document.getElementById("jsBoardFormContainer");
-var taskContentTextInput = document.getElementById("jsTaskContentTextInput");
-var taskSubmissionOK = document.getElementById("jsTaskSubmissionOK");
-var taskSubmissionCancel = document.getElementById("jsTaskSubmissionCancel");
-var taskList = document.getElementById("jsTaskList");
+var $selectedDateText = document.getElementById("jsSelectedDateText");
+var $selectedMonthText = document.getElementById("jsSelectedMonthText");
+var $selectedDayText = document.getElementById("jsSelectedDayText");
+var $selectedYearText = document.getElementById("jsSelectedYearText");
+var $allDatesInCalendar = document.querySelectorAll("#jsCalendarTable > tbody td");
+var $previousMonthButton = document.getElementById("jsPreviousMonthButton");
+var $nextMonthButton = document.getElementById("jsNextMonthButton");
+var $differenceWithClickedDate = document.getElementById("jsDifferenceWithClickedDate");
+var $boardElement = document.getElementById("jsBoard");
+var $boardDateText = document.getElementById("jsBoardDateText");
+var $boardButtonDeleteAll = document.getElementById("jsBoardButtonDeleteAll");
+var $boardButtonAdd = document.getElementById("jsBoardButtonAdd");
+var $boardFormContainer = document.getElementById("jsBoardFormContainer");
+var $taskContentTextInput = document.getElementById("jsTaskContentTextInput");
+var $taskSubmissionOK = document.getElementById("jsTaskSubmissionOK");
+var $taskSubmissionCancel = document.getElementById("jsTaskSubmissionCancel");
+var $taskList = document.getElementById("jsTaskList");
 
 /***/ })
 

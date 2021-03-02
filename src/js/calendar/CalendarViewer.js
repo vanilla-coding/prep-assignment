@@ -3,13 +3,12 @@ import Month from "./Month";
 import SelectedDate from "./SelectedDate";
 import YearRepository from "./YearRepository";
 import { handleDateClick } from "./calendarEventHandler";
-import CalendarController from "./CalendarController";
 import {
-  selectedDateText,
-  selectedMonthText,
-  selectedDayText,
-  selectedYearText,
-  allDatesInCalendar,
+  $selectedDateText,
+  $selectedMonthText,
+  $selectedDayText,
+  $selectedYearText,
+  $allDatesInCalendar,
 } from "../element";
 import Now from "./Now";
 
@@ -31,7 +30,7 @@ export default class CalendarViewer {
     });
   }
   static #displayToday() {
-    const now = new Date();
+    const now = Now.getDateObject();
     document.getElementById("jsTodayDay").textContent = DAYS[now.getDay()];
     document.getElementById("jsTodayDate").textContent = now.getDate();
     document.getElementById("jsTodayMonth").textContent = Month.getNames()[
@@ -46,10 +45,10 @@ export default class CalendarViewer {
   }
 
   static #displaySelectedDateText() {
-    selectedDayText.textContent = DAYS[SelectedDate.getDay()];
-    selectedDateText.textContent = SelectedDate.getDateNumber();
-    selectedMonthText.textContent = Month.getNames()[SelectedDate.getMonth()];
-    selectedYearText.textContent = SelectedDate.getFullYear();
+    $selectedDayText.textContent = DAYS[SelectedDate.getDay()];
+    $selectedDateText.textContent = SelectedDate.getDateNumber();
+    $selectedMonthText.textContent = Month.getNames()[SelectedDate.getMonth()];
+    $selectedYearText.textContent = SelectedDate.getFullYear();
   }
 
   static #displaySelectedDates() {
@@ -61,13 +60,13 @@ export default class CalendarViewer {
   }
 
   static #resetCalendarDates() {
-    const totalCalendarCells = allDatesInCalendar.length;
+    const totalCalendarCells = $allDatesInCalendar.length;
     for (let i = 0; i < totalCalendarCells; i++) {
-      allDatesInCalendar[i].textContent = "";
-      allDatesInCalendar[i].style.fontWeight = "normal";
-      allDatesInCalendar[i].className = "";
+      $allDatesInCalendar[i].textContent = "";
+      $allDatesInCalendar[i].style.fontWeight = "normal";
+      $allDatesInCalendar[i].className = "";
 
-      allDatesInCalendar[i].removeEventListener(
+      $allDatesInCalendar[i].removeEventListener(
         "click",
         this.#dateEventListenerRepository[i]
       );
@@ -84,7 +83,7 @@ export default class CalendarViewer {
       i <= lastDate;
       i++, indexForDate++
     ) {
-      const dateElement = allDatesInCalendar[indexForDate];
+      const dateElement = $allDatesInCalendar[indexForDate];
       const dateOfCalendarInstance = thisMonth.getDateOfCalendarByNumber(i);
       dateElement.textContent = i;
       dateElement.classList.add("date-inside");

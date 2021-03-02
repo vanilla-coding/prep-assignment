@@ -1,13 +1,13 @@
 import {
-  boardElement,
-  boardDateText,
-  boardButtonAdd,
-  boardButtonDeleteAll,
-  boardFormContainer,
-  taskContentTextInput,
-  taskSubmissionOK,
-  taskSubmissionCancel,
-  taskList,
+  $boardElement,
+  $boardDateText,
+  $boardButtonAdd,
+  $boardButtonDeleteAll,
+  $boardFormContainer,
+  $taskContentTextInput,
+  $taskSubmissionOK,
+  $taskSubmissionCancel,
+  $taskList,
 } from "../element";
 
 import { previousClickedDateObject } from "../calendar/calendarEventHandler";
@@ -30,8 +30,8 @@ export const handleBoardViewWhenDateClick = (dateOfCalendar) => {
 };
 
 const removePreviousBoardButtonEventListner = () => {
-  boardButtonAdd.removeEventListener("click", boardButtonAddCallback);
-  boardButtonDeleteAll.removeEventListener(
+  $boardButtonAdd.removeEventListener("click", boardButtonAddCallback);
+  $boardButtonDeleteAll.removeEventListener(
     "click",
     boardButtonDeleteAllCallback
   );
@@ -39,7 +39,7 @@ const removePreviousBoardButtonEventListner = () => {
 
 const displayBoardDateText = () => {
   const clickedDate = clickedDateOfCalendar.getDateObject();
-  boardDateText.textContent = `TO DO LIST${
+  $boardDateText.textContent = `TO DO LIST${
     clickedDate.getMonth() + 1
   }.${clickedDate.getDate()}`;
 };
@@ -50,8 +50,8 @@ const handleBoardButtons = () => {
   boardButtonAddCallback = handleBoardButtonAdd();
   boardButtonDeleteAllCallback = handleBoardButtonDeleteAll();
 
-  boardButtonAdd.addEventListener("click", boardButtonAddCallback);
-  boardButtonDeleteAll.addEventListener("click", boardButtonDeleteAllCallback);
+  $boardButtonAdd.addEventListener("click", boardButtonAddCallback);
+  $boardButtonDeleteAll.addEventListener("click", boardButtonDeleteAllCallback);
 };
 const handleBoardButtonAdd = () => {
   return () => {
@@ -66,29 +66,29 @@ const displayTaskSubmissionForm = () => {
 
   clickTaskSubmissionOKCallBack = handleClickTaskSubmissionOK();
   clickTaskSubmissionCancelCallBack = handleClickTaskSubmissionCancel();
-  taskSubmissionOK.addEventListener("click", clickTaskSubmissionOKCallBack);
-  taskSubmissionCancel.addEventListener(
+  $taskSubmissionOK.addEventListener("click", clickTaskSubmissionOKCallBack);
+  $taskSubmissionCancel.addEventListener(
     "click",
     clickTaskSubmissionCancelCallBack
   );
 };
 
 const displayBoardFormContainerElement = () => {
-  boardFormContainer.classList.remove("board__form-container--invisible");
-  boardFormContainer.classList.add("board__form-container--visible");
+  $boardFormContainer.classList.remove("board__form-container--invisible");
+  $boardFormContainer.classList.add("board__form-container--visible");
 };
 
 const handleClickTaskSubmissionOK = () => {
   return () => {
-    clickedDateOfCalendar.addTask(taskContentTextInput.value);
+    clickedDateOfCalendar.addTask($taskContentTextInput.value);
     removeTaskSubmissionForm();
     displayBoard();
   };
 };
 
 const removeTaskSubmissionForm = () => {
-  taskSubmissionOK.removeEventListener("click", clickTaskSubmissionOKCallBack);
-  taskSubmissionCancel.removeEventListener(
+  $taskSubmissionOK.removeEventListener("click", clickTaskSubmissionOKCallBack);
+  $taskSubmissionCancel.removeEventListener(
     "click",
     clickTaskSubmissionCancelCallBack
   );
@@ -105,12 +105,12 @@ const handleClickTaskSubmissionCancel = () => {
 };
 
 const clearInputTextArea = () => {
-  taskContentTextInput.value = "";
+  $taskContentTextInput.value = "";
 };
 
 const removeBoardFormContainerElement = () => {
-  boardFormContainer.classList.remove("board__form-container--visible");
-  boardFormContainer.classList.add("board__form-container--invisible");
+  $boardFormContainer.classList.remove("board__form-container--visible");
+  $boardFormContainer.classList.add("board__form-container--invisible");
 };
 
 const handleBoardButtonDeleteAll = () => {
@@ -129,7 +129,7 @@ const handleDateClickWhenBoardVisible = () => {
 };
 
 const removeTaskList = () => {
-  taskList.innerHTML = "";
+  $taskList.innerHTML = "";
 };
 
 const sameDateClicked = () => {
@@ -151,8 +151,8 @@ export const removeBoard = () => {
 };
 
 const removeBoardElement = () => {
-  boardElement.classList.remove("board--visible");
-  boardElement.classList.add("board--invisible");
+  $boardElement.classList.remove("board--visible");
+  $boardElement.classList.add("board--invisible");
   isBoardVisible = false;
 };
 
@@ -164,8 +164,8 @@ const displayBoard = () => {
 };
 
 const displayBoardElement = () => {
-  boardElement.classList.add("board--visible");
-  boardElement.classList.remove("board--invisible");
+  $boardElement.classList.add("board--visible");
+  $boardElement.classList.remove("board--invisible");
   isBoardVisible = true;
 };
 
@@ -174,12 +174,12 @@ const displayTasksOnBoard = () => {
   tasks.forEach(createAndAddTaskElement);
 };
 
-let taskElement;
-let taskStatus;
-let taskContent;
-let taskButtonContainer;
-let updateButton;
-let deleteButton;
+let $taskElement;
+let $taskStatus;
+let $taskContent;
+let $taskButtonContainer;
+let $updateButton;
+let $deleteButton;
 const createAndAddTaskElement = (task) => {
   createTaskElements();
   addClassNameToTaskElements();
@@ -190,60 +190,60 @@ const createAndAddTaskElement = (task) => {
 };
 
 const createTaskElements = () => {
-  taskElement = document.createElement("li");
-  taskStatus = document.createElement("span");
-  taskContent = document.createElement("span");
-  taskButtonContainer = document.createElement("span");
-  updateButton = document.createElement("button");
-  deleteButton = document.createElement("button");
+  $taskElement = document.createElement("li");
+  $taskStatus = document.createElement("span");
+  $taskContent = document.createElement("span");
+  $taskButtonContainer = document.createElement("span");
+  $updateButton = document.createElement("button");
+  $deleteButton = document.createElement("button");
 };
 
 const addClassNameToTaskElements = () => {
-  taskElement.classList.add("task");
-  taskStatus.classList.add("task__status");
-  taskContent.classList.add("task__content");
-  taskButtonContainer.classList.add("task__button-container");
-  updateButton.classList.add("task__button");
-  updateButton.classList.add("task__button--update");
-  deleteButton.classList.add("task__button");
-  deleteButton.classList.add("task__button--delete");
+  $taskElement.classList.add("task");
+  $taskStatus.classList.add("task__status");
+  $taskContent.classList.add("task__content");
+  $taskButtonContainer.classList.add("task__button-container");
+  $updateButton.classList.add("task__button");
+  $updateButton.classList.add("task__button--update");
+  $deleteButton.classList.add("task__button");
+  $deleteButton.classList.add("task__button--delete");
 };
 
 const addTextContentToTaskElements = (task) => {
-  taskStatus.textContent = task.getStatus().getText();
-  taskContent.textContent = task.getContent();
-  updateButton.textContent = "✅";
-  deleteButton.textContent = "⛔";
+  $taskStatus.textContent = task.getStatus().getText();
+  $taskContent.textContent = task.getContent();
+  $updateButton.textContent = "✅";
+  $deleteButton.textContent = "⛔";
 };
 
 const combineTaskElements = () => {
-  taskButtonContainer.appendChild(updateButton);
-  taskButtonContainer.appendChild(deleteButton);
-  taskElement.appendChild(taskStatus);
-  taskElement.appendChild(taskContent);
-  taskElement.appendChild(taskButtonContainer);
-  taskList.appendChild(taskElement);
+  $taskButtonContainer.appendChild($updateButton);
+  $taskButtonContainer.appendChild($deleteButton);
+  $taskElement.appendChild($taskStatus);
+  $taskElement.appendChild($taskContent);
+  $taskElement.appendChild($taskButtonContainer);
+  $taskList.appendChild($taskElement);
 };
 
 const colorTaskSatus = (status) => {
-  taskStatus.style.backgroundColor = Status.getColors()[
+  $taskStatus.style.backgroundColor = Status.getColors()[
     Status.getRepository().indexOf(status.getText())
   ];
 };
 
 const addEventListenerToTaskButtons = (task) => {
-  taskStatus.addEventListener("click", handleClickUpdateTaskButton(task));
-  taskContent.addEventListener(
+  $taskStatus.addEventListener("click", handleClickUpdateTaskButton(task));
+  $taskContent.addEventListener(
     "click",
     handleClickModifyingContent(
-      taskElement,
-      taskContent,
-      taskButtonContainer,
+      $taskElement,
+      $taskContent,
+      $taskButtonContainer,
       task
     )
   );
-  updateButton.addEventListener("click", handleClickUpdateTaskButton(task));
-  deleteButton.addEventListener("click", handleClickDeleteTaskButton(task));
+  $updateButton.addEventListener("click", handleClickUpdateTaskButton(task));
+  $deleteButton.addEventListener("click", handleClickDeleteTaskButton(task));
 };
 
 const handleClickUpdateTaskButton = (task) => {
@@ -254,26 +254,29 @@ const handleClickUpdateTaskButton = (task) => {
 };
 
 const handleClickModifyingContent = (
-  itsTaskElement,
-  itsTaskContent,
-  taskButtonContainer,
+  $itsTaskElement,
+  $itsTaskContent,
+  $taskButtonContainer,
   task
 ) => {
   return () => {
-    itsTaskContent.innerHTML = "";
-    const inputElementForModifying = document.createElement("input");
-    inputElementForModifying.value = task.getContent();
-    inputElementForModifying.addEventListener(
+    $itsTaskContent.innerHTML = "";
+    const $inputElementForModifying = document.createElement("input");
+    $inputElementForModifying.value = task.getContent();
+    $inputElementForModifying.addEventListener(
       "keydown",
-      handleEnterModifyingInput.bind(null, task, inputElementForModifying)
+      handleEnterModifyingInput.bind(null, task, $inputElementForModifying)
     );
-    itsTaskElement.insertBefore(inputElementForModifying, taskButtonContainer);
+    $itsTaskElement.insertBefore(
+      $inputElementForModifying,
+      $taskButtonContainer
+    );
   };
 };
 
-const handleEnterModifyingInput = (task, inputElementForModifying, event) => {
+const handleEnterModifyingInput = (task, $inputElementForModifying, event) => {
   if (event.keyCode === 13) {
-    const newTextContent = inputElementForModifying.value;
+    const newTextContent = $inputElementForModifying.value;
     task.updateTextContent(newTextContent);
     displayBoard();
   }

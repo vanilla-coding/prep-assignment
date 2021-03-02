@@ -1,7 +1,7 @@
 import { handleMoveMonthButton } from "./calendarEventHandler";
 import CalendarViewer from "./CalendarViewer";
 import Now from "./Now";
-import { previousMonthButton, nextMonthButton } from "../element";
+import { $previousMonthButton, $nextMonthButton } from "../element";
 
 export default class CalendarController {
   constructor() {
@@ -10,16 +10,7 @@ export default class CalendarController {
   }
 
   #initialAddingEventListner() {
-    previousMonthButton.addEventListener("click", handleMoveMonthButton);
-    nextMonthButton.addEventListener("click", handleMoveMonthButton);
-  }
-
-  static isDateToday(dateObject) {
-    const now = Now.getDateObject();
-    return (
-      dateObject.getDate() === now.getDate() &&
-      dateObject.getMonth() === now.getMonth() &&
-      dateObject.getFullYear() === now.getFullYear()
-    );
+    $previousMonthButton.addEventListener("click", handleMoveMonthButton);
+    $nextMonthButton.addEventListener("click", handleMoveMonthButton);
   }
 }
