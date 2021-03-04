@@ -9,22 +9,24 @@ const show = document.querySelector(".show"),
 let tryNum = 0;
 
 function genNum() {
+   (function() {
+      show.classList.add("no-show");
+      noShow.classList.remove("no-show");
+   })();
+
    let randomNum = `${Math.floor(Math.random() * 1000)}`;
 
-   const a = Number(randomNum.substr(0, 1));
-   const b = Number(randomNum.substr(1, 1));
-   const c = Number(randomNum.substr(2, 1));
-
-   show.classList.add("no-show");
-   noShow.classList.remove("no-show");
-
    if(randomNum.length === 1) {
-      randomNum = `00${randomNum}`;
+      genNum();
    } else if(randomNum.length === 2) {
-      randomNum = `0${randomNum}`;
+      randomNum = 0 + randomNum;
    } else {
       randomNum = randomNum;
    }
+
+   const a = randomNum[0];
+   const b = randomNum[1];
+   const c = randomNum[2];
 
    function saveNum(num) {
       localStorage.setItem("Random Number", num);
@@ -32,7 +34,7 @@ function genNum() {
 
    if((a !== b) && (b !== c) && (c !== a)) {
       saveNum(randomNum);
-   } else {
+   }else {
       genNum();
    }
 }
@@ -64,14 +66,6 @@ function retry() {
 function compare() {
    const userNum = writeNum.value;
    const ranNum = localStorage.getItem("Random Number");
-
-   function fail() {
-      message.innerText = `이미 10회 시도하셨습니다.\n이번 게임의 정답은 "${ranNum}"입니다.\n재시작 버튼을 눌러 새로운 정답을 맞혀주세요!`;
-
-      writeNum.value = "입력하실 수 없습니다.";
-
-      writeNum.setAttribute("readonly", "");
-   }
 
    if(tryNum < 10) {
       userNum.length === 3 ? game() : reWrite()
@@ -151,5 +145,13 @@ function compare() {
 
    function reWrite() {
       alert("입력하신 수의 자릿수를 확인해 주세요.");
+   }
+
+   function fail() {
+      message.innerText = `이미 10회 시도하셨습니다.\n이번 게임의 정답은 "${ranNum}"입니다.\n재시작 버튼을 눌러 새로운 정답을 맞혀주세요!`;
+
+      writeNum.value = "입력하실 수 없습니다.";
+
+      writeNum.setAttribute("readonly", "");
    }
 }
