@@ -1,136 +1,161 @@
-const start = document.querySelector(".js-start"),
-  baseball = document.querySelector(".baseball"),
-  restart = document.querySelector(".js-restart");
-(numberForm = document.querySelector(".js-form")),
-  (numberInput = numberForm.querySelector(".js-input")),
-  (strike = document.querySelector(".js-strike")),
-  (ball = document.querySelector(".js-ball")),
-  (out = document.querySelector(".js-out")),
-  (remaining = document.querySelector(".js-remaining")),
-  (gameOver = document.querySelector(".js-gameOver")),
-  (lose = document.querySelector(".js-lose")),
-  (board = document.querySelector(".js-board"));
+// 안녕하세요. 프렙 10기 오세명이라고 합니다.
+// 저의 과제를 보느라 시간을 써주셔서 감사합니다.
+// 아직은 미숙하지만, 정말로 재미있게 했습니다.
+// 1주차 강의를 듣고 혼자 공부해보면서 수정하고싶은 부분이 생겨 전면 수정하였습니다.
+// 그럼에도 불구하고 여전히 중복해서 사용되는 코드들이 많네요.. 😂
+// 과제를 하면서 (1) 코드 로직이 자연스럽게 구현되었는지, (2) 보시기에 아쉬운 점은 무엇인지, (3) 어떤 부분을 더욱 신경써서 고치면 좋을지
+// 허심탄회하게 피드백 해주시면 더할나위 없이 감사하겠습니다..
 
-const displayNone = "display__none";
-const displayBlock = "display__block";
-const numArr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-let ranNum = [],
-  strikeCount = 0,
-  ballCount = 0,
-  remainCount = 10;
+/* 
+ HTML COMPONENT
+ */
+const start = document.querySelector(".js-start");
+const form = document.querySelector(".js-form");
+const input = document.querySelector(".js-input");
+const strike = document.querySelector(".js-strike");
+const ball = document.querySelector(".js-ball");
+const remainder = document.querySelector(".js-remainder");
+const win = document.querySelector(".js-win");
+const lose = document.querySelector(".lose");
+const restart = document.querySelector(".js-restart");
+const condition = document.querySelector(".game__board");
+/* 
+ CSS CLASS MANIPULATION
+*/
 
-function showOnBoard() {
-  console.log(
-    `strike Count is : ${strikeCount} and ball Count is : ${ballCount}`
-  );
-  strike.innerText = `스트라이크 카운트 :${strikeCount}`;
-  ball.innerText = `볼 카운트 :${ballCount}`;
+const DISPLAY_NONE = "display__none";
+const DISPLAY_BLOCK = "display__block";
+const display = {
+  none: function (component) {
+    component.classList.add(DISPLAY_NONE);
+    component.classList.remove(DISPLAY_BLOCK);
+  },
+  block: function (component) {
+    component.classList.add(DISPLAY_BLOCK);
+    component.classList.remove(DISPLAY_NONE);
+  },
+};
 
-  strikeCount = 0;
-  ballCount = 0;
+const you = {
+  win: function () {
+    input.disabled = true;
+    display.block(win);
+    display.block(restart);
+    restart.addEventListener("click", function () {
+      baseArray = [];
+      genArray();
+      input.value = null;
+      board.strike(0);
+      board.ball(0);
+      board.remainCounter = 10;
+      remainder.innerText = `남은 기회 : ${board.remainCounter}`;
+      display.none(win);
+      display.none(restart);
+      input.disabled = false;
+    });
+  },
+  lose: function () {
+    input.disabled = true;
+    display.block(lose);
+    display.block(restart);
+    restart.addEventListener("click", function () {
+      baseArray = [];
+      genArray();
+      input.value = null;
+      board.strike(0);
+      board.ball(0);
+      board.remainCounter = 10;
+      remainder.innerText = `남은 기회 : ${board.remainCounter}`;
+      display.none(lose);
+      display.none(restart);
+      input.disabled = false;
+    });
+  },
+};
 
-  return strikeCount, ballCount;
-}
+const board = {
+  strike: function (strikeCount) {
+    strike.innerHTML = `스트라이크 카운트 : ${strikeCount}`;
+  },
+  ball: function (ballCount) {
+    ball.innerHTML = `볼 카운트 : ${ballCount}`;
+  },
+  remainCounter: 10,
+};
 
-function elemCheck(base, compare) {
-  for (let i = 0; i < compare.length; i++) {
-    for (let j = 0; j < base.length; j++) {
+function compareEachElementOf(baseArray, comparedArray) {
+  let strikeCount = 0;
+  let ballCount = 0;
+  for (let i = 0; i < baseArray.length; i++) {
+    for (let j = 0; j < comparedArray.length; j++) {
       if (
-        compare[i] === base[j] &&
-        compare.indexOf(compare[i]) === base.indexOf(base[j])
+        baseArray[i] === comparedArray[j] &&
+        baseArray.indexOf(baseArray[i]) ===
+          comparedArray.indexOf(comparedArray[j])
       ) {
-        strikeCount++;
+        ++strikeCount;
       } else if (
-        compare[i] === base[j] &&
-        compare.indexOf(compare[i]) !== base.indexOf(base[j])
+        baseArray[i] === comparedArray[j] &&
+        baseArray.indexOf(baseArray[i]) !==
+          comparedArray.indexOf(comparedArray[j])
       ) {
-        ballCount++;
+        ++ballCount;
       }
     }
   }
-  return strikeCount, ballCount;
+  board.strike(strikeCount);
+  board.ball(ballCount);
 }
 
-function decrementRemain() {
-  remainCount--;
-  remaining.innerText = `남은 기회 : ${remainCount}`;
-  if (remainCount === 0) {
-    numberInput.disabled = true;
-    lose.classList.add(displayBlock);
-    restart.classList.add(displayBlock);
-  }
+function decreaseRemainder() {
+  board.remainCounter--;
+  remainder.innerText = `남은 기회 : ${board.remainCounter}`;
+  if (!board.remainCounter) you.lose();
 }
 
-function compareWithRanNum(inputValue) {
-  // What i wanted to do is to make new array in which type of element is Number
-  // then i can compare inputArray which have Number elements with randomArray, in this case : ranNum
-  let comparedValue = Array.from(inputValue).map(function (item) {
+function checkNum(e) {
+  e.preventDefault();
+  const currentValue = input.value;
+  const comparedArray = Array.from(currentValue).map(function (item) {
     return parseInt(item, 10);
   });
-  console.log(`the ranNum Value is ${ranNum}`);
-  console.log(`the compared Value is ${comparedValue}`);
 
-  if (JSON.stringify(comparedValue) === JSON.stringify(ranNum)) {
-    // If The player wins this game
-    numberInput.disabled = true;
-    gameOver.classList.add(displayBlock);
-    restart.classList.add(displayBlock);
-  } else {
-    elemCheck(ranNum, comparedValue);
-  }
-
-  // given that all of value are number, let us reduce player's opportunity
-  decrementRemain();
-}
-
-function validateValue(e) {
-  e.preventDefault();
-  let currentValue = numberInput.value;
   if (isNaN(currentValue)) {
     alert("숫자를 입력하세요");
   } else {
-    compareWithRanNum(currentValue);
+    (function baseCompareWith(base, target) {
+      if (JSON.stringify(base) === JSON.stringify(target)) {
+        you.win();
+      } else {
+        compareEachElementOf(base, target);
+      }
+    })(baseArray, comparedArray);
   }
+  decreaseRemainder();
 }
 
-function genNumber() {
-  start.classList.add(displayNone);
+// ❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️
+let baseArray = [];
+// ❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️
 
-  numberForm.classList.remove(displayNone);
-  numberForm.classList.add(displayBlock);
-
-  board.classList.remove(displayNone);
-  board.classList.add("board");
-
-  while (ranNum.length < 3) {
+function genArray() {
+  //  !undefined
+  if (!display.none(start)) {
+    display.none(start);
+    display.block(form);
+    display.block(condition);
+  }
+  const numArr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  for (let i = 0; baseArray.length < 3; i++) {
     let extractor = numArr[Math.floor(Math.random() * 9)];
-    ranNum.push(extractor);
+    baseArray.push(extractor);
   }
-  return ranNum;
-}
-
-function reset() {
-  lose.classList.remove(displayBlock);
-  lose.classList.add(displayNone);
-  gameOver.classList.remove(displayBlock);
-  gameOver.classList.add(displayNone);
-  restart.classList.remove(displayBlock);
-  restart.classList.add(displayNone);
-
-  numberInput.disabled = false;
-  numberForm.reset();
-  remainCount = 10;
-  remaining.innerText = `남은 기회 : ${remainCount}`;
-  ranNum = [];
-  strike.innerText = `스트라이크 카운트 :`;
-  ball.innerText = `볼 카운트 :`;
-  genNumber();
+  return baseArray;
 }
 
 function init() {
-  start.addEventListener("click", genNumber);
-  numberForm.addEventListener("submit", validateValue);
-  numberForm.addEventListener("submit", showOnBoard);
-  restart.addEventListener("click", reset);
+  start.addEventListener("click", genArray);
+  form.addEventListener("submit", checkNum);
 }
+
 init();

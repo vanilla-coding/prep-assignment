@@ -11,51 +11,55 @@
       href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" href="images/favicon.ico" />
+    <link rel="icon" href="/images/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Baseball Project</title>
   </head>
 
   <body>
-    <div class="image-box">
-      <img src="images/vanilla_coding_logo.png" />
-      <h1>Baseball</h1>
-    </div>
-
     <!-- 야구게임 Start -->
     <main class="baseball">
-      <div class="wrapper">
-        <button class="js-start start">게임 시작</button>
-        <form class="form js-form display__none">
-          <input
-            type="text"
-            placeholder="세자리 숫자를 입력하세요"
-            class="js-input"
-            maxlength="3"
-            minlength="3"
-          />
-        </form>
-        <section class="js-board display__none">
-          <div class="board-column-left">
-            <p class="js-strike strike">스트라이크 카운트 :</p>
-            <p class="js-ball ball">볼 카운트 :</p>
-            <p class="js-remaining remaining">남은 기회 : 10</p>
-          </div>
-          <div class="board-column-right">
-            <p class="game-over js-gameOver display__none">
-              숫자를 맞췄어요! 게임을 다시 시작하시겠어요?
-            </p>
-            <p class="lose js-lose display__none">
-              기회를 다 사용했어요. 다시 시작하시겠어요?
-            </p>
-            <button class="restart js-restart display__none">
-              다시 시작하기
-            </button>
-          </div>
-        </section>
-      </div>
-      <!-- 야구게임 End -->
+      <section class="baseball__intro">
+        <div class="baseball__image-box">
+          <img src="images/vanilla_coding_logo.png" />
+        </div>
+        <h1 class="baseball__title">Baseball</h1>
+      </section>
+      <section class="baseball__game game">
+        <div class="game__wrapper">
+          <button class="js-start game__start">게임 시작</button>
+          <form class="js-form game__form form display__none">
+            <input
+              type="text"
+              placeholder="세자리 숫자를 입력하세요"
+              class="js-input form__input"
+              maxlength="3"
+              minlength="3"
+            />
+          </form>
+          <section class="game__board condition display__none">
+            <div class="board__column-top">
+              <p class="js-strike strike">스트라이크 카운트 :</p>
+              <p class="js-ball ball">볼 카운트 :</p>
+              <p class="js-remainder remainder">남은 기회 : 10</p>
+            </div>
+            <div class="board-column-bottom">
+              <p class="win js-win display__none">
+                숫자를 맞췄어요! 게임을 다시 시작하시겠어요?
+              </p>
+              <p class="lose js-lose display__none">
+                기회를 다 사용했어요. 다시 시작하시겠어요?
+              </p>
+              <button class="restart js-restart display__none">
+                다시 시작하기
+              </button>
+            </div>
+          </section>
+        </div>
+      </section>
     </main>
+    <!-- 야구게임 End -->
+
     <script src="index.js"></script>
   </body>
 </html>

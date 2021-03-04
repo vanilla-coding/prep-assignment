@@ -1,35 +1,55 @@
-html,
-body {
+*,
+*::after,
+*::before {
   box-sizing: border-box;
 }
+
 body {
   background-image: url("./images/bg.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
   font-family: "Varela Round", sans-serif;
+  margin: 0 1rem;
+
+  height: 100%;
 }
 
-h1 {
+/*JS class manipulation*/
+.display__none {
+  display: none;
+}
+
+.display__block {
+  display: block;
+}
+
+.baseball {
+  height: 100%;
+}
+.baseball__intro {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.baseball__image-box > img {
+  width: 42.5%;
+  display: block;
+  margin: 0 auto;
+}
+.baseball__title {
   font-family: "Pacifico", cursive;
   text-align: center;
   font-size: 72px;
 }
 
-.image-box {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.baseball {
-  width: 100%;
+.game {
   height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
+  width: 100%;
 }
-.wrapper {
+.game__wrapper {
   background-color: rgba(0, 0, 0, 0.5);
   width: 860px;
   height: 480px;
@@ -40,7 +60,8 @@ h1 {
   justify-content: center;
   margin: 0 auto;
 }
-.start {
+
+.game__start {
   font-size: 24px;
   padding: 15px 20px;
   border-radius: 10px;
@@ -50,6 +71,7 @@ h1 {
   transition: background-color, color 0.33s linear;
   box-shadow: 2px 10px 25px -12px rgba(87, 87, 77, 1);
 }
+
 .form {
   margin-top: 20px;
 }
@@ -80,13 +102,13 @@ h1 {
   justify-content: center;
   align-items: center;
 }
-.board-column-left {
+.board-column-top {
   width: 100%;
   font-size: 24px;
   display: flex;
   justify-content: space-evenly;
 }
-.board-column-right {
+.board-column-bottom {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -97,9 +119,13 @@ h1 {
 .ball {
   color: rgb(142, 221, 101);
 }
+.remainder {
+  color: #f9f9f9;
+}
 .game-over,
 .lose {
   font-size: 24px;
+  color: #fcfcfc;
 }
 .restart {
   width: 100px;
@@ -115,11 +141,4 @@ h1 {
 .restart:hover {
   background-color: #0f4c81;
   color: #fcfcfc;
-}
-/* javascript Class */
-.display__none {
-  display: none;
-}
-.display__block {
-  display: block;
 }
