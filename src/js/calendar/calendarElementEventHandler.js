@@ -2,14 +2,16 @@ import SelectedDate from "./SelectedDate";
 import { $differenceWithClickedDate } from "../elements";
 import Now from "./Now";
 
+const CLASSNAME_PREVIOUS_MONTH_BUTTON = "previous-month-button";
+const CLASSNAME_NEXT_MONTH_BUTTON = "next-month-button";
 export const handleMoveMonthButton = (calendarController, event) => {
   return (event) => {
     const clickedButton = event.target.classList[1];
 
-    if (clickedButton === "previous-month-button") {
+    if (clickedButton === CLASSNAME_PREVIOUS_MONTH_BUTTON) {
       SelectedDate.setMonthOfDateObject(SelectedDate.getMonth() - 1);
     }
-    if (clickedButton === "next-month-button") {
+    if (clickedButton === CLASSNAME_NEXT_MONTH_BUTTON) {
       SelectedDate.setMonthOfDateObject(SelectedDate.getMonth() + 1);
     }
     SelectedDate.setDateNumberOfDateObject(1);
@@ -19,6 +21,8 @@ export const handleMoveMonthButton = (calendarController, event) => {
   };
 };
 
+const SELECTED_DATE_TEXT_TODAY = "Today";
+const CLASSNAME_CLICKED_DATE = "dateClicked";
 export const createHandleClickDateOfCalendar = (
   dateOfCalendar,
   $dateElement,
@@ -33,13 +37,13 @@ export const createHandleClickDateOfCalendar = (
     );
 
     if (Now.isDateToday(SelectedDate.getDateObject())) {
-      $differenceWithClickedDate.textContent = "Today";
+      $differenceWithClickedDate.textContent = SELECTED_DATE_TEXT_TODAY;
     } else {
       printDateDifference(dateDifferenceFromSelectedDateToNow);
     }
 
     calendarController.displayCalendarContents();
-    $dateElement.classList.add("dateClicked");
+    $dateElement.classList.add(CLASSNAME_CLICKED_DATE);
 
     const board = dateOfCalendar.getBoard();
     if (board.getVisibility()) {

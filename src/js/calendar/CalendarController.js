@@ -11,6 +11,7 @@ import {
   $selectedMonthText,
   $selectedYearText,
   $allDatesInCalendar,
+  $header,
 } from "../elements";
 import {
   handleMoveMonthButton,
@@ -61,9 +62,8 @@ export default class CalendarController {
   }
 
   #printHeader() {
-    const header = document.querySelectorAll("table tbody tr th");
     let i = 0;
-    header.forEach((th) => {
+    $header.forEach((th) => {
       th.textContent = DAYS[i++];
     });
   }
@@ -93,6 +93,9 @@ export default class CalendarController {
     }
   }
 
+  CLASSNAME_DATE_INSIDE = "date-inside";
+  CLASSNAME_IS_TODAY = "isToday";
+  CLASSNAME_IS_NOT_TODAY = "isNotToday";
   #printDates() {
     const {
       thisMonth,
@@ -107,11 +110,11 @@ export default class CalendarController {
       const $dateElement = $allDatesInCalendar[indexForDate];
       const dateOfCalendar = thisMonth.getDateOfCalendarByNumber(i);
       $dateElement.textContent = i;
-      $dateElement.classList.add("date-inside");
+      $dateElement.classList.add(this.CLASSNAME_DATE_INSIDE);
       if (Now.isDateToday(dateOfCalendar.getDateObject())) {
-        $dateElement.classList.add("isToday");
+        $dateElement.classList.add(this.CLASSNAME_IS_TODAY);
       } else {
-        $dateElement.classList.add("isNotToday");
+        $dateElement.classList.add(this.CLASSNAME_IS_NOT_TODAY);
       }
       const handleClickDateOfCalendar = createHandleClickDateOfCalendar(
         dateOfCalendar,
@@ -128,11 +131,12 @@ export default class CalendarController {
     }
   }
 
+  CLASSNAME_TASK_NOTIFICATION = "task-notification";
   #createAndAddNotificationOnDate(dateOfCalendar, $dateElement) {
     const taskLength = dateOfCalendar.getBoard().getTaskLength();
     if (taskLength > 0) {
       const $notification = document.createElement("div");
-      $notification.classList.add("task-notification");
+      $notification.classList.add(this.CLASSNAME_TASK_NOTIFICATION);
       $notification.textContent = taskLength;
       $dateElement.appendChild($notification);
     }

@@ -13,8 +13,6 @@ export default class BoardRepository {
     BoardRepository.#boards.push(board);
   }
 
-  static hasBoardInRepository() {}
-
   static getBoards() {
     return this.#boards;
   }

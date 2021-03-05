@@ -9,6 +9,9 @@ export const $selectedMonthText = document.getElementById(
 );
 export const $selectedDayText = document.getElementById("jsSelectedDayText");
 export const $selectedYearText = document.getElementById("jsSelectedYearText");
+
+export const $header = document.querySelectorAll("table tbody tr th");
+
 export const $allDatesInCalendar = document.querySelectorAll(
   "#jsCalendarTable > tbody td"
 );

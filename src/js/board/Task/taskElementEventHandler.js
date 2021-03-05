@@ -27,11 +27,12 @@ export const handleClickModifyingContent = (
   };
 };
 
+const ERROR_MESSAGE_NO_CONTENT_INPUT = "내용이 없습니다.";
 const handleEnterModifyingInput = (task, $inputElementForModifying, event) => {
   if (event.keyCode === 13) {
     const newTextContent = $inputElementForModifying.value;
     if (newTextContent.trim() === "") {
-      alert("내용이 없습니다.");
+      alert(ERROR_MESSAGE_NO_CONTENT_INPUT);
     } else {
       task.updateTextContent(newTextContent);
     }

@@ -87,6 +87,7 @@ export default class BoardController {
     this.$boardContent.appendChild(this.$taskList);
   }
 
+  TASK_LIST_TITLE = `TASK for`;
   #addContent() {
     this.$boardAddTaskButton.innerHTML = `<i class="fas fa-plus"></i>`;
     this.$boardDeleteAllButton.innerHTML = `<i class="fas fa-trash-alt"></i> ALL`;
@@ -97,7 +98,7 @@ export default class BoardController {
       monthNumber,
       dateNumber,
     ] = this.#dateOfCalendar.getNumberListOfDateObject();
-    this.$boardDateText.textContent = `TASK for ${
+    this.$boardDateText.textContent = `${this.TASK_LIST_TITLE} ${
       monthNumber + 1
     }.${dateNumber}`;
   }
@@ -123,9 +124,10 @@ export default class BoardController {
     tasks.forEach(TaskController.createAndAppendTaskElement);
   }
 
+  TASK_IDENTIFIER_PREFIX = `.task-list--`;
   resetBoardElement() {
     const taskListElement = document.querySelector(
-      `.task-list--${this.#identifier}`
+      `${this.TASK_IDENTIFIER_PREFIX}${this.#identifier}`
     );
     taskListElement.innerHTML = "";
   }
