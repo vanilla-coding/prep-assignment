@@ -18,9 +18,9 @@ function currentDay() {
 function currentMonth() {
     const months = new Array("JAN", "FEB", "MAR", "APR", "MAY", "JUN",
     "JUL", "AUG", "SEP", "OCT", "NOV", "DEC");
-    const todayMonth = months[today.getMonth()];
-    const todayYear = today.getFullYear();
-    month.innerText = `${todayMonth} ${todayYear}`
+    const thisMonth = months[today.getMonth()];
+    const thisYear = today.getFullYear();
+    month.innerText = `${thisMonth} ${thisYear}`
 }
 
 // 달력 행&열 추가, 일자 채우기
