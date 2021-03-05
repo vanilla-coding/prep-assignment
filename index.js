@@ -26,7 +26,6 @@ function showResult(strike, ball) {
 function compareAnswer() {
   let indexNumberSame = 0;
   let numberSame = 0;
-  console.log(answer);
 
   for (let i = 0; i < 3; i++) {
     for (let j = 0; j < 3; j++) {
