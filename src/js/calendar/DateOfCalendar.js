@@ -1,6 +1,8 @@
 import Board from "../board/Board";
+import BoardRepository from "../board/BoardRepository";
 import Status from "../board/Status";
-import Task from "../board/Task";
+import Task from "../board/Task/Task";
+import SelectedDate from "./SelectedDate";
 
 export default class DateOfCalendar {
   #monthBelongTo;
@@ -8,7 +10,7 @@ export default class DateOfCalendar {
   #number;
   #monthNumber;
   #yearNumber;
-  #taskRepository = [];
+  #board;
 
   constructor(dateNumber, monthObject, yearObject) {
     this.#monthBelongTo = monthObject;
@@ -16,6 +18,7 @@ export default class DateOfCalendar {
     this.#number = dateNumber;
     this.#yearNumber = yearObject.getNumber();
     this.#monthNumber = monthObject.getNumber();
+    this.#board = BoardRepository.createAndGetNewBoard(this);
   }
 
   getDateNumber() {
@@ -26,47 +29,29 @@ export default class DateOfCalendar {
     return new Date(this.#yearNumber, this.#monthNumber, this.#number);
   }
 
-  getAllTasks() {
-    this.sortTasks();
-    return this.#taskRepository;
+  getNumberListOfDateObject() {
+    return [this.#yearNumber, this.#monthNumber, this.#number];
   }
 
-  sortTasks() {
-    this.#taskRepository.sort((task1, task2) => {
-      const statusList = Status.getRepository();
-      const index1 = statusList.indexOf(task1.getStatus().getText());
-      const index2 = statusList.indexOf(task2.getStatus().getText());
-      return index1 - index2;
-    });
-  }
-
-  addTask(content) {
-    const newTask = new Task(content, this);
-    this.#taskRepository.push(newTask);
-  }
-
-  deleteTask(task) {
-    const taskIndex = this.#taskRepository.indexOf(task);
-    this.#taskRepository.splice(taskIndex, 1);
-  }
-
-  deleteAllTasks() {
-    this.#taskRepository = [];
-  }
-
-  getTaskLength() {
-    return this.#taskRepository.length;
+  getBoard() {
+    return this.#board;
   }
 
   handleClicked() {
-    if (!Board.getVisibility()) {
-      Board.display(this);
-      return;
+    if (Board.getVisibility()) {
+      if (SelectedDate.isDateSameWithPreviousDate(this)) {
+        Board.deleteSelfElementByDateObject(this);
+        return;
+      }
     }
+    const board = new Board(this);
+
     if (Board.isDateSameWithPreviousDate(this)) {
-      Board.hide();
+      Board.delete();
       return;
     }
-    Board.display(this);
+
+    board.display();
+    return;
   }
 }

@@ -3,7 +3,7 @@ import Year from "./Year";
 export default class YearRepository {
   static #years = [];
 
-  static createNewYear(dateObject) {
+  static createNewYearByDateObject(dateObject) {
     const newYear = new Year(dateObject.getFullYear());
     YearRepository.#addYearToRepository(newYear);
   }
@@ -20,9 +20,13 @@ export default class YearRepository {
     );
   }
 
-  static getYear(dateObject) {
+  static getYearByDateObject(dateObject) {
     return YearRepository.#years.find((yearObject) => {
       return yearObject.getNumber() === dateObject.getFullYear();
     });
+  }
+
+  static getYearRepository() {
+    return this.#years;
   }
 }

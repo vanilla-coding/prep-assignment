@@ -192,14 +192,6 @@ table .task-notification {
   border-radius: 20px;
 }
 
-.board--invisible {
-  display: none;
-}
-
-.board--visible {
-  display: block;
-}
-
 .board__form-container {
   position: fixed;
   top: 0%;
@@ -207,14 +199,6 @@ table .task-notification {
   background-color: rgba(128, 128, 128, 0.5);
   width: 100%;
   height: 100%;
-}
-
-.board__form-container--invisible {
-  display: none;
-}
-
-.board__form-container--visible {
-  display: block;
 }
 
 .board__form {
@@ -259,14 +243,17 @@ table .task-notification {
 }
 
 .board__date--text {
-  font-size: 20px;
+  font-size: 2vw;
+  text-align: center;
+  line-height: 2vw;
 }
 
 .board__button {
   border-radius: 10px;
-  background-color: transparent;
+  /* background-color: transparent; */
   border: 0px solid black;
   cursor: pointer;
+  min-width: 50px;
 }
 
 .board__button:hover {
@@ -281,12 +268,24 @@ table .task-notification {
 .board__button--add {
   background-color: rgb(245, 245, 245);
   font-weight: 300;
+  flex: 1;
+}
+
+.board__date--text {
+  flex: 5;
 }
 
 .board__button--delete-all {
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   font-weight: 100;
+  flex: 1;
+  margin-right: 3px;
+}
+
+.board__button .board__button--close {
+  background-color: red;
+  flex: 1;
 }
 
 .board .board__content {

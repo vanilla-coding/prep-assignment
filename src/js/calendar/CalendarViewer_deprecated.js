@@ -2,24 +2,24 @@ import { DAYS } from "./day";
 import Month from "./Month";
 import SelectedDate from "./SelectedDate";
 import YearRepository from "./YearRepository";
-import { handleDateClick } from "./calendarEventHandler";
+import { handleDateClick } from "./calendarEventHandler_deprecated";
 import {
   $selectedDateText,
   $selectedMonthText,
   $selectedDayText,
   $selectedYearText,
   $allDatesInCalendar,
-} from "../element";
+} from "../elements";
 import Now from "./Now";
 
-export default class CalendarViewer {
+export default class CalendarViewer_deprecated {
   static #dateEventListenerRepository = {};
 
   static display() {
-    CalendarViewer.#displayHeader();
-    CalendarViewer.#displayToday();
+    CalendarViewer_deprecated.#displayHeader();
+    CalendarViewer_deprecated.#displayToday();
 
-    CalendarViewer.#displaySelectedCalendar();
+    CalendarViewer_deprecated.#displaySelectedCalendar();
   }
 
   static #displayHeader() {
@@ -53,7 +53,7 @@ export default class CalendarViewer {
 
   static #displaySelectedDates() {
     if (!YearRepository.hasYearInRepository(SelectedDate.getFullYear())) {
-      YearRepository.createNewYear(SelectedDate);
+      YearRepository.createNewYearByDateObject(SelectedDate);
     }
     this.#resetCalendarDates();
     this.#printCalendarDates();
@@ -72,7 +72,9 @@ export default class CalendarViewer {
   }
 
   static #printCalendarDates() {
-    const thisYear = YearRepository.getYear(SelectedDate.getDateObject());
+    const thisYear = YearRepository.getYearByDateObject(
+      SelectedDate.getDateObject()
+    );
     const thisMonth = thisYear.getMonth(SelectedDate.getDateObject());
     let dayOfFirstDate = thisMonth.getDayOfFirstDate();
     let lastDate = thisMonth.getLastDate();
@@ -96,7 +98,7 @@ export default class CalendarViewer {
       );
       $dateElement.addEventListener("click", clickCallBack);
 
-      CalendarViewer.#createAndAddNotificationOnDate(
+      CalendarViewer_deprecated.#createAndAddNotificationOnDate(
         dateOfCalendarInstance,
         $dateElement
       );

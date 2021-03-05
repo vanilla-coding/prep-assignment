@@ -1,12 +1,11 @@
-import CalendarController from "./CalendarController";
-import CalendarViewer from "./CalendarViewer";
+import CalendarViewer_deprecated from "./CalendarViewer_deprecated";
 import Now from "./Now";
 import SelectedDate from "./SelectedDate";
-import { $differenceWithClickedDate } from "../element";
+import { $differenceWithClickedDate } from "../elements";
 import {
   handleBoardViewWhenDateClick,
   removeBoard,
-} from "../board/boardEventHandler";
+} from "../board/boardEventHandler_deprecated";
 
 export const handleMoveMonthButton = (event) => {
   const clickedButton = event.target.classList[1];
@@ -19,16 +18,16 @@ export const handleMoveMonthButton = (event) => {
   if (clickedButton === "next-month-button") {
     SelectedDate.setMonthOfDateObject(SelectedDate.getMonth() + 1);
   }
-  SelectedDate.setDateOfDateObject(1);
+  SelectedDate.setDateNumberOfDateObject(1);
   $differenceWithClickedDate.textContent = "";
-  CalendarViewer.display();
+  CalendarViewer_deprecated.display();
 };
 
 export let previousClickedDateObject;
 export const handleDateClick = (dateOfCalendar, $dateElement) => {
   return () => {
     previousClickedDateObject = SelectedDate.getDateObject();
-    SelectedDate.setDateOfDateObject(dateOfCalendar.getDateNumber());
+    SelectedDate.setDateNumberOfDateObject(dateOfCalendar.getDateNumber());
 
     handleTodayClick(dateOfCalendar);
     handleClickDifferentDate(dateOfCalendar, $dateElement);
@@ -38,7 +37,7 @@ export const handleDateClick = (dateOfCalendar, $dateElement) => {
 
 const handleTodayClick = (dateOfCalendar) => {
   if (Now.isDateToday(dateOfCalendar.getDateObject())) {
-    CalendarViewer.display();
+    CalendarViewer_deprecated.display();
     $differenceWithClickedDate.textContent = "Today";
     return;
   }
@@ -51,7 +50,7 @@ const handleClickDifferentDate = (dateOfCalendar, $dateElement) => {
     (dateOfCalendar.getDateObject() - now) / ONE_DAY
   );
 
-  CalendarViewer.display();
+  CalendarViewer_deprecated.display();
 
   if ($dateDifferenceFromNow) {
     displayClickedResult($dateElement, $dateDifferenceFromNow);

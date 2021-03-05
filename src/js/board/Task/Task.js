@@ -1,16 +1,20 @@
-import Status from "./Status";
+import Status from "../Status";
 
 export default class Task {
   #createdTime;
   #content;
   #status;
   #assignedDate;
+  #assignedBoard;
+  #boardController;
 
-  constructor(content, assignedDate) {
+  constructor(content, board) {
     this.#createdTime = new Date();
     this.#content = content;
     this.#status = new Status();
-    this.#assignedDate = assignedDate;
+    this.#assignedDate = board.getDateOfCalendar();
+    this.#boardController = board.getBoardController();
+    this.#assignedBoard = board;
   }
 
   getContent() {
@@ -28,6 +32,15 @@ export default class Task {
   getAssignedDate() {
     return this.#assignedDate;
   }
+
+  getBoardController() {
+    return this.#boardController;
+  }
+
+  getAssignedBoard() {
+    return this.#assignedBoard;
+  }
+
   updateTextContent(newTextContent) {
     this.#content = newTextContent;
   }

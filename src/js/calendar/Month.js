@@ -45,7 +45,7 @@ export default class Month {
     return this.#dayOfFirstDate;
   }
 
-  getLastDate() {
+  getLastDateNumber() {
     return this.#lastDate;
   }
 

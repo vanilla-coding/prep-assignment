@@ -1,3 +1,8 @@
+export const $todayDayText = document.getElementById("jsTodayDay");
+export const $todayDateText = document.getElementById("jsTodayDate");
+export const $todayMonthText = document.getElementById("jsTodayMonth");
+export const $todayYearText = document.getElementById("jsTodayYear");
+
 export const $selectedDateText = document.getElementById("jsSelectedDateText");
 export const $selectedMonthText = document.getElementById(
   "jsSelectedMonthText"
@@ -14,21 +19,8 @@ export const $nextMonthButton = document.getElementById("jsNextMonthButton");
 export const $differenceWithClickedDate = document.getElementById(
   "jsDifferenceWithClickedDate"
 );
-export const $boardElement = document.getElementById("jsBoard");
-export const $boardDateText = document.getElementById("jsBoardDateText");
-export const $boardButtonDeleteAll = document.getElementById(
-  "jsBoardButtonDeleteAll"
-);
-export const $boardButtonAdd = document.getElementById("jsBoardButtonAdd");
-export const $boardFormContainer = document.getElementById(
-  "jsBoardFormContainer"
-);
 
 export const $taskContentTextInput = document.getElementById(
   "jsTaskContentTextInput"
 );
-export const $taskSubmissionOK = document.getElementById("jsTaskSubmissionOK");
-export const $taskSubmissionCancel = document.getElementById(
-  "jsTaskSubmissionCancel"
-);
-export const $taskList = document.getElementById("jsTaskList");
+export const $calendar = document.querySelector(".calendar");

@@ -8,11 +8,11 @@ import {
   $taskSubmissionOK,
   $taskSubmissionCancel,
   $taskList,
-} from "../element";
+} from "../elements";
 
-import { previousClickedDateObject } from "../calendar/calendarEventHandler";
+import { previousClickedDateObject } from "../calendar/calendarEventHandler_deprecated";
 import Status from "./Status";
-import CalendarViewer from "../calendar/CalendarViewer";
+import CalendarViewer_deprecated from "../calendar/CalendarViewer_deprecated";
 
 const ERROR_MESSAGE_NO_CONTENT_IN_TASK = "할 일에 내용이 없습니다!";
 
@@ -87,7 +87,7 @@ const handleClickTaskSubmissionOK = () => {
       clickedDateOfCalendar.addTask($taskContentTextInput.value);
       removeTaskSubmissionForm();
       displayBoard();
-      CalendarViewer.display();
+      CalendarViewer_deprecated.display();
       return;
     }
     alert(ERROR_MESSAGE_NO_CONTENT_IN_TASK);
@@ -125,7 +125,7 @@ const handleBoardButtonDeleteAll = () => {
   return () => {
     clickedDateOfCalendar.deleteAllTasks();
     displayBoard();
-    CalendarViewer.display();
+    CalendarViewer_deprecated.display();
   };
 };
 
@@ -295,6 +295,6 @@ const handleClickDeleteTaskButton = (task) => {
   return () => {
     task.getAssignedDate().deleteTask(task);
     displayBoard();
-    CalendarViewer.display();
+    CalendarViewer_deprecated.display();
   };
 };

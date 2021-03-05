@@ -1,6 +1,4 @@
 export default class Status {
-  // 초기 상태 정보 목록
-  // 커스텀 상태 정보
   #statusName;
   static #TODO = "TODO";
   static #DOING = "DOING";

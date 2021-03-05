@@ -1,15 +1,22 @@
 export default class SelectedDate {
   static #date = new Date();
+  static #previousSelectedDate = null;
 
   static getDateObject() {
     return new Date(SelectedDate.#date.valueOf());
   }
 
+  static getPreviousSelectedDate() {
+    return SelectedDate.#previousSelectedDate;
+  }
+
   static setMonthOfDateObject(newMonthNumber) {
+    SelectedDate.#previousSelectedDate = new Date(SelectedDate.#date.valueOf());
     SelectedDate.#date.setMonth(newMonthNumber);
   }
 
-  static setDateOfDateObject(newDateNumber) {
+  static setDateNumberOfDateObject(newDateNumber) {
+    SelectedDate.#previousSelectedDate = new Date(SelectedDate.#date.valueOf());
     SelectedDate.#date.setDate(newDateNumber);
   }
 
@@ -27,5 +34,16 @@ export default class SelectedDate {
 
   static getFullYear() {
     return SelectedDate.#date.getFullYear();
+  }
+
+  static isSelectedDateSameWithPreviousSelectedDate() {
+    return (
+      SelectedDate.#date.getDate() ===
+        SelectedDate.#previousSelectedDate.getDate() &&
+      SelectedDate.#date.getMonth() ===
+        SelectedDate.#previousSelectedDate.getMonth() &&
+      SelectedDate.#date.getFullYear() ===
+        SelectedDate.#previousSelectedDate.getFullYear()
+    );
   }
 }
