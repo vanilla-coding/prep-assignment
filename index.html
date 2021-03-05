@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Baseball Project</title>
+  </head>
+
+  <body>
+    <section>
+      <div class="image-box">
+        <img src="images/vanilla_coding_logo.png" />
+      </div>
+      <h1>Baseball</h1>
+      <h2>3자리 숫자를 입력하세요! 기회는 10번 입니다😁</h2>
+      <h3>으쌰라 으쌰 으쌰라 으쌰⚾</h3>
+      <!-- 야구게임 Start -->
+      <form>
+        <input type="text" minlength="3" maxlength="3"/>
+        <button>Enter</button>
+        <button class="reset">다시 풀기</button>
+      </form>
+
+      <script>
+        var h3 = document.querySelector("h3");
+        var form = document.querySelector("form");
+        var input = form.querySelector("input");
+        var resetBtn = form.querySelector(".reset");
+
+
+        var numArray;
+        var randomArray;
+        var count;
+        var chance;
+
+        function getNumber(){
+              numArray = [0,1,2,3,4,5,6,7,8,9];
+              randomArray = [];
+              count = 0;
+              chance =10;
+              
+              for(var i=0; i<3; i++){
+                var randomNum = numArray.splice(
+                  Math.floor(Math.random()*(9 - i)),1//1부터 시작한다. 
+                )[0];
+                randomArray.push(randomNum); 
+              }
+        }
+        getNumber(); // 랜덤 넘버 호출
+        console.log(randomArray);
+
+        form.addEventListener("submit", function(e){
+          e. preventDefault();
+          var array = input.value;
+          count ++;
+          chance --;
+
+          if (array === randomArray.join("")){
+            h3.innerText = "홈~~~런! 😎"
+            input.value = "";
+            input.focus;
+            getNumber();
+            } 
+            else{
+            var answerArray = array.split('');
+            var strlike = 0;
+            var ball = 0;
+
+            for(var i = 0; i<3; i++){
+              if(Number(answerArray[i]) === randomArray[i]){
+                strlike ++;
+              } else if(randomArray.indexOf(Number(answerArray[i]))>-1){
+                ball++;
+              }
+            }
+            if (count>10){
+              h3.innerText = `다음 기회에! 정답은 ${randomArray}입니다.`;
+              input.value = "";
+              input.focus;
+              getNumber();
+            }else{
+              h3.innerText = `${strlike}strlike, ${ball}ball 입니다. ${chance}번 남았습니다`;
+              input.value = "";
+              input.focus;
+              console.log(chance);
+            }
+          }
+        });
+
+        function reset (){
+          numArray = [0,1,2,3,4,5,6,7,8,9];
+          randomArray = [];
+            for(var i = 0; i<3; i++){
+              var randomNum = numArray.splice(
+              Math.floor(Math.random()*(9-i)),1)[0];
+              randomArray.push(randomNum);
+          }
+          h3.innerText = "3자리 숫자를 입력하세요! 기회는 10번 입니다😁";
+         console.log(randomArray);
+        }
+
+        resetBtn.addEventListener("click", function(e) {
+            e.preventDefault();
+            reset();
+            input.value = "";
+            input.focus();
+            count = 0;
+            chance = 10;
+            });
+
+      </script>
+    </section>
+
+    <script src="index.js"></script>
+
+  </body>
+</html>
