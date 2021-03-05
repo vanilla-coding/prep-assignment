@@ -1,0 +1,75 @@
+body {
+  background-image: url("./images/bg.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "Varela Round", sans-serif;
+}
+
+h1 {
+  font-family: "Pacifico", cursive;
+  text-align: center;
+  font-size: 72px;
+}
+
+.image-box {
+  display: flex;
+  justify-content: center;
+  margin-top: 3.125em;
+}
+
+.image-box img {
+  width: 9.375em;
+}
+
+.current-day {
+  font-weight: bold;
+  text-align: center;
+  font-size: 2.5em;
+}
+
+.current-day p {
+  margin: 1.2rem;
+}
+
+.current-month {
+  text-align: center;
+  margin: 2.125em auto -1.25em;
+  font-size: 1.5em;
+}
+
+.calendar {
+  position: relative;
+  width: 16.875em;
+  margin: 0 auto;
+}
+
+table {
+  margin: 3.125em auto 0;
+  text-align: center;
+}
+
+.button {
+  position: absolute;
+  top: 50%;
+  margin-top: -1.25em;
+  width: 5.5em;
+  height: 2.5em;
+  font-size: 1.25em;
+
+  background: none;
+  border: none;
+}
+
+.button.prev {
+  left: -100px;
+}
+
+.button.next {
+  right: -100px;
+}
+@media screen and (max-width: 48em) {
+  .image-box,
+  h1 {
+    display: none;
+  }
+}
