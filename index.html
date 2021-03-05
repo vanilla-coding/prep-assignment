@@ -5,7 +5,7 @@
     <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
     <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
     <link rel = "stylesheet" href="index.css">
-    <link rel = "icon" href="favicon.ico" type = "image/x-icon">
+    <link rel = "icon" href="images/favicon.ico" type = "image/x-icon">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -14,39 +14,76 @@
 </head>
 <body>
     <div class = "logo">
-        <img src = "vanilla_coding_logo.png">
+        <img src = "images/vanilla_coding_logo.png">
     </div>
     <h1>Calendar</h1>
-    <div class = "js-today">
-        <h2 class = "day"></h2>
-        <h2 class = "date"></h2>
-        <h3 class = "monthyear"></h3>
+    <h2 class = "t-day"></h2>
+    <h2 class = "t-date"></h2>
+    <div class = "month-year">
+        <p></p>
     </div>
-    </div> 
-    <table id="calendar_table" >
-        <tr id="mainBar">
-            <td id="yearmonth" colspan="7"></td>
-        </tr>
-        <tr>
-			<td>SUN</td>
-			<td>MON</td>
-			<td>TUE</td>
-			<td>WED</td>
-			<td>THU</td>
-			<td>FRI</td>
-			<td>SAT</td>
-		</tr>
-    </table>
-        <div id="preventMonth">
-            <button id = "preventMonth_Button" type="button" onclick="prevMonth()">
-                <<
-            </button>
-        </div>
-        <div id="nextMonth">
-            <button id = "nextMonth_Button" type="button" onclick="nextMonth()">
-                >>
-            </button>
-        </div>
+    <div class = "js-calendar">
+        <table class="calendar-table">
+            <th>SUN</th>
+            <th>MON</th>
+            <th>TUE</th>
+            <th>WED</th>
+            <th>THU</th>
+            <th>FRI</th>
+            <th>SAT</th>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <button class = "prevMonth-Button">
+            <<
+        </button>
+        <button class = "nextMonth-Button">
+            >>
+        </button>
+    </div>
     <script src = "index.js"></script>
 </body>
 </html>

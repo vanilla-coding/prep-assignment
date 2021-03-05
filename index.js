@@ -1,122 +1,73 @@
-const todayContainer = document.querySelector(".js-today"),
-    dayTitle = todayContainer.querySelector(".day"),
-    dateTitle = todayContainer.querySelector(".date");
-    monthyearTitle = todayContainer.querySelector("h3");
-function getToday() {
-    const days = [
-        'SUN',
-        'MON',
-        'TUE',
-        'WED',
-        'THU',
-        'FRI',
-        'SAT',
-    ];
-    const months = [
-        'JAN',
-        'FEB',
-        'MAR',
-        'APR',
-        'MAY',
-        'JUN',
-        'JUL',
-        'AUG',
-        'SEP',
-        'OCT',
-        'NOV',
-        'DEC'
-    ];
-    const date = new Date();
-    const currentDay = date.getDay();
-    const currentDate = date.getDate();
-    const currentMonth = date.getMonth();
-    const currentYear = date.getFullYear();
-    dayTitle.innerText = `${days[currentDay]}`;
-    dateTitle.innerText = `${currentDate}`;
-    monthyearTitle.innerText = `${months[currentMonth]} ${currentYear}`;
-}
-function init() {
-    getToday();
-}
-init();
+var dayTitle = document.querySelector(".t-day"),
+	dateTitle = document.querySelector(".t-date"),
+	monthTitle = document.querySelector(".month-year")
+var today = new Date();
+var days = [
+	'SUN',
+	'MON',
+	'TUE',
+	'WED',
+	'THU',
+	'FRI',
+	'SAT'
+]
+var months = [
+	'JAN',
+	'FEB',
+	'MAR',
+	'APR',
+	'MAY',
+	'JUN',
+	'JUL',
+	'AUG',
+	'SEP',
+	'OCT',
+	'NOV',
+	'DEC'
+]
+var currentDay = today.getDay();
+dayTitle.innerText = `${days[currentDay]}`;
+var currentDate = today.getDate();
+dateTitle.innerText = `${currentDate}`;
+var currentMonth = today.getMonth();
+var currentYear = today.getFullYear();
+monthTitle.innerText = `${months[currentMonth]} ${currentYear}`;
 
-let today = new Date();
-let todayYear = today.getFullYear();
-let todayMonth = today.getMonth() + 1;
-console.log(todayMonth)
-let calendar = document.getElementById("calendar_table");
+var tableDates = document.querySelectorAll("td");
+function makeCalendar() {
+	var lastMonthEnd = new Date(currentYear, currentMonth + 1, 0),
+		lastDay = lastMonthEnd.getDay();
+	for (i = 0; i <= lastDay; i++) {
+		tableDates[i].innerText = "";
+	}
+	var howManyDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+	for (i = 1; i <= howManyDays[currentMonth]; i++) {
+		tableDates[i].innerText = i;
+	}
+}
+makeCalendar();
+tableDates[currentDate].style.color = "red";
 
-function buildCalendar(){
-	let firstDate = new Date(todayYear, todayMonth - 1, 1);
-	let lastDate = new Date(todayYear, todayMonth, 0);
-	let day = firstDate.getDay();
-	let week = Math.ceil(lastDate.getDate() / 7) + 1;
-	let today_yearMonth = todayYear + " - " + todayMonth;
-	let leftDays = 7;
-	let setDays = 1;
-	let nextMonthDate = 1;
-	console.log(lastDate);
-	for(i = 1; i < week; i++){
-   		let row = calendar.insertRow();
-		while(day != 0){
-			row.insertCell().innerHTML = "";
-			day -= 1;
-			leftDays -= 1;
-		}
-		while(leftDays != 0){
-			if(setDays > lastDate.getDate()){
-				row.insertCell().innerHTML = nextMonthDate;
-				leftDays -= 1;
-				nextMonthDate += 1;
-			}else{
-				row.insertCell().innerHTML = setDays;
-				setDays +=1;
-				leftDays -= 1;
-			}
-		}
-		leftDays = 7;
+//날짜를 클릭했을 때 상단의 요일 및 날짜 변경을 아래와 같이 구현해보려고 했는데 작동이 안 됩니다. 이유를 잘 모르겠습니다ㅠㅠ
+function handleClick(clickedDay) {
+	if (clickedDay < 7) {
+		dateTitle.innerText = days[clickedDay];
+	} else {
+		dateTitle.innerText = days[clickedDay % 7];
 	}
-	setDays -=1;
-	if(setDays != lastDate.getDate()){
-		let row = calendar.insertRow();
-		while(setDays != lastDate.getDate()){
-			setDays++;
-			leftDays--;
-			row.insertCell().innerHTML = setDays;
-		}
-		while(leftDays != 0){
-			row.insertCell().innerHTML = nextMonthDate;
-			nextMonthDate++;
-			leftDays--;
-		}
-	}
-	document.getElementById("yearMonth").innerHTML= today_yearMonth;
 }
-buildCalendar();
+function changeClickedDay() {
+	tableDates[clickedDay].addEventListener("click", handleClick);
+}
+changeClickedDay();
 
-function deleteCalendar(){
-	while(calendar.rows.length > 2){
-		calendar.deleteRow(2);
-	}
+//버튼도 이런 식으로 구현해보려고 했는데 작동이 안되네요.. 흑
+var prevButton = document.querySelector(".prevMonth-Button"),
+	nextButton = document.querySelector(".nextMonth-Button");
+function prevMonth() {
+	today.setDate(0);
+	currentMonth = today.getMonth();
+	currentYear = today.getFullYear();
+	makeCalendar();
 }
-
-function prevMonth(){
-	todayMonth = todayMonth - 1;
-	if(todayMonth == 0){
-		todayMonth = 12;
-		todayYear -= 1;
-	}
-	deleteCalendar();
-	today = new Date(todayYear, todayMonth - 1);
-	buildCalendar();
-}
-function nextMonth(){
-	todayMonth += 1;
-	if(todayMonth == 13){
-		todayMonth = 1;
-		todayYear = todayYear + 1;
-	}
-	deleteCalendar();
-	today = new Date(todayYear, todayMonth - 1);
-	buildCalendar();
-}
+prevButton.addEventListener("click", prevMonth);

@@ -1,5 +1,5 @@
 body {
-    background-image: url("bg.jpeg");
+    background-image: url("images/bg.jpeg");
     background-repeat: no-repeat;
     background-size: cover;
     font-family: 'Varela Round', sans-serif;;
@@ -21,31 +21,31 @@ h2 {
     font-size: 48px;
     margin: 20px;
 }
-h3 {
+.month-year {
     text-align: center;
     font-size: 24px;
     margin: 50px auto 20px;
 }
-#calendar_table {
+.js-calendar {
     position: relative;
+    width: 250px;
+    margin: auto;
 }
 table {
     margin: auto;
     text-align: center;
-}
+  }
 button {
     position: absolute;
     background: none;
     border: none;
-    top: 85%;
+    top: 50%;
     width: 100px;
-    height: 40px;
     font-size: 20px;
-    line-height: 40px;
-}
-#preventMonth_Button {
-    left: 10px;
-}
-#nextMonth_Button {
-    right: 10px;
-}
+  }
+.prevMonth-Button {
+    left: -100px;
+  }
+.nextMonth-Button {
+    right: -100px;
+  }
