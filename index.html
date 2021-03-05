@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet" />
+  <link rel="icon" href="/images/favicon.ico" />
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <title>Baseball Project</title>
+  <style>
+    .image-box{margin-top:100px;text-align:center;}
+    .image-box img{width:400px;}
+    h1{font-size:50px}
+    .baseball{width:400px;margin:0 auto; text-align:center;}
+    .baseball > *{height:30px;line-height:30px;box-sizing:border-box;vertical-align:middle;}
+    .baseball span{display:block;margin-top:10px;}
+  </style>
+</head>
+
+<body>
+  <!-- 커밋문제 브랜치 생성하여 테스트 -->
+  <section>
+    <div class="image-box">
+      <img src="images/vanilla_coding_logo.png" />
+    </div>
+    <h1>Baseball</h1>
+
+    <!-- 야구게임 Start -->
+    <div class="baseball">
+      <input type="text" id="userNum">
+      <button type="button" id="btnStart" onclick="makeRanNum(); this.onclick=null;">게임 START</button>
+      <button type="button" id="btnConfirm" onclick="confirm();">확인</button>
+      <button type="button" id="btnRestart" onclick="restart();">재시작</button>
+      <span id="txt"></span>
+    </div>
+
+    <!-- 야구게임 End -->
+  </section>
+
+  <script src="index.js"></script>
+  <script>
+  // 랜덤 3자리 숫자 생성
+   let makeRanNum = function () {
+      const numbers = [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ];
+
+      let pickNumbers = [];
+      
+      for (let i = 0; i < 3; i++) {
+        const randomNum = Math.floor(Math.random() * numbers.length);
+        pickNumbers[i] = numbers.splice(randomNum, 1)[0]
+      }
+      makeRanNum = pickNumbers;
+
+      console.log(makeRanNum);
+      return makeRanNum;
+    }
+    
+    let count = 1;
+
+    function confirm(){
+      let userNum = document.getElementById("userNum").value; // 사용자가 입력한 값
+
+      if (userNum.length > 3) {
+        alert("3글자만 입력해주세요!");
+      }
+
+      let userNumbers = userNum.split(""); // 사용자가 입력한 값을 쪼개 배열로 넣는다
+      
+      // 사용자에게 받아온 값 숫자형으로 변환
+      let userNumStrToNum = userNumbers.map(function(stringNum) {
+        return Number(stringNum);
+      });
+
+      // console.log(userNumStrToNum); // 숫자형 변환 확인
+      let strike = 0;
+      let ball = 0;
+
+      console.log(count++);
+
+      for(let i=0; i<makeRanNum.length; i++){
+        for(let j=0; j<userNumStrToNum.length; j++){
+          if(makeRanNum[i] == userNumStrToNum[j]){
+            if (i === j) {
+              console.log(strike++);
+            } else {
+              console.log(ball++);
+            }
+          }
+       }
+     } if (strike === 3) {
+      document.getElementById("txt").innerHTML = "홈런!!! 스트라이크!!!!";
+     } else {
+      document.getElementById("txt").innerHTML = strike + "스트라이크 " + ball + "볼";
+     }
+
+     if(count > 10){
+       alert("시도는 10번만 가능합니다. 재시작 버튼 ㄱㄱ");
+     }
+    }
+
+    let restart = makeRanNum;
+  </script>
+</body>
+
+</html>
