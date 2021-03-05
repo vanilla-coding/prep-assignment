@@ -13,6 +13,7 @@
     />
     <link rel="icon" href="/images/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <script defer src="index.js"></script>
     <title>Calendar Project</title>
   </head>
 
@@ -24,31 +25,29 @@
       <h1>Calendar</h1>
 
       <!-- 달력 Start -->
-      <div id="container"> 
-        <div id="calendarToday"></div> <!--요일 표시영역-->
-        <div id="calendarDate"></div> <!--날짜 표시영역-->
-        <div id="calendarMonthYear"></div> <!--달, 연도 표시영역-->
+      <div class="container"> 
+        <div class="calendarToday"></div> <!--요일 표시영역-->
+        <div class="calendarDate"></div> <!--날짜 표시영역-->
+        <div class="calendarMonthYear"></div> <!--달, 연도 표시영역-->
         
-        <div id="calendarTable"> <!--달력 표시영역-->
-          <table id="mainCalendar" align="center">
-            <tbody id="tablebody">
-              <th>SUN</th>
-              <th>MON</th>
-              <th>TUE</th>
-              <th>WED</th>
-              <th>THU</th>
-              <th>FRI</th>
-              <th>SAT</th>
-            </tbody>
+        <div class="calendarTable"> <!--달력 표시영역-->
+          <button class="prevBtn"><<</button> <!--한달전으로 이동-->
+          <table class="mainCalendar" align="center">
+            <tr>
+              <td>SUN</td>
+              <td>MON</td>
+              <td>TUE</td>
+              <td>WED</td>
+              <td>THU</td>
+              <td>FRI</td>
+              <td>SAT</td>
+            </tr>
           </table>
-          <button id="prevBtn"><<</button> <!--한달전으로 이동-->
-          <button id="nextBtn">>></button> <!--한달후로 이동-->
+        <button class="nextBtn">>></button> <!--한달후로 이동-->
         </div>
       </div>
-    
       <!-- 달력 End -->
     </section>
 
-    <script src="index.js"></script>
   </body>
 </html>
