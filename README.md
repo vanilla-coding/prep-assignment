@@ -38,11 +38,11 @@
 	├─  📁images
 	├─  📁js
 	│   ├─ 📁board
-  │   │  ├─ 📁task
+        │   │  ├─ 📁task
 	│   │  │   ├─ Task.js
 	│   │  │   ├─ TaskController.js
 	│   │  │   └─ taskElementEventHandler.js
-  │   │  └─ 📁taskSubmissionForm
+        │   │  └─ 📁taskSubmissionForm
 	│   │  │   ├─ TaskSubmissionForm.js
 	│   │  │   └─ TaskSubmissionFormEventHandler.js
 	│   │  ├─ Board.js
@@ -50,17 +50,17 @@
 	│   │  ├─ boardElementEventHandler.js
 	│   │  ├─ BoardRepository.js
 	│   │  ├─ Status.js
-  │   ├─ 📁calendar
-  │   │  ├─ Calendar.js
-  │   │  ├─ CalendarController.js
-  │   │  ├─ calendarElementEventHandler.js
-  │   │  ├─ DateOfCalendar.js
-  │   │  ├─ day.js
-  │   │  ├─ Month.js
-  │   │  ├─ Now.js
-  │   │  ├─ SelctedDate.js
-  │   │  ├─ Year.js
-  │   │  ├─ YearRepository.js
+        │   ├─ 📁calendar
+        │   │  ├─ Calendar.js
+        │   │  ├─ CalendarController.js
+        │   │  ├─ calendarElementEventHandler.js
+        │   │  ├─ DateOfCalendar.js
+        │   │  ├─ day.js
+        │   │  ├─ Month.js
+        │   │  ├─ Now.js
+        │   │  ├─ SelctedDate.js
+        │   │  ├─ Year.js
+        │   │  ├─ YearRepository.js
 	│   ├─ element.js
 	│   └─ index.js
 	└─  index.html
