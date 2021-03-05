@@ -29,8 +29,9 @@
     <!-- 야구게임 Start -->
     <div class="baseball">
       <input type="text" id="userNum">
-      <button type="button" id="btnStart">게임 START</button>
+      <button type="button" id="btnStart" onclick="makeRanNum(); this.onclick=null;">게임 START</button>
       <button type="button" id="btnConfirm" onclick="confirm();">확인</button>
+      <button type="button" id="btnRestart" onclick="restart();">재시작</button>
       <span id="txt"></span>
     </div>
 
@@ -40,7 +41,7 @@
   <script src="index.js"></script>
   <script>
   // 랜덤 3자리 숫자 생성
-   function ranNum() {
+   let makeRanNum = function () {
       const numbers = [
         0,
         1,
@@ -60,16 +61,13 @@
         const randomNum = Math.floor(Math.random() * numbers.length);
         pickNumbers[i] = numbers.splice(randomNum, 1)[0]
       }
+      makeRanNum = pickNumbers;
 
-      // return pickNumbers.toString();
-      // console.log(typeof(pickNumbers));
-      // console.log(pickNumbers);
-      return pickNumbers;
+      console.log(makeRanNum);
+      return makeRanNum;
     }
     
-    var makeRanNum = ranNum(); // random number 생성
-
-    console.log(makeRanNum);
+    let count = 1;
 
     function confirm(){
       let userNum = document.getElementById("userNum").value; // 사용자가 입력한 값
@@ -78,31 +76,22 @@
         alert("3글자만 입력해주세요!");
       }
 
-      let userNumbers = []; // 사용자가 입력한 값을 넣을 배열
-
-      userNumbers.push(userNum.substring(0,1)); // ,로 사용자가 입력한 값 쪼개기 위해 값 배열에 담기
-      userNumbers.push(userNum.substring(1,2));
-      userNumbers.push(userNum.substring(2,3));
-
-      // userNumbers = userNumbers.toString();
+      let userNumbers = userNum.split(""); // 사용자가 입력한 값을 쪼개 배열로 넣는다
       
-      // console.log(userNumbers);
-      // console.log(makeRanNum); // return값 (random number) 가져오는지 확인
-
       // 사용자에게 받아온 값 숫자형으로 변환
-      let userNumbers2 = userNumbers.map(function(stringNum) {
+      let userNumStrToNum = userNumbers.map(function(stringNum) {
         return Number(stringNum);
       });
 
-      // console.log(userNumbers2); // 숫자형 변환 확인
-
-      let count = 1;
+      // console.log(userNumStrToNum); // 숫자형 변환 확인
       let strike = 0;
       let ball = 0;
 
+      console.log(count++);
+
       for(let i=0; i<makeRanNum.length; i++){
-        for(let j=0; j<userNumbers2.length; j++){
-          if(makeRanNum[i] == userNumbers2[j]){
+        for(let j=0; j<userNumStrToNum.length; j++){
+          if(makeRanNum[i] == userNumStrToNum[j]){
             if (i === j) {
               console.log(strike++);
             } else {
@@ -115,7 +104,13 @@
      } else {
       document.getElementById("txt").innerHTML = strike + "스트라이크 " + ball + "볼";
      }
+
+     if(count > 10){
+       alert("시도는 10번만 가능합니다. 재시작 버튼 ㄱㄱ");
+     }
     }
+
+    let restart = makeRanNum;
   </script>
 </body>
 
