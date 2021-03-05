@@ -1,52 +1,67 @@
 console.log("hello, vanilla.");
 
-//랜덤한 세자리 숫자만들기
-let number=[];
-let randomNum = function(){
-    for(let i=0; i<3; i++){
-        let num1 = Math.floor(Math.random()*10);
-        number.push(num1);
-    }
-    return number;
-};
-randomNum();
 
-console.log(number);
-
-//재시작버튼
-let restart =function(){
-    let inputValue=document.getElementById('num');
-    let hintValue = document.getElementById('hint');
-    inputValue.value="";
-    hintValue.innerText="";
-    alert("다시 시작합니다.");
+//재시작
+function restart(){
+    input.value="";
+    start();
+    alert("재시작합니다.")
 }
 
+//게임버튼 클릭시 랜덤 숫자 생성
+let start = function(){
+    let numberAll =[0,1,2,3,4,5,6,7,8,9];
+    let ansNum=[];
+    for(let i=0; i<3; i++){
+        let num = numberAll[Math.floor(Math.random()*numberAll.length)];
+        ansNum.push(num);
+    }
+    return ansNum;
+};
 
+let doNum = start();
+console.log(doNum);
 
-//자리수 체크
-//숫자 맞추기
-let strike =0;
-let ball=0;
-let valid = function(){
-    let insertNum = document.getElementById('num').value;
-    let resultNum =insertNum.split("");
-        if(resultNum.length!==3){
-             alert('세자리 수를 입력해주세요!');
-         }
-        for(let i=0; i<3; i++){
-            for(let j=0; j<3; i++){
-                if(number[i] == resultNum[j]){
-                    if(i === j){
+//입력값이 세자리 숫자가 아닌 경우 경고창 띄워주기
+let form = document.querySelector("form"),
+    input = document.querySelector("input");
+let intNum =function (){
+    let currentValue = input.value,
+        resultNum =currentValue.split("");
+        if(resultNum.length !== 3){
+            alert('세자리수를 입력해주세요.');
+        }
+};
+
+//입력값과 랜덤숫자값 비교하기 + 10회 제한
+let strike;
+let ball;
+let count=10;
+let chance=document.querySelector(".chance");
+
+let retNum = function(){
+    let resultAns = input.value;
+    strike=0;
+    ball=0;
+    count--;
+        for(let m=0; m<3; m++){
+            for(let n=0; n<3; n++){
+                if(doNum[m] == resultAns[n]){
+                    if(m === n){
                         strike++;
                     }else{
                         ball++;
                     }
+                    break;
                 }
-                break;
+            }
+            if(strike ===3){
+                alert("정답입니다.");
+            }
+            if(count == 0){
+                alert("모든 기회를 사용하셨습니다.");
             }
         }
-        return document.getElementById('hint').innerText=`${strike}strike,${ball}ball`;
+        //결과값 출력
+        return document.querySelector("#hint").innerHTML = `${strike}strike, ${ball}ball`;
 };
-
-

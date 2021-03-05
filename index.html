@@ -24,19 +24,23 @@
       <h1>Baseball</h1>
 
       <!-- 야구게임 Start -->
-      <div class="all">
-        <div class="first">
-          <input type="text" id="num"><button onclick="valid()">입력</button>
+      
+        <div class="all">
+          <div class="first">
+            <input type="text" onchange="intNum()">
+            <button onclick="retNum()">입력</button>
+          </div>
+          <form>
+          <div class="first second">
+            <p><span class="chance">10</span>번의 기회가 있습니다.</p>
+            <p id="hint"></p>
+          </div>
+          <div class="first">
+            <button onclick="start()">게임시작</button>
+            <button onclick="restart()">재시작</button>
+          </div>
         </div>
-        <div class="first second">
-          <p class="chance">10번의 기회가 있습니다.</p>
-          <p id="hint"></p>
-        </div>
-        <div class="first">
-          <button>게임시작</button>
-          <button onclick="restart()">재시작</button>
-        </div>
-      </div>
+       </form> 
       <!-- 야구게임 End -->
     </section>
 
