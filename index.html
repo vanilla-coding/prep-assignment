@@ -14,24 +14,26 @@
     <link rel="icon" href="/images/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Baseball Project</title>
-    <script src="index.js"></script>
   </head>
 
   <body>
     <section>
       <div class="image-box">
-        <img src="images/vanilla_coding_logo.png" />
+        <img src="images/vanilla_coding_logo.png" 
+        width="800px"
+        height="250px"/>
       </div>
-      <h1>Baseball</h1> 
-        <input type="button" name = "startbutton" id = "startbutton" text = "start" value = "start" onclick = "setup()" >
-        <form name = "playernum">
-          <input type = "text" name = "input" id = "input">
-          <input type = "button" name = "okbutton" id = "okbutton" value = "ok" onclick = "inputNum()">
-        </form>
-        
+      <h1>Baseball</h1>
+      
       
     </section>
 
-    
+    <script src="index.js"></script>
+    <input type="button" id="Start" value="Start" onclick="Comnum()">
+    <div>
+      <input type="number"  id="Answer" value="Answer">
+      <input type="button" id="Enter" value="Enter" onclick="Entergame()">
+    </div>
+    <input type="button" id="Reset" value="Reset" onclick="Resetgame()">
   </body>
 </html>
