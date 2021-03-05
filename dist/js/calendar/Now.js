@@ -19,9 +19,14 @@ var Now = /*#__PURE__*/function () {
   }
 
   _createClass(Now, null, [{
-    key: "getDate",
-    value: function getDate() {
+    key: "getDateObject",
+    value: function getDateObject() {
       return _classStaticPrivateFieldSpecGet(this, Now, _nowObject);
+    }
+  }, {
+    key: "isDateToday",
+    value: function isDateToday(dateObject) {
+      return _classStaticPrivateFieldSpecGet(this, Now, _nowObject).getDate() === dateObject.getDate() && _classStaticPrivateFieldSpecGet(this, Now, _nowObject).getMonth() === dateObject.getMonth() && _classStaticPrivateFieldSpecGet(this, Now, _nowObject).getFullYear() === dateObject.getFullYear();
     }
   }]);
 

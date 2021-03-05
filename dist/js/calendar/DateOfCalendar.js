@@ -5,9 +5,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
+var _Board = _interopRequireDefault(require("../board/Board"));
+
+var _BoardRepository = _interopRequireDefault(require("../board/BoardRepository"));
+
 var _Status = _interopRequireDefault(require("../board/Status"));
 
-var _Task = _interopRequireDefault(require("../board/Task"));
+var _Task = _interopRequireDefault(require("../board/Task/Task"));
+
+var _SelectedDate = _interopRequireDefault(require("./SelectedDate"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -31,7 +37,7 @@ var _monthNumber = new WeakMap();
 
 var _yearNumber = new WeakMap();
 
-var _taskRepository = new WeakMap();
+var _board = new WeakMap();
 
 var DateOfCalendar = /*#__PURE__*/function () {
   function DateOfCalendar(dateNumber, monthObject, yearObject) {
@@ -62,9 +68,9 @@ var DateOfCalendar = /*#__PURE__*/function () {
       value: void 0
     });
 
-    _taskRepository.set(this, {
+    _board.set(this, {
       writable: true,
-      value: []
+      value: void 0
     });
 
     _classPrivateFieldSet(this, _monthBelongTo, monthObject);
@@ -76,58 +82,51 @@ var DateOfCalendar = /*#__PURE__*/function () {
     _classPrivateFieldSet(this, _yearNumber, yearObject.getNumber());
 
     _classPrivateFieldSet(this, _monthNumber, monthObject.getNumber());
+
+    _classPrivateFieldSet(this, _board, _BoardRepository["default"].createAndGetNewBoard(this));
   }
 
   _createClass(DateOfCalendar, [{
-    key: "getNumber",
-    value: function getNumber() {
+    key: "getDateNumber",
+    value: function getDateNumber() {
       return _classPrivateFieldGet(this, _number);
     }
   }, {
-    key: "getDate",
-    value: function getDate() {
+    key: "getDateObject",
+    value: function getDateObject() {
       return new Date(_classPrivateFieldGet(this, _yearNumber), _classPrivateFieldGet(this, _monthNumber), _classPrivateFieldGet(this, _number));
     }
   }, {
-    key: "getAllTasks",
-    value: function getAllTasks() {
-      this.sortTasks();
-      return _classPrivateFieldGet(this, _taskRepository);
+    key: "getNumberListOfDateObject",
+    value: function getNumberListOfDateObject() {
+      return [_classPrivateFieldGet(this, _yearNumber), _classPrivateFieldGet(this, _monthNumber), _classPrivateFieldGet(this, _number)];
     }
   }, {
-    key: "sortTasks",
-    value: function sortTasks() {
-      _classPrivateFieldGet(this, _taskRepository).sort(function (task1, task2) {
-        var statusList = _Status["default"].getRepository();
+    key: "getBoard",
+    value: function getBoard() {
+      return _classPrivateFieldGet(this, _board);
+    }
+  }, {
+    key: "handleClicked",
+    value: function handleClicked() {
+      if (_Board["default"].getVisibility()) {
+        if (_SelectedDate["default"].isDateSameWithPreviousDate(this)) {
+          _Board["default"].deleteSelfElementByDateObject(this);
 
-        var index1 = statusList.indexOf(task1.getStatus().getText());
-        var index2 = statusList.indexOf(task2.getStatus().getText());
-        return index1 - index2;
-      });
-    }
-  }, {
-    key: "addTask",
-    value: function addTask(content) {
-      var newTask = new _Task["default"](content, this);
+          return;
+        }
+      }
 
-      _classPrivateFieldGet(this, _taskRepository).push(newTask);
-    }
-  }, {
-    key: "deleteTask",
-    value: function deleteTask(task) {
-      var taskIndex = _classPrivateFieldGet(this, _taskRepository).indexOf(task);
+      var board = new _Board["default"](this);
 
-      _classPrivateFieldGet(this, _taskRepository).splice(taskIndex, 1);
-    }
-  }, {
-    key: "deleteAllTasks",
-    value: function deleteAllTasks() {
-      _classPrivateFieldSet(this, _taskRepository, []);
-    }
-  }, {
-    key: "getTaskLength",
-    value: function getTaskLength() {
-      return _classPrivateFieldGet(this, _taskRepository).length;
+      if (_Board["default"].isDateSameWithPreviousDate(this)) {
+        _Board["default"]["delete"]();
+
+        return;
+      }
+
+      board.display();
+      return;
     }
   }]);
 

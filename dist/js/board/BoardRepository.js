@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _Year = _interopRequireDefault(require("./Year"));
+var _Board = _interopRequireDefault(require("./Board"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -19,49 +19,42 @@ function _classStaticPrivateFieldSpecGet(receiver, classConstructor, descriptor)
 
 function _classStaticPrivateMethodGet(receiver, classConstructor, method) { if (receiver !== classConstructor) { throw new TypeError("Private static access of wrong provenance"); } return method; }
 
-var YearRepository = /*#__PURE__*/function () {
-  function YearRepository() {
-    _classCallCheck(this, YearRepository);
+var BoardRepository = /*#__PURE__*/function () {
+  function BoardRepository() {
+    _classCallCheck(this, BoardRepository);
   }
 
-  _createClass(YearRepository, null, [{
-    key: "createNewYearByDateObject",
-    value: function createNewYearByDateObject(dateObject) {
-      var newYear = new _Year["default"](dateObject.getFullYear());
+  _createClass(BoardRepository, null, [{
+    key: "createAndGetNewBoard",
+    value: function createAndGetNewBoard(dateOfCalendar) {
+      var board = new _Board["default"](dateOfCalendar);
 
-      _classStaticPrivateMethodGet(YearRepository, YearRepository, _addYearToRepository).call(YearRepository, newYear);
+      _classStaticPrivateMethodGet(BoardRepository, BoardRepository, _addBoardToRepository).call(BoardRepository, board);
+
+      return board;
     }
   }, {
-    key: "hasYearInRepository",
-    value: function hasYearInRepository(yearNumber) {
-      return _classStaticPrivateFieldSpecGet(YearRepository, YearRepository, _years).filter(function (yearObject) {
-        return yearObject.getNumber() === yearNumber;
-      }).length !== 0;
+    key: "getBoards",
+    value: function getBoards() {
+      return _classStaticPrivateFieldSpecGet(this, BoardRepository, _boards);
     }
   }, {
-    key: "getYearByDateObject",
-    value: function getYearByDateObject(dateObject) {
-      return _classStaticPrivateFieldSpecGet(YearRepository, YearRepository, _years).find(function (yearObject) {
-        return yearObject.getNumber() === dateObject.getFullYear();
-      });
-    }
-  }, {
-    key: "getYearRepository",
-    value: function getYearRepository() {
-      return _classStaticPrivateFieldSpecGet(this, YearRepository, _years);
+    key: "getNumberOfBoardsCurrentDisplayed",
+    value: function getNumberOfBoardsCurrentDisplayed() {
+      return _classStaticPrivateFieldSpecGet(this, BoardRepository, _boards).length;
     }
   }]);
 
-  return YearRepository;
+  return BoardRepository;
 }();
 
-exports["default"] = YearRepository;
+exports["default"] = BoardRepository;
 
-var _addYearToRepository = function _addYearToRepository(newYear) {
-  _classStaticPrivateFieldSpecGet(YearRepository, YearRepository, _years).push(newYear);
+var _addBoardToRepository = function _addBoardToRepository(board) {
+  _classStaticPrivateFieldSpecGet(BoardRepository, BoardRepository, _boards).push(board);
 };
 
-var _years = {
+var _boards = {
   writable: true,
   value: []
 };

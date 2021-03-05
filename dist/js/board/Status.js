@@ -19,11 +19,9 @@ function _classStaticPrivateFieldSpecGet(receiver, classConstructor, descriptor)
 
 var _statusName = new WeakMap();
 
-var _cannotUpdateMessage = new WeakMap();
+var _ERROR_MESSAGE_CANNOT_UPDATE_DONE = new WeakMap();
 
 var Status = /*#__PURE__*/function () {
-  // 초기 상태 정보 목록
-  // 커스텀 상태 정보
   function Status() {
     _classCallCheck(this, Status);
 
@@ -32,7 +30,7 @@ var Status = /*#__PURE__*/function () {
       value: void 0
     });
 
-    _cannotUpdateMessage.set(this, {
+    _ERROR_MESSAGE_CANNOT_UPDATE_DONE.set(this, {
       writable: true,
       value: "\uD604\uC7AC \uC0C1\uD0DC\uAC00 ".concat(_classStaticPrivateFieldSpecGet(Status, Status, _DONE), " \uC785\uB2C8\uB2E4. \uB354 \uC774\uC0C1 \uC5C5\uB370\uC774\uD2B8 \uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.")
     });
@@ -51,7 +49,7 @@ var Status = /*#__PURE__*/function () {
       var newStatusIndex = _classStaticPrivateFieldSpecGet(Status, Status, _statusRepository).indexOf(_classPrivateFieldGet(this, _statusName)) + 1;
 
       if (newStatusIndex === _classStaticPrivateFieldSpecGet(Status, Status, _statusRepository).length) {
-        console.log(_classPrivateFieldGet(this, _cannotUpdateMessage));
+        console.log(_classPrivateFieldGet(this, _ERROR_MESSAGE_CANNOT_UPDATE_DONE));
         return;
       }
 

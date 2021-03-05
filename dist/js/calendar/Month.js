@@ -102,8 +102,8 @@ var Month = /*#__PURE__*/function () {
       return _classPrivateFieldGet(this, _dayOfFirstDate);
     }
   }, {
-    key: "getLastDate",
-    value: function getLastDate() {
+    key: "getLastDateNumber",
+    value: function getLastDateNumber() {
       return _classPrivateFieldGet(this, _lastDate);
     }
   }, {
@@ -117,10 +117,10 @@ var Month = /*#__PURE__*/function () {
       return _classPrivateFieldGet(this, _yearNumber);
     }
   }, {
-    key: "getDateByNumber",
-    value: function getDateByNumber(dateNumber) {
+    key: "getDateOfCalendarByNumber",
+    value: function getDateOfCalendarByNumber(dateNumber) {
       return _classPrivateFieldGet(this, _dateRepository).find(function (dateOfCalendar) {
-        return dateOfCalendar.getNumber() === dateNumber;
+        return dateOfCalendar.getDateNumber() === dateNumber;
       });
     }
   }], [{
