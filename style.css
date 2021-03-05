@@ -46,16 +46,29 @@ h1 {
 .scoreBoard {
   border-collapse: collapse;
   font-size: 20px;
+  margin-left: 20px;
+  text-align: center;
+}
+
+.scoreBoard td {
+  padding-left: 25px;
+  padding-top: 5px;
+}
+
+.scoreBoard tr:last-child {
+  border-bottom: solid 1px gray;
 }
 
 .scoreBoard th {
   border-bottom: solid 1px gray;
-  padding-left: 10px;
+  padding-left: 25px;
+  width: 2rem;
 }
 
-.scoreBoard td {
-  padding: 10px;
+.status {
+  margin-left: 20px;
 }
+
 
 .disable {
   display: none;
