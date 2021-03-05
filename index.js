@@ -1,135 +1,157 @@
-const start = document.querySelector('.start'),
-  guess = document.querySelector('.guess'),
-  guessNum = guess.querySelector('input'),
-  logoBox = document.querySelector('.image-box'),
-  scoreBoard = document.querySelector('.scoreBoard'),
-  scoreBody = document.querySelector('tbody'),
-  status = document.querySelector('.status');
+const HTML_CN = {
+	disable: 'disable',
+};
 
-const disable_CN = 'disable';
-let answer; // 정답 숫자
-let trials;  // 시도 횟수
-const congratulations = 'You guessed it. Great!';
-const runout = 'You ran out of guesses ... The number is';
+const selector = {
+	start: document.querySelector('.start'),
+	guess: document.querySelector('.guess'),
+    input: document.querySelector('#input'),
+	logoBox: document.querySelector('.image-box'),
+	scoreBoard: document.querySelector('.scoreBoard'),
+	status: document.querySelector('.status'),
+	scoreBody: document.querySelector('tbody'),
+};
 
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min; //최댓값은 제외, 최솟값은 포함
-}
+const gameInfo = {
+	answer: null,
+	userGuess: null,
+	trials: 0,
+	maxTrial: 10,
+	errorMSG: 'It is not a valid integer.',
+	retryMSG: 'Retry?',
+};
 
-function isValid(userNum){
-	const parsed = Number(userNum);
-	if (Number.isInteger(parsed)) {
-		if (parsed >= 100 && parsed < 1000){
-			return true;
-		}
-	}
-	return false;
-}
+const statusMsg = {
+	congratz: 'You guessed it. Great!',
+	runout: 'You ran out of guesses ... The number is',
+};
 
-function countBall(userBook, answerBook){
-	let ball = 0;
-	let answerBookTemp = answerBook.slice();
-	for (var u of userBook){
-		if (answerBookTemp.includes(u)){
-			ball += 1;
-			answerBookTemp.splice(answerBookTemp.indexOf(u), 1);
-		}
-	}
-	return ball;
-}
+function anotherTry() {
+	selector.start.classList.remove(HTML_CN.disable);
+	selector.start.innerText = gameInfo.retryMSG;
+	selector.guess.classList.add(HTML_CN.disable);
+};
 
-function anotherTry(){
-	guess.classList.add(disable_CN);
-	start.classList.remove(disable_CN);
-	start.innerText = 'Retry?';
-}
+function showStatusMSG() {
+	if (gameInfo.userGuess === gameInfo.answer) {
+		selector.status.innerText = statusMsg.congratz;
+		return anotherTry();
+	} else if (gameInfo.trials >= gameInfo.maxTrial) {
+		selector.status.innerHTML = `${statusMsg.runout} ${gameInfo.answer}.`;
+		return anotherTry();
+	};
+};
 
-function countStrike(userBook, answerBook){
-	let strike = 0;
-	for (var i in userBook){
-		if (userBook[i] === answerBook[i]){
-			strike += 1;
-		}
-	}
-	return strike;
-}
-
-function statusMSG(trials, num){
-	if (num === answer){
-		status.innerText = congratulations;
-		anotherTry();
-	} else if (trials >= 10) {
-		status.innerHTML = `${runout} ${answer}.`;
-		anotherTry();
-	}
-}
-
-function showScore(ball, strike, num){
-	if (scoreBoard.classList.contains(disable_CN)){
-		scoreBoard.classList.remove(disable_CN)
-	}
+function showScore(ball, strike) {
 	const tr = document.createElement('tr');
 	const count = document.createElement('td');
 	const bScore = document.createElement('td');
 	const sScore = document.createElement('td');
 	const userNum = document.createElement('td');
-	count.innerText = ++trials;
+	count.innerText = gameInfo.trials;
 	bScore.innerText = ball;
 	sScore.innerText = strike;
-	userNum.innerText = num;
+	userNum.innerText = gameInfo.userGuess;
 	tr.appendChild(count);
 	tr.appendChild(bScore);
 	tr.appendChild(sScore);
 	tr.appendChild(userNum);
-	scoreBody.appendChild(tr);
-	return statusMSG(trials, num);
-}
+	selector.scoreBody.appendChild(tr);
+	return showStatusMSG();
+};
 
-function checkScore(num){
-	const userBook = Array.from(String(num), Number);
-	const answerBook = Array.from(String(answer), Number);
+function countBall(userBook, answerBook) {
+	let ball = 0;
+	let answerBookTemp = answerBook.slice();
+	userBook.forEach((u) => {
+		if (answerBookTemp.includes(u)) {
+			ball += 1;
+
+			// 유저 입력이 333, 답안이 311인 경우 ball 3을 방지하기 위해 ball이 나온 요소는 삭제
+			answerBookTemp.splice(answerBookTemp.indexOf(u), 1);
+		}
+
+	});
+
+	return ball;
+};
+
+function countStrike(userBook, answerBook) {
+	let strike = 0;
+	for (var i in userBook) {
+		if (userBook[i] === answerBook[i]) {
+			strike += 1;
+		};
+	};
+
+	return strike;
+};
+
+function checkScore() {
+	gameInfo.trials += 1;
+	const userBook = Array.from(String(gameInfo.userGuess), Number);
+	const answerBook = Array.from(String(gameInfo.answer), Number);
 	const ball = countBall(userBook, answerBook);
 	const strike = countStrike(userBook, answerBook);
-	return showScore(ball, strike, num);
-}
+	return showScore(ball, strike);
+};
 
-function enterListener(event){
+function isValid(num) {
+	if (Number.isInteger(num)) {
+		if (num >= 100 && num < 1000) {
+			return true;
+		};
+	};
+
+	return false;
+};
+
+function enterListener(event) {
 	event.preventDefault();
-	const userNum = guessNum.value;
-	guessNum.value = '';
-	if (isValid(userNum)){
-		checkScore(Number(userNum));
+	gameInfo.userGuess = Number(selector.input.value);
+	selector.input.value = '';
+	if (isValid(gameInfo.userGuess)){
+		return checkScore();
 	} else {
-		alert('It is not a valid integer.')
-	}
+		return alert(gameInfo.errorMSG);
+	};
+};
+
+function getRandomInt(min = 100, max = 1000) {
+  return Math.floor(Math.random() * (max - min)) + min;
+};
+
+function resetGameInfo() {
+	gameInfo.answer = getRandomInt(100, 1000);
+	gameInfo.userGuess = null;
+	gameInfo.trials = 0;
+};
+
+function resetTable() {
+	selector.scoreBody.innerText = '';
+};
+
+function resetStatus() {
+	selector.status.innerText = '';
 }
 
-function resetTable(){
-	scoreBody.innerText = '';
-}
-
-function reset(){
-	trials = 0;
-	status.innerText = ``;
+function reset() {
+	resetGameInfo();
 	resetTable();
-}
+	resetStatus();
+};
 
-function loadGame(){
-	reset();  // 도전횟수 초기화
-	answer = getRandomInt(100, 1000);
-	guess.classList.remove(disable_CN);
-	logoBox.classList.add(disable_CN);
-}
+function startListener() {
+	selector.start.classList.add(HTML_CN.disable);
+	selector.logoBox.classList.add(HTML_CN.disable);
+	selector.guess.classList.remove(HTML_CN.disable);
+	selector.scoreBoard.classList.remove(HTML_CN.disable);
+	return reset();
+};
 
-function startListener(){
-	start.classList.add(disable_CN);
-	logoBox.classList.add(disable_CN);
-	loadGame();
-}
-
-function init(){
-	start.addEventListener("click", startListener);
-	guess.addEventListener("submit", enterListener);
-}
+function init() {
+	selector.start.addEventListener("click", startListener);
+	selector.guess.addEventListener("submit", enterListener);
+};
 
 init();
