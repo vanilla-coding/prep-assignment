@@ -18,7 +18,6 @@
     <script type="text/javascript">
       var random_3_num;
       var count = 0;
-      var win_array = [1, 1, 1];
 
       //restart button
       //count->0
@@ -132,6 +131,7 @@
               strike_position[2] == 1
             ) {
               document.getElementById("text3").innerHTML = "Win!!! ";
+              count = 10;
             } else {
               document.getElementById("text3").innerHTML = "Count : " + ++count;
             }
