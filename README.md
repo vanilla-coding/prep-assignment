@@ -6,6 +6,11 @@
 
 각 날짜마다 할 일 목록을 조회/추가/수정/삭제 할 수 있는 캘린더입니다.
 
+![simulation_1](gif/simul_1.gif)
+
+
+![simulation_2](gif/simul_2.gif)
+
 ### 구현한 기능 목록
 
 - 캘린더 기능
@@ -33,39 +38,35 @@
 	├─  📁images
 	├─  📁js
 	│   ├─ 📁board
-	│   │  ├─ boardEventHandler.js
+  │   │  ├─ 📁task
+	│   │  │   ├─ Task.js
+	│   │  │   ├─ TaskController.js
+	│   │  │   └─ taskElementEventHandler.js
+  │   │  └─ 📁taskSubmissionForm
+	│   │  │   ├─ TaskSubmissionForm.js
+	│   │  │   └─ TaskSubmissionFormEventHandler.js
+	│   │  ├─ Board.js
+	│   │  ├─ BoardController.js
+	│   │  ├─ boardElementEventHandler.js
+	│   │  ├─ BoardRepository.js
 	│   │  ├─ Status.js
-	│   │  └─ Task.js
-	│   ├─ 📁calendar
-	│   │  ├─ CalendarController.js
-	│   │  ├─ calendarEventHandler.js
-	│   │  ├─ CalendarViewer.js
-	│   │  ├─ DateOfCalendar.js
-	│   │  ├─ day.js
-	│   │  ├─ Month.js
-	│   │  ├─ Now.js
-	│   │  ├─ SelectedDate.js
-	│   │  ├─ Year.js
-	│   │  └─ YearRepository.js
+  │   ├─ 📁calendar
+  │   │  ├─ Calendar.js
+  │   │  ├─ CalendarController.js
+  │   │  ├─ calendarElementEventHandler.js
+  │   │  ├─ DateOfCalendar.js
+  │   │  ├─ day.js
+  │   │  ├─ Month.js
+  │   │  ├─ Now.js
+  │   │  ├─ SelctedDate.js
+  │   │  ├─ Year.js
+  │   │  ├─ YearRepository.js
 	│   ├─ element.js
 	│   └─ index.js
-	└─  index.html 
+	└─  index.html
 ```
 
 - `src/js` 폴더 안의 자바스크립트 소스 코드는 `babel`에 의해 트랜스파일 되고 `webpack`에 의해 합쳐져 `dist/js/bundle.js`가 됩니다. 이 프로젝트의 `src/index.html`은 이 `bundle.js`를 외부 스크립트 파일로 불러옵니다.
-
-## 소스코드 간단한 설명
-
-### src/board
-
-- `DateOfCalendar` 객체에 의해 만들어져 프로퍼티가 되는 `Task`(할 일) 객체는 내부 프로퍼티로 `Status`(상태) 객체를 가집니다.
-
-### src/calendar
-
-- `index.js`에서 `CalendarController` 클래스의 인스턴스를 생성하면서 캘린더 프로그램이 시작됩니다.
-- `CalendarController`는 `CalendarViewer`에게 캘린더를 출력하라고 요청합니다.
-- `CalendarViewer`는 캘린더를 출력할 때 `YearRepository`에 현재 날짜가 속한 새로운 `Year`를 만들도록 요청합니다. `Year`는 생성될 때 `Month`를 생성해 내부에 저장하고, 각 `Month`는 생성될 때 `DateOfCalendar`를 생성해 내부 프로퍼티로 저장합니다.
-- `CalendarViewer`는 이렇게 생성된 날짜 객체들에서 정보를 얻어 캘린더를 출력합니다.
 
 ## 배운 것과 아쉬운 점
 
@@ -87,11 +88,11 @@
 
 - **어색한 객체 지향 설계**
 
-    제대로 객체 지향 설계를 한 것인지 피드백을 받지 않아 모르겠습니다. 구현하기에 급급해 SOLID 객체 지향 원칙, 상속 등 다양한 객체 지향 개념을 적용하지 못해 아쉬웠습니다.
+    제대로 객체 지향 설계를 한 것인지 피드백을 받지 않아 모르겠습니다. 구현하기에 급급해 SOLID 객체 지향 원칙, 상속 등 다양한 객체 지향 개념을 적용하지 못해 아쉬웠습니다. 클래스를 나눠보려고 시도했으나 오히려 복잡함만 더해진 것은 아닌지 우려됩니다.
 
 - **테스트 코드 작성하려 시도했으나 실패**
 
-    [javascript-koans](https://github.com/mrdavidlaing/javascript-koans)를 실습해보고, 이 프로젝트에 테스트 코드를 작성하며 개발하고 싶었습니다. 하지만 JEST, CYPRESS 등 테스트 코드 문법이 익숙하지 않았고, DOM 정보를 어떻게 가져와서 비교하는데 어려움이 있었습니다. 그래서 익숙한 방식대로 프로그램을 구현했습니다. 하지만 새로운 도전을 하지 않았기에 아쉬웠습니다. 다음 프로젝트에는 꼭 테스트 코드를 작성할 것입니다.
+    [javascript-koans](https://github.com/mrdavidlaing/javascript-koans)를 실습해보고, 이 프로젝트에 테스트 코드를 작성하며 개발하고 싶었습니다. 하지만 JEST, CYPRESS 등 테스트 코드 문법이 익숙하지 않았고, DOM 정보를 어떻게 가져와서 비교하는데 어려움이 있었습니다. 그래서 익숙한 방식대로 프로그램을 구현했습니다. 하지만 새로운 도전을 하지 않았기에 아쉬웠습니다. 다음 프로젝트에는 꼭 테스트 코드를 작성할 것입니다. 2차로 리팩토링을 하며 기존 기능을 제대로 구현했는지 테스트가 필요했는데, 테스트코드가 없어 매우 불편했습니다. 하지만 프로젝트 도중부터 테스트코드를 적용하기가 어려울 것 같아 두려워 적용하지 않았습니다. 다음 프로젝트부터 적용하기보다 현재 프로젝트를 계속 유지보수, 확장해가면서 테스트코드를 적용하겠다, 생각했습니다.
 
 - **로컬스토리지에 데이터를 저장하고 불러오는 방식을 구현하지 않음.**
 
@@ -127,7 +128,7 @@
 - 시멘틱 웹
   - [x] html img 에 alt 값 넣기
   - [x] h1, h2, h3 순서대로 배치하기. h1은 페이지 당 하나만 사용하기
-- [ ] 페이지 시연 영상 readme에 삽입하기
+- [x] 페이지 시연 영상 readme에 삽입하기
 - 객체 지향 원칙 더 잘 적용하기
   - [x] 클래스 나누기 (확장성과 향후 유지보수를 고려하기)
   - [x] 클래스 내부의 쓸데 없는 메서드 없애기
