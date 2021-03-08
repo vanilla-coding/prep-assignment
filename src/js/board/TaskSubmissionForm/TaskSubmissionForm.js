@@ -1,10 +1,10 @@
 import {
-  handleClickCancelTaskSubmission,
-  handleClickSubmitTaskSubmission,
+  handleClickCancelButton,
+  handleClickSubmitButton,
 } from "./TaskSubmissionFormEventHandler";
 
 export default class TaskSubmissionForm {
-  #board;
+  #boardObject;
 
   $board;
   $formContainer;
@@ -16,18 +16,18 @@ export default class TaskSubmissionForm {
 
   constructor(board, $board) {
     this.$board = $board;
-    this.#board = board;
+    this.#boardObject = board;
   }
 
   display() {
-    this.#createElement();
+    this.#createFormElement();
     this.#addClassName();
     this.#appendChild();
     this.#addContent();
-    this.#addEventListener();
+    this.#addEventListenerToForm();
   }
 
-  #createElement() {
+  #createFormElement() {
     this.$formContainer = document.createElement("div");
     this.$form = document.createElement("div");
     this.$taskContentTextInput = document.createElement("textarea");
@@ -59,15 +59,12 @@ export default class TaskSubmissionForm {
     this.$cancelButton.textContent = "CANCEL";
   }
 
-  #addEventListener() {
+  #addEventListenerToForm() {
     this.$submitButton.addEventListener(
       "click",
-      handleClickSubmitTaskSubmission(this.#board, this)
+      handleClickSubmitButton(this.#boardObject, this)
     );
-    this.$cancelButton.addEventListener(
-      "click",
-      handleClickCancelTaskSubmission(this)
-    );
+    this.$cancelButton.addEventListener("click", handleClickCancelButton(this));
   }
 
   close() {

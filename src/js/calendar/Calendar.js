@@ -6,10 +6,10 @@ export default class Calendar {
   #yearRepository;
 
   constructor() {
-    this.#yearRepository = this.#getOrCreateYearRepository();
+    this.#yearRepository = this.#getYearRepository();
   }
 
-  #getOrCreateYearRepository() {
+  #getYearRepository() {
     if (!YearRepository.hasYearInRepository()) {
       YearRepository.createNewYearByDateObject(Now.getDateObject());
     }

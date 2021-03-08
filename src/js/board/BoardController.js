@@ -33,15 +33,15 @@ export default class BoardController {
 
   display() {
     this.#board.changeVisibility();
-    this.#createElement();
+    this.#createBoardElement();
     this.#addClassName();
     this.#appendChild();
     this.#addContent();
-    this.#addEventListener();
+    this.#addEventListenerToBoard();
     this.displayTasks();
   }
 
-  #createElement() {
+  #createBoardElement() {
     this.$board = document.createElement("div");
 
     this.$boardHeader = document.createElement("div");
@@ -103,7 +103,7 @@ export default class BoardController {
     }.${dateNumber}`;
   }
 
-  #addEventListener() {
+  #addEventListenerToBoard() {
     this.$boardAddTaskButton.addEventListener(
       "click",
       handleBoardButtonAdd(this.#board, this.$board)

@@ -30,7 +30,7 @@ export default class TaskController {
     TaskController.addClassNameToTaskElements();
     TaskController.addTextContentToTaskElements(task);
     TaskController.combineTaskElements();
-    TaskController.colorTaskSatus(task.getStatus()); // status 엘리먼트가 만들어지고 나서 수행
+    TaskController.colorTaskSatus(task.getStatus());
     TaskController.addEventListenerToTaskButtons(task);
   }
 

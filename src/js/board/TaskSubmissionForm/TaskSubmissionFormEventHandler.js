@@ -1,6 +1,6 @@
 import TaskController from "../Task/TaskController";
 
-export const handleClickSubmitTaskSubmission = (board, form) => {
+export const handleClickSubmitButton = (board, form) => {
   return () => {
     const input = document.querySelector(".task-content-text-input");
     if (input.value.trim() === "") {
@@ -15,6 +15,6 @@ export const handleClickSubmitTaskSubmission = (board, form) => {
   };
 };
 
-export const handleClickCancelTaskSubmission = (form) => {
+export const handleClickCancelButton = (form) => {
   return () => form.close();
 };
