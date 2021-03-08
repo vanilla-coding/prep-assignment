@@ -16,7 +16,5 @@ export const handleClickSubmitTaskSubmission = (board, form) => {
 };
 
 export const handleClickCancelTaskSubmission = (form) => {
-  return () => {
-    form.close();
-  };
+  return () => form.close();
 };

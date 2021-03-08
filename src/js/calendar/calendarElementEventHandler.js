@@ -32,14 +32,14 @@ export const createHandleClickDateOfCalendar = (
     SelectedDate.setDateNumberOfDateObject(dateOfCalendar.getDateNumber());
     calendarController.displaySelectedDateText();
 
-    const dateDifferenceFromSelectedDateToNow = calculateDateDifferenceFromSelectedDateToNow(
+    const dateDifferenceFromNow = calculateDateDifferenceFromNow(
       dateOfCalendar
     );
 
     if (Now.isDateToday(SelectedDate.getDateObject())) {
       $differenceWithClickedDate.textContent = SELECTED_DATE_TEXT_TODAY;
     } else {
-      printDateDifference(dateDifferenceFromSelectedDateToNow);
+      printDateDifference(dateDifferenceFromNow);
     }
 
     calendarController.displayCalendarContents();
@@ -54,7 +54,7 @@ export const createHandleClickDateOfCalendar = (
   };
 };
 
-const calculateDateDifferenceFromSelectedDateToNow = (dateOfCalendar) => {
+const calculateDateDifferenceFromNow = (dateOfCalendar) => {
   const now = Now.getDateObject();
   const ONE_DAY = 1000 * 60 * 60 * 24;
   return Math.ceil((dateOfCalendar.getDateObject() - now) / ONE_DAY);

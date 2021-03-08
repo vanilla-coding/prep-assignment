@@ -4,6 +4,7 @@ export default class Now {
   static getDateObject() {
     return this.#nowObject;
   }
+
   static isDateToday(dateObject) {
     return (
       this.#nowObject.getDate() === dateObject.getDate() &&

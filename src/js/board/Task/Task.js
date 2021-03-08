@@ -1,7 +1,6 @@
 import Status from "../Status";
 
 export default class Task {
-  #createdTime;
   #content;
   #status;
   #assignedDate;
@@ -9,7 +8,6 @@ export default class Task {
   #boardController;
 
   constructor(content, board) {
-    this.#createdTime = new Date();
     this.#content = content;
     this.#status = new Status();
     this.#assignedDate = board.getDateOfCalendar();

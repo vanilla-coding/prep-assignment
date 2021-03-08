@@ -30,6 +30,7 @@ export default class CalendarController {
     this.#calendar = calendar;
     TaskController.setCalendarController(this);
   }
+
   initialize() {
     this.#addEventListenerToMoveButton();
     this.#printHeader();
@@ -43,12 +44,9 @@ export default class CalendarController {
   }
 
   displayCalendarContents() {
-    if (
-      !this.#calendar.checkYearExistenceByDateObject(
-        SelectedDate.getDateObject()
-      )
-    ) {
-      this.#calendar.createNewYearByDateObject(SelectedDate.getDateObject());
+    const selectedDate = SelectedDate.getDateObject();
+    if (!this.#calendar.checkYearExistenceByDateObject(selectedDate)) {
+      this.#calendar.createNewYearByDateObject(selectedDate);
     }
     this.#printTodayText();
     this.#displayDates();
@@ -63,9 +61,7 @@ export default class CalendarController {
 
   #printHeader() {
     let i = 0;
-    $header.forEach((th) => {
-      th.textContent = DAYS[i++];
-    });
+    $header.forEach((th) => (th.textContent = DAYS[i++]));
   }
 
   #printTodayText() {

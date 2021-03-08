@@ -35,15 +35,4 @@ export default class SelectedDate {
   static getFullYear() {
     return SelectedDate.#date.getFullYear();
   }
-
-  static isSelectedDateSameWithPreviousSelectedDate() {
-    return (
-      SelectedDate.#date.getDate() ===
-        SelectedDate.#previousSelectedDate.getDate() &&
-      SelectedDate.#date.getMonth() ===
-        SelectedDate.#previousSelectedDate.getMonth() &&
-      SelectedDate.#date.getFullYear() ===
-        SelectedDate.#previousSelectedDate.getFullYear()
-    );
-  }
 }
