@@ -1,7 +1,5 @@
 # **Calendar**
 
-**→ [github page](https://sounmind.github.io/prep-assignment/src/index.html)**
-
 ## 간단한 설명
 
 각 날짜마다 할 일 목록을 조회/추가/수정/삭제 할 수 있는 캘린더입니다.
