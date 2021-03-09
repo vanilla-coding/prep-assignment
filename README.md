@@ -25,7 +25,7 @@
 
 위 그림처럼 초록색 Code 버튼을 누르시고, HTTPS가 맞는지 확인하신 뒤에 복사해주세요.
 
-이제 Terminal(윈도우는 CMD)를 켜시고, 클론을 해볼까요?
+이제 Terminal(윈도우는 [Git Bash](https://gitforwindows.org/)를 설치해주세요)을 켜시고, 클론을 해볼까요?
 
 <img width="1244" alt="스크린샷 2021-01-26 오전 10 39 32" src="https://user-images.githubusercontent.com/69792673/105788238-6ef8e980-5fc3-11eb-856f-5e15286b7c30.png">
 
